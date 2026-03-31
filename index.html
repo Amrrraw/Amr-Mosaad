@@ -370,7 +370,7 @@
     <!-- MY E -->
     <div class="client-card" onclick="toggleClient('mye', this)">
       <div class="client-logo-wrap">
-        <img src="mye.png" alt="MY E">
+        <img src="mye.png" alt="MY E" onerror="this.style.display='none'">
       </div>
       <div class="client-name">MY E</div>
     </div>
@@ -378,7 +378,7 @@
     <!-- Asfour Crystal -->
     <div class="client-card" onclick="toggleClient('asfour', this)">
       <div class="client-logo-wrap">
-        <img src="asfour.png" alt="Asfour Crystal">
+        <img src="Afour.png" alt="Asfour Crystal" onerror="this.style.display='none'">
       </div>
       <div class="client-name">Asfour Crystal</div>
     </div>
@@ -386,7 +386,7 @@
     <!-- Gems -->
     <div class="client-card" onclick="toggleClient('gems', this)">
       <div class="client-logo-wrap">
-        <img src="gems.png" alt="Gems">
+        <img src="gems.png" alt="Gems" onerror="this.style.display='none'">
       </div>
       <div class="client-name">Gems</div>
     </div>
@@ -394,7 +394,7 @@
     <!-- Carofi -->
     <div class="client-card" onclick="toggleClient('carofi', this)">
       <div class="client-logo-wrap">
-        <img src="carofi.png" alt="Carofi">
+        <img src="Carofi.png" alt="Carofi" onerror="this.style.display='none'">
       </div>
       <div class="client-name">Carofi</div>
     </div>
@@ -402,7 +402,7 @@
     <!-- MPG -->
     <div class="client-card" onclick="toggleClient('mpg', this)">
       <div class="client-logo-wrap">
-        <img src="mpg.png" alt="MPG">
+        <img src="MBG.png" alt="MPG" onerror="this.style.display='none'">
       </div>
       <div class="client-name">MPG</div>
     </div>
@@ -423,6 +423,22 @@
     <div class="client-card" onclick="toggleClient('football', this)">
       <div class="client-logo-text">FOOTBALL</div>
       <div class="client-name">Football Access</div>
+    </div>
+
+    <!-- EGX -->
+    <div class="client-card" onclick="toggleClient('egx', this)">
+      <div class="client-logo-wrap">
+        <img src="EGX.png" alt="EGX" onerror="this.style.display='none'">
+      </div>
+      <div class="client-name">EGX</div>
+    </div>
+
+    <!-- ALRAYAH -->
+    <div class="client-card" onclick="toggleClient('alrayah', this)">
+      <div class="client-logo-wrap">
+        <img src="ALRAYAH.png" alt="Al Rayah" onerror="this.style.display='none'">
+      </div>
+      <div class="client-name">Al Rayah</div>
     </div>
 
   </div>
@@ -533,6 +549,26 @@
       <div class="vid-placeholder" onclick="openModal('1JoYWTYuS8wQH4NbsDCi1EEjoBAZysKi4')">
         <div class="aspect"><div class="inner"><div class="vid-num">04</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
       </div>
+    </div>
+  </div>
+
+  <div class="videos-panel" id="panel-egx">
+    <div class="panel-header">
+      <div class="panel-client-name">EGX</div>
+      <button class="panel-close" onclick="closePanel('egx')">✕ Close</button>
+    </div>
+    <div class="videos-grid">
+      <!-- فيديوهات EGX هتتضاف هنا -->
+    </div>
+  </div>
+
+  <div class="videos-panel" id="panel-alrayah">
+    <div class="panel-header">
+      <div class="panel-client-name">AL RAYAH</div>
+      <button class="panel-close" onclick="closePanel('alrayah')">✕ Close</button>
+    </div>
+    <div class="videos-grid">
+      <!-- فيديوهات Al Rayah هتتضاف هنا -->
     </div>
   </div>
 

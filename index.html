@@ -11,23 +11,17 @@
     --surface: #111111;
     --border: #1e1e1e;
     --accent: #e8ff47;
-    --accent2: #ff4747;
     --text: #f0ede8;
     --muted: #555;
     --card-hover: #161616;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
+    background: var(--bg); color: var(--text);
+    font-family: 'DM Sans', sans-serif; font-weight: 300;
     overflow-x: hidden;
   }
-
-  /* NOISE */
   body::before {
     content: '';
     position: fixed; inset: 0;
@@ -35,21 +29,16 @@
     pointer-events: none; z-index: 999; opacity: 0.5;
   }
 
-  /* ── HEADER ── */
+  /* HEADER */
   header {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
     padding: 24px 48px;
     background: linear-gradient(to bottom, rgba(10,10,10,0.96), transparent);
     backdrop-filter: blur(2px);
   }
-  .logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px; letter-spacing: 4px; color: var(--text);
-  }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 4px; color: var(--text); }
   .logo span { color: var(--accent); }
-
   nav { display: flex; gap: 32px; }
   nav a {
     font-family: 'DM Mono', monospace; font-size: 11px;
@@ -58,12 +47,10 @@
   }
   nav a:hover { color: var(--accent); }
 
-  /* ── HERO ── */
+  /* HERO */
   .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    justify-content: flex-end;
-    padding: 0 48px 80px;
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: flex-end; padding: 0 48px 80px;
     position: relative; overflow: hidden;
   }
   .hero-bg {
@@ -71,253 +58,221 @@
     background:
       radial-gradient(ellipse 80% 60% at 60% 40%, #1a1a00 0%, transparent 60%),
       radial-gradient(ellipse 50% 50% at 20% 80%, #1a1a00 0%, transparent 50%);
-    z-index: 0;
   }
   .hero-line {
-    font-family: 'DM Mono', monospace; font-size: 11px;
-    letter-spacing: 3px; color: var(--accent); text-transform: uppercase;
-    margin-bottom: 24px; z-index: 1; position: relative;
-    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 24px;
+    z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
   }
   .hero h1 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(72px, 12vw, 160px);
-    line-height: 0.9; letter-spacing: -2px;
-    z-index: 1; position: relative;
-    opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+    font-size: clamp(72px, 12vw, 160px); line-height: 0.9; letter-spacing: -2px;
+    z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
   }
   .hero h1 .outline { -webkit-text-stroke: 1px var(--text); color: transparent; }
   .hero h1 .accent { color: var(--accent); }
-
   .hero-sub {
-    font-size: 15px; color: var(--muted);
-    margin-top: 32px; max-width: 500px; line-height: 1.7;
-    z-index: 1; position: relative;
+    font-size: 15px; color: var(--muted); margin-top: 32px;
+    max-width: 500px; line-height: 1.7; z-index: 1; position: relative;
     opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
   }
-
-  .hero-clients {
-    margin-top: 28px; z-index: 1; position: relative;
-    opacity: 0; animation: fadeUp 0.8s 0.7s forwards;
-  }
-  .hero-clients .clabel {
-    font-family: 'DM Mono', monospace; font-size: 10px;
-    letter-spacing: 2px; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 10px;
-  }
+  .hero-clients { margin-top: 28px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.7s forwards; }
+  .hero-clients .clabel { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
   .clients-row { display: flex; flex-wrap: wrap; gap: 8px; }
   .chip {
-    font-family: 'DM Mono', monospace; font-size: 9px;
-    letter-spacing: 1px; text-transform: uppercase;
-    padding: 4px 12px; border: 1px solid var(--border);
+    font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 1px;
+    text-transform: uppercase; padding: 4px 12px; border: 1px solid var(--border);
     color: var(--muted); transition: border-color 0.2s, color 0.2s; cursor: default;
   }
   .chip:hover { border-color: var(--accent); color: var(--accent); }
-
-  .hero-cta {
-    margin-top: 40px; display: flex; gap: 16px;
-    z-index: 1; position: relative;
-    opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
-  }
+  .hero-cta { margin-top: 40px; display: flex; gap: 16px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
   .btn-primary {
-    background: var(--accent); color: #000;
-    font-family: 'DM Mono', monospace; font-size: 11px;
-    letter-spacing: 2px; text-transform: uppercase;
-    padding: 14px 32px; border: none; cursor: pointer;
-    text-decoration: none; display: inline-block;
-    transition: transform 0.15s, box-shadow 0.15s;
+    background: var(--accent); color: #000; font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 14px 32px; border: none; cursor: pointer; text-decoration: none;
+    display: inline-block; transition: transform 0.15s, box-shadow 0.15s;
   }
   .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,255,71,0.3); }
   .btn-ghost {
-    background: transparent; color: var(--text);
-    font-family: 'DM Mono', monospace; font-size: 11px;
-    letter-spacing: 2px; text-transform: uppercase;
-    padding: 14px 32px; border: 1px solid var(--border);
-    cursor: pointer; text-decoration: none; display: inline-block;
-    transition: border-color 0.2s, color 0.2s;
+    background: transparent; color: var(--text); font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 14px 32px; border: 1px solid var(--border); cursor: pointer;
+    text-decoration: none; display: inline-block; transition: border-color 0.2s, color 0.2s;
   }
   .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* ── TICKER ── */
+  /* TICKER */
   .ticker-wrap {
-    overflow: hidden;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 16px 0; background: var(--surface);
+    overflow: hidden; border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border); padding: 16px 0; background: var(--surface);
   }
-  .ticker {
-    display: flex; gap: 64px;
-    animation: ticker 22s linear infinite; white-space: nowrap;
-  }
-  .ticker span {
-    font-family: 'Bebas Neue', sans-serif; font-size: 18px;
-    letter-spacing: 3px; color: var(--muted); flex-shrink: 0;
-  }
+  .ticker { display: flex; gap: 64px; animation: ticker 22s linear infinite; white-space: nowrap; }
+  .ticker span { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 3px; color: var(--muted); flex-shrink: 0; }
   .ticker span.dot { color: var(--accent); }
 
-  /* ── SECTIONS ── */
+  /* SECTION */
   section { padding: 120px 48px; }
-
   .section-label {
-    font-family: 'DM Mono', monospace; font-size: 10px;
-    letter-spacing: 4px; text-transform: uppercase; color: var(--accent);
-    margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
+    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
   }
   .section-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--accent); opacity: 0.4; }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 6vw, 80px); letter-spacing: 2px; line-height: 1; margin-bottom: 56px; }
 
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(40px, 6vw, 80px);
-    letter-spacing: 2px; line-height: 1; margin-bottom: 64px;
-  }
-
-  /* ── REELS GRID (9:16) ── */
-  .reels-grid {
+  /* CLIENT CARDS */
+  .clients-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 2px;
+    margin-bottom: 2px;
+  }
+  .client-card {
+    background: var(--surface);
+    height: 130px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 12px; cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .client-card:hover { background: var(--card-hover); border-color: var(--accent); }
+  .client-card.active { background: var(--card-hover); border-bottom-color: var(--accent); }
+
+  .client-logo-wrap {
+    width: 100px; height: 52px;
+    display: flex; align-items: center; justify-content: center;
+    filter: brightness(0) invert(1); opacity: 0.55;
+    transition: opacity 0.2s;
+  }
+  .client-card:hover .client-logo-wrap,
+  .client-card.active .client-logo-wrap { opacity: 1; }
+  .client-logo-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+
+  .client-logo-text {
+    font-family: 'Bebas Neue', sans-serif; font-size: 26px;
+    letter-spacing: 2px; color: var(--text); opacity: 0.5;
+    transition: opacity 0.2s, color 0.2s;
+    line-height: 1;
+  }
+  .client-card:hover .client-logo-text,
+  .client-card.active .client-logo-text { opacity: 1; color: var(--accent); }
+
+  .client-name {
+    font-family: 'DM Mono', monospace; font-size: 9px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--muted);
+    text-align: center; transition: color 0.2s;
+  }
+  .client-card:hover .client-name,
+  .client-card.active .client-name { color: var(--accent); }
+
+  /* VIDEO PANEL */
+  .videos-panel {
+    background: var(--card-hover);
+    border: 1px solid var(--border);
+    padding: 32px;
+    display: none;
+  }
+  .videos-panel.open { display: block; }
+
+  .panel-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 24px;
+  }
+  .panel-client-name {
+    font-family: 'Bebas Neue', sans-serif; font-size: 32px;
+    letter-spacing: 2px; color: var(--accent);
+  }
+  .panel-close {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--muted);
+    background: none; border: none; cursor: pointer; transition: color 0.2s;
+  }
+  .panel-close:hover { color: var(--accent); }
+
+  /* VIDEO PLACEHOLDERS (9:16) */
+  .videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 2px;
   }
-
-  .work-card {
-    position: relative; overflow: hidden;
-    background: var(--surface); cursor: pointer;
-    opacity: 0; transform: translateY(16px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-  .work-card.visible { opacity: 1; transform: translateY(0); }
-
-  .work-card .thumb {
-    position: relative; width: 100%;
-    padding-top: 177.78%; /* 9:16 */
+  .vid-placeholder {
+    position: relative; cursor: pointer;
+    background: #0d0d0d;
     overflow: hidden;
   }
-  .work-card .thumb iframe {
+  .vid-placeholder .aspect { padding-top: 177.78%; position: relative; }
+  .vid-placeholder .inner {
     position: absolute; inset: 0;
-    width: 100%; height: 100%; border: none;
-    pointer-events: none;
-    transform: scale(1.04);
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-  .work-card:hover .thumb iframe { transform: scale(1.08); }
-
-  .card-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.3) 45%, transparent 70%);
-    opacity: 0; transition: opacity 0.3s; z-index: 2;
     display: flex; flex-direction: column;
-    justify-content: flex-end; padding: 20px 16px;
+    align-items: center; justify-content: center; gap: 12px;
+    transition: background 0.2s;
   }
-  .work-card:hover .card-overlay { opacity: 1; }
-
-  .card-num {
-    position: absolute; top: 12px; left: 14px;
+  .vid-placeholder:hover .inner { background: rgba(232,255,71,0.04); }
+  .vid-num {
     font-family: 'DM Mono', monospace; font-size: 10px;
-    letter-spacing: 2px; color: rgba(232,255,71,0.6); z-index: 3;
+    letter-spacing: 2px; color: rgba(232,255,71,0.4);
+    position: absolute; top: 12px; left: 14px;
   }
-
-  .play-btn {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
-    width: 52px; height: 52px;
-    background: var(--accent); border-radius: 50%;
+  .play-circle {
+    width: 52px; height: 52px; background: var(--accent); border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    opacity: 0; transition: opacity 0.3s, transform 0.3s;
-    z-index: 3;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
-  .play-btn svg { width: 20px; height: 20px; fill: #000; margin-left: 3px; }
-  .work-card:hover .play-btn { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-
-  .card-meta { position: relative; z-index: 3; }
-  .card-title {
-    font-family: 'Bebas Neue', sans-serif; font-size: 20px;
-    letter-spacing: 1px; color: #fff; margin-bottom: 5px;
-  }
-  .card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-  .ctag {
-    font-family: 'DM Mono', monospace; font-size: 8px;
-    letter-spacing: 1.5px; text-transform: uppercase;
-    padding: 2px 7px;
-    background: rgba(232,255,71,0.12);
-    border: 1px solid rgba(232,255,71,0.25);
-    color: var(--accent);
+  .vid-placeholder:hover .play-circle { transform: scale(1.08); box-shadow: 0 0 24px rgba(232,255,71,0.4); }
+  .play-circle svg { width: 20px; height: 20px; fill: #000; margin-left: 3px; }
+  .vid-label {
+    font-family: 'DM Mono', monospace; font-size: 9px;
+    letter-spacing: 1px; text-transform: uppercase; color: var(--muted);
   }
 
-  /* ── SKILLS ── */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2px;
-  }
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2px; }
   .skill-item {
     background: var(--surface); padding: 32px;
-    border-top: 2px solid transparent;
-    transition: border-color 0.2s, background 0.2s;
+    border-top: 2px solid transparent; transition: border-color 0.2s, background 0.2s;
   }
   .skill-item:hover { border-color: var(--accent); background: var(--card-hover); }
-  .skill-item .icon { font-size: 28px; margin-bottom: 16px; }
-  .skill-item h4 {
-    font-family: 'Bebas Neue', sans-serif; font-size: 20px;
-    letter-spacing: 1px; margin-bottom: 8px;
-  }
+  .skill-item h4 { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; margin-bottom: 8px; }
   .skill-item p { font-size: 12px; color: var(--muted); line-height: 1.6; }
 
-  /* ── CONTACT ── */
+  /* CONTACT */
   .contact-block { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-
   .contact-left { background: var(--surface); padding: 64px; }
   .contact-left p { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 40px; max-width: 400px; }
-
-  .contact-links { display: flex; flex-direction: column; gap: 0; }
+  .contact-links { display: flex; flex-direction: column; }
   .clink {
     display: flex; justify-content: space-between; align-items: center;
     padding: 16px 0; border-bottom: 1px solid var(--border);
-    text-decoration: none; color: var(--text);
-    transition: color 0.2s, padding-left 0.2s;
+    text-decoration: none; color: var(--text); transition: color 0.2s, padding-left 0.2s;
   }
   .clink:hover { color: var(--accent); padding-left: 8px; }
   .clink-left { display: flex; align-items: center; gap: 14px; }
-  .clink-platform {
-    font-family: 'DM Mono', monospace; font-size: 9px;
-    letter-spacing: 2px; text-transform: uppercase;
-    color: var(--muted); width: 80px;
-  }
+  .clink-platform { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); width: 80px; }
   .clink-val { font-size: 13px; }
   .clink-arrow { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); transition: transform 0.2s, color 0.2s; }
   .clink:hover .clink-arrow { color: var(--accent); transform: translateX(4px); }
-
-  .contact-right {
-    background: var(--accent); padding: 64px;
-    display: flex; flex-direction: column; justify-content: center;
-  }
-  .contact-right h3 {
-    font-family: 'Bebas Neue', sans-serif; font-size: 48px;
-    color: #000; line-height: 1; margin-bottom: 24px;
-  }
+  .contact-right { background: var(--accent); padding: 64px; display: flex; flex-direction: column; justify-content: center; }
+  .contact-right h3 { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: #000; line-height: 1; margin-bottom: 24px; }
   .contact-right p { font-size: 14px; color: rgba(0,0,0,0.6); line-height: 1.7; margin-bottom: 32px; }
   .btn-dark {
-    background: #000; color: var(--accent);
-    font-family: 'DM Mono', monospace; font-size: 11px;
-    letter-spacing: 2px; text-transform: uppercase;
-    padding: 14px 32px; border: none; cursor: pointer;
-    text-decoration: none; display: inline-block; width: fit-content;
-    transition: background 0.2s;
+    background: #000; color: var(--accent); font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 14px 32px; border: none; cursor: pointer; text-decoration: none;
+    display: inline-block; width: fit-content; transition: background 0.2s;
   }
   .btn-dark:hover { background: #111; }
 
-  /* ── FOOTER ── */
   footer {
-    border-top: 1px solid var(--border);
-    padding: 32px 48px;
+    border-top: 1px solid var(--border); padding: 32px 48px;
     display: flex; justify-content: space-between; align-items: center;
   }
   footer p { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
 
-  /* ── MODAL ── */
+  /* MODAL */
   .modal-overlay {
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.97);
-    z-index: 1000;
-    display: flex; align-items: center; justify-content: center;
+    position: fixed; inset: 0; background: rgba(0,0,0,0.97);
+    z-index: 1000; display: flex; align-items: center; justify-content: center;
     opacity: 0; pointer-events: none; transition: opacity 0.3s;
   }
   .modal-overlay.open { opacity: 1; pointer-events: all; }
@@ -325,40 +280,30 @@
   .modal-video { position: relative; padding-top: 177.78%; background: #000; }
   .modal-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
   .modal-close {
-    position: absolute; top: -44px; right: 0;
-    background: none; border: none; color: var(--muted);
-    font-family: 'DM Mono', monospace; font-size: 11px;
+    position: absolute; top: -44px; right: 0; background: none; border: none;
+    color: var(--muted); font-family: 'DM Mono', monospace; font-size: 11px;
     letter-spacing: 2px; cursor: pointer; text-transform: uppercase;
     display: flex; align-items: center; gap: 8px; transition: color 0.2s;
   }
   .modal-close:hover { color: var(--accent); }
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes ticker {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     header { padding: 20px 24px; }
     nav { display: none; }
     .hero { padding: 0 24px 60px; }
     section { padding: 80px 24px; }
-    .reels-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
     .contact-block { grid-template-columns: 1fr; }
     .contact-left, .contact-right { padding: 40px 24px; }
     footer { flex-direction: column; gap: 12px; text-align: center; }
+    .videos-panel { padding: 20px; }
   }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="logo">AMR<span>.</span></div>
   <nav>
@@ -372,26 +317,21 @@
 <section class="hero" id="home">
   <div class="hero-bg"></div>
   <div class="hero-line">Video Editor & Motion Designer — Cairo, Egypt</div>
-  <h1>
-    TELLING<br>
-    <span class="outline">STORIES</span><br>
-    THROUGH<br>
-    <span class="accent">MOTION.</span>
-  </h1>
-  <p class="hero-sub">Nearly 2 years crafting cinematic content for brands like Tamara, Asfour Crystal, Tetra Pak, Cemex, EGX & AUC at Indigo Media Agency. Adobe Premiere Pro · After Effects · DaVinci Resolve.</p>
-
+  <h1>TELLING<br><span class="outline">STORIES</span><br>THROUGH<br><span class="accent">MOTION.</span></h1>
+  <p class="hero-sub">Nearly 2 years crafting cinematic content for leading brands at Indigo Media Agency. Adobe Premiere Pro · After Effects · DaVinci Resolve.</p>
   <div class="hero-clients">
     <div class="clabel">Selected Clients</div>
     <div class="clients-row">
-      <span class="chip">Tamara</span>
+      <span class="chip">MY E</span>
       <span class="chip">Asfour Crystal</span>
-      <span class="chip">Tetra Pak</span>
+      <span class="chip">Gems</span>
+      <span class="chip">Carofi</span>
+      <span class="chip">MPG</span>
       <span class="chip">Cemex</span>
-      <span class="chip">EGX</span>
-      <span class="chip">AUC</span>
+      <span class="chip">Eva</span>
+      <span class="chip">Football Access</span>
     </div>
   </div>
-
   <div class="hero-cta">
     <a href="#work" class="btn-primary">View Work</a>
     <a href="#contact" class="btn-ghost">Get In Touch</a>
@@ -423,122 +363,207 @@
 <!-- WORK -->
 <section id="work">
   <div class="section-label">Selected Work</div>
-  <div class="section-title">RECENT<br>PROJECTS.</div>
+  <div class="section-title">WORK BY<br>CLIENT.</div>
 
-  <div class="reels-grid">
+  <div class="clients-grid" id="clientsGrid">
 
-    <div class="work-card" onclick="openModal('1BdZuZV0QJ9TqUFw7YiR4cjcCVxPbaqiH')">
-      <div class="card-num">01</div>
-      <div class="thumb"><iframe src="https://drive.google.com/file/d/1BdZuZV0QJ9TqUFw7YiR4cjcCVxPbaqiH/preview" loading="lazy" allowfullscreen></iframe></div>
-      <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-      <div class="card-overlay"><div class="card-meta"><div class="card-title">Project 01</div><div class="card-tags"><span class="ctag">Edit</span><span class="ctag">Premiere Pro</span></div></div></div>
+    <!-- MY E -->
+    <div class="client-card" onclick="toggleClient('mye', this)">
+      <div class="client-logo-wrap">
+        <img src="mye.png" alt="MY E">
+      </div>
+      <div class="client-name">MY E</div>
     </div>
 
-    <div class="work-card" onclick="openModal('1p1uWqnrLrhihBRnhirieE89tHqeSOdet')">
-      <div class="card-num">02</div>
-      <div class="thumb"><iframe src="https://drive.google.com/file/d/1p1uWqnrLrhihBRnhirieE89tHqeSOdet/preview" loading="lazy" allowfullscreen></iframe></div>
-      <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-      <div class="card-overlay"><div class="card-meta"><div class="card-title">Project 02</div><div class="card-tags"><span class="ctag">Motion</span><span class="ctag">After Effects</span></div></div></div>
+    <!-- Asfour Crystal -->
+    <div class="client-card" onclick="toggleClient('asfour', this)">
+      <div class="client-logo-wrap">
+        <img src="asfour.png" alt="Asfour Crystal">
+      </div>
+      <div class="client-name">Asfour Crystal</div>
     </div>
 
-    <div class="work-card" onclick="openModal('1oU8sHj0dRaecyorCpjQdDhvi3txIeop1')">
-      <div class="card-num">03</div>
-      <div class="thumb"><iframe src="https://drive.google.com/file/d/1oU8sHj0dRaecyorCpjQdDhvi3txIeop1/preview" loading="lazy" allowfullscreen></iframe></div>
-      <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-      <div class="card-overlay"><div class="card-meta"><div class="card-title">Project 03</div><div class="card-tags"><span class="ctag">Color Grade</span><span class="ctag">Edit</span></div></div></div>
+    <!-- Gems -->
+    <div class="client-card" onclick="toggleClient('gems', this)">
+      <div class="client-logo-wrap">
+        <img src="gems.png" alt="Gems">
+      </div>
+      <div class="client-name">Gems</div>
     </div>
 
-    <div class="work-card" onclick="openModal('1JoYWTYuS8wQH4NbsDCi1EEjoBAZysKi4')">
-      <div class="card-num">04</div>
-      <div class="thumb"><iframe src="https://drive.google.com/file/d/1JoYWTYuS8wQH4NbsDCi1EEjoBAZysKi4/preview" loading="lazy" allowfullscreen></iframe></div>
-      <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-      <div class="card-overlay"><div class="card-meta"><div class="card-title">Project 04</div><div class="card-tags"><span class="ctag">Brand Film</span></div></div></div>
+    <!-- Carofi -->
+    <div class="client-card" onclick="toggleClient('carofi', this)">
+      <div class="client-logo-wrap">
+        <img src="carofi.png" alt="Carofi">
+      </div>
+      <div class="client-name">Carofi</div>
     </div>
 
-    <div class="work-card" onclick="openModal('1-EA2_Jb-faVbfScE2b2UAzcYOcbwOX85')">
-      <div class="card-num">05</div>
-      <div class="thumb"><iframe src="https://drive.google.com/file/d/1-EA2_Jb-faVbfScE2b2UAzcYOcbwOX85/preview" loading="lazy" allowfullscreen></iframe></div>
-      <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-      <div class="card-overlay"><div class="card-meta"><div class="card-title">Project 05</div><div class="card-tags"><span class="ctag">VFX</span><span class="ctag">Premiere Pro</span></div></div></div>
+    <!-- MPG -->
+    <div class="client-card" onclick="toggleClient('mpg', this)">
+      <div class="client-logo-wrap">
+        <img src="mpg.png" alt="MPG">
+      </div>
+      <div class="client-name">MPG</div>
     </div>
 
-    <div class="work-card" onclick="openModal('1ro7xe7PBvZLoarP01ovbWvbUI2Ct0YmA')">
-      <div class="card-num">06</div>
-      <div class="thumb"><iframe src="https://drive.google.com/file/d/1ro7xe7PBvZLoarP01ovbWvbUI2Ct0YmA/preview" loading="lazy" allowfullscreen></iframe></div>
-      <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-      <div class="card-overlay"><div class="card-meta"><div class="card-title">Project 06</div><div class="card-tags"><span class="ctag">Social</span><span class="ctag">Reels</span></div></div></div>
+    <!-- Cemex (text only) -->
+    <div class="client-card" onclick="toggleClient('cemex', this)">
+      <div class="client-logo-text">CEMEX</div>
+      <div class="client-name">Cemex</div>
     </div>
 
-    <div class="work-card" onclick="openModal('1BzPHhprOICZQdM9xdHWrtpO8jKLqL3nh')">
-      <div class="card-num">07</div>
-      <div class="thumb"><iframe src="https://drive.google.com/file/d/1BzPHhprOICZQdM9xdHWrtpO8jKLqL3nh/preview" loading="lazy" allowfullscreen></iframe></div>
-      <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-      <div class="card-overlay"><div class="card-meta"><div class="card-title">Project 07</div><div class="card-tags"><span class="ctag">Motion</span><span class="ctag">Logo Anim</span></div></div></div>
+    <!-- Eva (text only) -->
+    <div class="client-card" onclick="toggleClient('eva', this)">
+      <div class="client-logo-text">EVA</div>
+      <div class="client-name">Eva</div>
     </div>
 
-    <div class="work-card" onclick="openModal('1lXoT2EZMLxH5w-Cm5aCSMJpS156H9721')">
-      <div class="card-num">08</div>
-      <div class="thumb"><iframe src="https://drive.google.com/file/d/1lXoT2EZMLxH5w-Cm5aCSMJpS156H9721/preview" loading="lazy" allowfullscreen></iframe></div>
-      <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-      <div class="card-overlay"><div class="card-meta"><div class="card-title">Project 08</div><div class="card-tags"><span class="ctag">After Effects</span></div></div></div>
-    </div>
-
-    <div class="work-card" onclick="openModal('1oQsggzdWZ4yPd1-yrZdf6x81X0Qqbh1q')">
-      <div class="card-num">09</div>
-      <div class="thumb"><iframe src="https://drive.google.com/file/d/1oQsggzdWZ4yPd1-yrZdf6x81X0Qqbh1q/preview" loading="lazy" allowfullscreen></iframe></div>
-      <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-      <div class="card-overlay"><div class="card-meta"><div class="card-title">Project 09</div><div class="card-tags"><span class="ctag">Brand</span><span class="ctag">Color Grade</span></div></div></div>
-    </div>
-
-    <div class="work-card" onclick="openModal('1kzjSAn133u9ZK6Eup660y_c-QtJRpIsW')">
-      <div class="card-num">10</div>
-      <div class="thumb"><iframe src="https://drive.google.com/file/d/1kzjSAn133u9ZK6Eup660y_c-QtJRpIsW/preview" loading="lazy" allowfullscreen></iframe></div>
-      <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-      <div class="card-overlay"><div class="card-meta"><div class="card-title">Project 10</div><div class="card-tags"><span class="ctag">Storytelling</span></div></div></div>
-    </div>
-
-    <div class="work-card" onclick="openModal('1FR9kjw2B0eQK-OHNNQdrGe1zGQgkUfvX')">
-      <div class="card-num">11</div>
-      <div class="thumb"><iframe src="https://drive.google.com/file/d/1FR9kjw2B0eQK-OHNNQdrGe1zGQgkUfvX/preview" loading="lazy" allowfullscreen></iframe></div>
-      <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-      <div class="card-overlay"><div class="card-meta"><div class="card-title">Project 11</div><div class="card-tags"><span class="ctag">Edit</span><span class="ctag">Motion</span></div></div></div>
+    <!-- Football Access (text only) -->
+    <div class="client-card" onclick="toggleClient('football', this)">
+      <div class="client-logo-text">FOOTBALL</div>
+      <div class="client-name">Football Access</div>
     </div>
 
   </div>
+
+  <!-- VIDEO PANELS -->
+  <div class="videos-panel" id="panel-mye">
+    <div class="panel-header">
+      <div class="panel-client-name">MY E</div>
+      <button class="panel-close" onclick="closePanel('mye')">✕ Close</button>
+    </div>
+    <div class="videos-grid">
+      <div class="vid-placeholder" onclick="openModal('1BdZuZV0QJ9TqUFw7YiR4cjcCVxPbaqiH')">
+        <div class="aspect"><div class="inner"><div class="vid-num">01</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
+      </div>
+      <div class="vid-placeholder" onclick="openModal('1p1uWqnrLrhihBRnhirieE89tHqeSOdet')">
+        <div class="aspect"><div class="inner"><div class="vid-num">02</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
+      </div>
+      <div class="vid-placeholder" onclick="openModal('1oU8sHj0dRaecyorCpjQdDhvi3txIeop1')">
+        <div class="aspect"><div class="inner"><div class="vid-num">03</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="videos-panel" id="panel-asfour">
+    <div class="panel-header">
+      <div class="panel-client-name">ASFOUR CRYSTAL</div>
+      <button class="panel-close" onclick="closePanel('asfour')">✕ Close</button>
+    </div>
+    <div class="videos-grid">
+      <div class="vid-placeholder" onclick="openModal('1ro7xe7PBvZLoarP01ovbWvbUI2Ct0YmA')">
+        <div class="aspect"><div class="inner"><div class="vid-num">06</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
+      </div>
+      <div class="vid-placeholder" onclick="openModal('1BzPHhprOICZQdM9xdHWrtpO8jKLqL3nh')">
+        <div class="aspect"><div class="inner"><div class="vid-num">07</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
+      </div>
+      <div class="vid-placeholder" onclick="openModal('1lXoT2EZMLxH5w-Cm5aCSMJpS156H9721')">
+        <div class="aspect"><div class="inner"><div class="vid-num">08</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="videos-panel" id="panel-gems">
+    <div class="panel-header">
+      <div class="panel-client-name">GEMS</div>
+      <button class="panel-close" onclick="closePanel('gems')">✕ Close</button>
+    </div>
+    <div class="videos-grid">
+      <div class="vid-placeholder" onclick="openModal('1SuGW0Pk1_QyCI2V8OdRZaD8xfqyxrKYX')">
+        <div class="aspect"><div class="inner"><div class="vid-num">12</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="videos-panel" id="panel-carofi">
+    <div class="panel-header">
+      <div class="panel-client-name">CAROFI</div>
+      <button class="panel-close" onclick="closePanel('carofi')">✕ Close</button>
+    </div>
+    <div class="videos-grid">
+      <div class="vid-placeholder" onclick="openModal('1kzjSAn133u9ZK6Eup660y_c-QtJRpIsW')">
+        <div class="aspect"><div class="inner"><div class="vid-num">10</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="videos-panel" id="panel-mpg">
+    <div class="panel-header">
+      <div class="panel-client-name">MPG</div>
+      <button class="panel-close" onclick="closePanel('mpg')">✕ Close</button>
+    </div>
+    <div class="videos-grid">
+      <div class="vid-placeholder" onclick="openModal('1FR9kjw2B0eQK-OHNNQdrGe1zGQgkUfvX')">
+        <div class="aspect"><div class="inner"><div class="vid-num">11</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="videos-panel" id="panel-cemex">
+    <div class="panel-header">
+      <div class="panel-client-name">CEMEX</div>
+      <button class="panel-close" onclick="closePanel('cemex')">✕ Close</button>
+    </div>
+    <div class="videos-grid">
+      <div class="vid-placeholder" onclick="openModal('1-EA2_Jb-faVbfScE2b2UAzcYOcbwOX85')">
+        <div class="aspect"><div class="inner"><div class="vid-num">05</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="videos-panel" id="panel-eva">
+    <div class="panel-header">
+      <div class="panel-client-name">EVA</div>
+      <button class="panel-close" onclick="closePanel('eva')">✕ Close</button>
+    </div>
+    <div class="videos-grid">
+      <div class="vid-placeholder" onclick="openModal('1oQsggzdWZ4yPd1-yrZdf6x81X0Qqbh1q')">
+        <div class="aspect"><div class="inner"><div class="vid-num">09</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="videos-panel" id="panel-football">
+    <div class="panel-header">
+      <div class="panel-client-name">FOOTBALL ACCESS</div>
+      <button class="panel-close" onclick="closePanel('football')">✕ Close</button>
+    </div>
+    <div class="videos-grid">
+      <div class="vid-placeholder" onclick="openModal('1JoYWTYuS8wQH4NbsDCi1EEjoBAZysKi4')">
+        <div class="aspect"><div class="inner"><div class="vid-num">04</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <!-- SKILLS -->
-<section id="skills" style="background: var(--surface); padding-top: 120px; padding-bottom: 120px;">
+<section id="skills" style="background: var(--surface);">
   <div class="section-label">Toolkit</div>
   <div class="section-title">SKILLS &<br>TOOLS.</div>
   <div class="skills-grid">
     <div class="skill-item">
-      <div class="icon">🎬</div>
       <h4>Video Editing</h4>
       <p>Adobe Premiere Pro — advanced storytelling, pacing, multicam, and seamless transitions.</p>
     </div>
     <div class="skill-item">
-      <div class="icon">✨</div>
       <h4>Motion Graphics</h4>
       <p>After Effects — logo animations, custom intros/outros, kinetic typography, UI animations.</p>
     </div>
     <div class="skill-item">
-      <div class="icon">🎨</div>
       <h4>Color Grading</h4>
       <p>DaVinci Resolve — node-based grading, LUTs, cinematic looks, and brand identity matching.</p>
     </div>
     <div class="skill-item">
-      <div class="icon">🤖</div>
       <h4>AI Video Tools</h4>
       <p>Sora, Kling, Pika, Runway — AI-assisted generation integrated into production workflows.</p>
     </div>
     <div class="skill-item">
-      <div class="icon">🎯</div>
       <h4>Creative Direction</h4>
       <p>Mood boarding, storyboarding, visual research, and concept development for client pitches.</p>
     </div>
     <div class="skill-item">
-      <div class="icon">📸</div>
       <h4>Visual Aesthetics</h4>
       <p>Background in professional photography — lighting, composition, and visual storytelling.</p>
     </div>
@@ -550,39 +575,21 @@
   <div class="contact-block">
     <div class="contact-left">
       <div class="section-label">Let's Connect</div>
-      <div class="section-title" style="margin-bottom: 32px;">GET IN<br>TOUCH.</div>
+      <div class="section-title" style="margin-bottom:32px;">GET IN<br>TOUCH.</div>
       <p>Open to freelance projects, full-time roles, and creative collaborations. Based in Cairo — available remotely worldwide.</p>
       <div class="contact-links">
-        <a class="clink" href="mailto:amrmosaad.000@gmail.com">
-          <div class="clink-left"><span class="clink-platform">Email</span><span class="clink-val">amrmosaad.000@gmail.com</span></div>
-          <span class="clink-arrow">→</span>
-        </a>
-        <a class="clink" href="https://wa.me/201095020145" target="_blank">
-          <div class="clink-left"><span class="clink-platform">WhatsApp</span><span class="clink-val">+20 109 502 0145</span></div>
-          <span class="clink-arrow">→</span>
-        </a>
-        <a class="clink" href="https://eg.linkedin.com/in/amr-mosaad-14b67b38b" target="_blank">
-          <div class="clink-left"><span class="clink-platform">LinkedIn</span><span class="clink-val">Amr Mosaad</span></div>
-          <span class="clink-arrow">→</span>
-        </a>
-        <a class="clink" href="https://www.instagram.com/amrrraw" target="_blank">
-          <div class="clink-left"><span class="clink-platform">Instagram</span><span class="clink-val">@amrrraw</span></div>
-          <span class="clink-arrow">→</span>
-        </a>
-        <a class="clink" href="https://vimeo.com/user227317493" target="_blank">
-          <div class="clink-left"><span class="clink-platform">Vimeo</span><span class="clink-val">Amr Mosaad</span></div>
-          <span class="clink-arrow">→</span>
-        </a>
-        <a class="clink" href="https://behance.net/amrrraw" target="_blank">
-          <div class="clink-left"><span class="clink-platform">Behance</span><span class="clink-val">amrrraw</span></div>
-          <span class="clink-arrow">→</span>
-        </a>
+        <a class="clink" href="/cdn-cgi/l/email-protection#72131f001f1d011313165c42424232151f131b1e5c111d1f"><div class="clink-left"><span class="clink-platform">Email</span><span class="clink-val"><span class="__cf_email__" data-cfemail="7819150a15170b19191c56484848381f15191114561b1715">[email&#160;protected]</span></span></div><span class="clink-arrow">→</span></a>
+        <a class="clink" href="https://wa.me/201095020145" target="_blank"><div class="clink-left"><span class="clink-platform">WhatsApp</span><span class="clink-val">+20 109 502 0145</span></div><span class="clink-arrow">→</span></a>
+        <a class="clink" href="https://eg.linkedin.com/in/amr-mosaad-14b67b38b" target="_blank"><div class="clink-left"><span class="clink-platform">LinkedIn</span><span class="clink-val">Amr Mosaad</span></div><span class="clink-arrow">→</span></a>
+        <a class="clink" href="https://www.instagram.com/amrrraw" target="_blank"><div class="clink-left"><span class="clink-platform">Instagram</span><span class="clink-val">@amrrraw</span></div><span class="clink-arrow">→</span></a>
+        <a class="clink" href="https://vimeo.com/user227317493" target="_blank"><div class="clink-left"><span class="clink-platform">Vimeo</span><span class="clink-val">Amr Mosaad</span></div><span class="clink-arrow">→</span></a>
+        <a class="clink" href="https://behance.net/amrrraw" target="_blank"><div class="clink-left"><span class="clink-platform">Behance</span><span class="clink-val">amrrraw</span></div><span class="clink-arrow">→</span></a>
       </div>
     </div>
     <div class="contact-right">
       <h3>READY TO CREATE SOMETHING GREAT?</h3>
-      <p>Tell me about your project and let's bring your vision to life. Available for brand films, social content, motion graphics, and more.</p>
-      <a href="mailto:amrmosaad.000@gmail.com" class="btn-dark">Start a Conversation</a>
+      <p>Tell me about your project and let's bring your vision to life.</p>
+      <a href="/cdn-cgi/l/email-protection#b4d5d9c6d9dbc7d5d5d09a848484f4d3d9d5ddd89ad7dbd9" class="btn-dark">Start a Conversation</a>
     </div>
   </div>
 </section>
@@ -602,32 +609,41 @@
   </div>
 </div>
 
-<script>
-  function openModal(id) {
-    document.getElementById('modal-iframe').src = 'https://drive.google.com/file/d/' + id + '/preview';
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  let activeClient = null;
+  let activeCard = null;
+
+  function toggleClient(id, card) {
+    const panel = document.getElementById('panel-' + id);
+    if (activeClient === id) {
+      closePanel(id);
+      return;
+    }
+    // close previous
+    if (activeClient) {
+      document.getElementById('panel-' + activeClient).classList.remove('open');
+      if (activeCard) activeCard.classList.remove('active');
+    }
+    panel.classList.add('open');
+    card.classList.add('active');
+    activeClient = id;
+    activeCard = card;
+    // smooth scroll to panel
+    setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+  }
+
+  function closePanel(id) {
+    document.getElementById('panel-' + id).classList.remove('open');
+    if (activeCard) activeCard.classList.remove('active');
+    activeClient = null;
+    activeCard = null;
+  }
+
+  function openModal(fileId) {
+    document.getElementById('modal-iframe').src = 'https://drive.google.com/file/d/' + fileId + '/preview';
     document.getElementById('modal').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
   function closeModal() {
     document.getElementById('modal').classList.remove('open');
-    document.getElementById('modal-iframe').src = '';
-    document.body.style.overflow = '';
-  }
-  document.getElementById('modal').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
-  });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 65);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.06 });
-  document.querySelectorAll('.work-card').forEach(el => observer.observe(el));
-</script>
-
-</body>
-</html>
+    document.getElementById('modal-if

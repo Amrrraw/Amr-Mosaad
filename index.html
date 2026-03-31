@@ -170,10 +170,17 @@
   .videos-panel {
     background: var(--card-hover);
     border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
     padding: 32px;
     display: none;
+    animation: panelOpen 0.3s ease forwards;
   }
   .videos-panel.open { display: block; }
+
+  @keyframes panelOpen {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 
   .panel-header {
     display: flex; justify-content: space-between; align-items: center;
@@ -370,7 +377,7 @@
     <!-- MY E -->
     <div class="client-card" onclick="toggleClient('mye', this)">
       <div class="client-logo-wrap">
-        <img src="mye.png" alt="MY E" onerror="this.style.display='none'">
+        <img src="mye.png" alt="MY E" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8\'>MY E</span>'">
       </div>
       <div class="client-name">MY E</div>
     </div>
@@ -378,7 +385,7 @@
     <!-- Asfour Crystal -->
     <div class="client-card" onclick="toggleClient('asfour', this)">
       <div class="client-logo-wrap">
-        <img src="Afour.png" alt="Asfour Crystal" onerror="this.style.display='none'">
+        <img src="Afour.png" alt="Asfour Crystal" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:2px;color:#f0ede8\'>ASFOUR</span>'">
       </div>
       <div class="client-name">Asfour Crystal</div>
     </div>
@@ -386,7 +393,7 @@
     <!-- Gems -->
     <div class="client-card" onclick="toggleClient('gems', this)">
       <div class="client-logo-wrap">
-        <img src="gems.png" alt="Gems" onerror="this.style.display='none'">
+        <img src="gems.png" alt="Gems" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8\'>GEMS</span>'">
       </div>
       <div class="client-name">Gems</div>
     </div>
@@ -394,7 +401,7 @@
     <!-- Carofi -->
     <div class="client-card" onclick="toggleClient('carofi', this)">
       <div class="client-logo-wrap">
-        <img src="Carofi.png" alt="Carofi" onerror="this.style.display='none'">
+        <img src="Carofi.png" alt="Carofi" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8\'>CAROFI</span>'">
       </div>
       <div class="client-name">Carofi</div>
     </div>
@@ -402,7 +409,7 @@
     <!-- MPG -->
     <div class="client-card" onclick="toggleClient('mpg', this)">
       <div class="client-logo-wrap">
-        <img src="MBG.png" alt="MPG" onerror="this.style.display='none'">
+        <img src="MBG.png" alt="MPG" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8\'>MPG</span>'">
       </div>
       <div class="client-name">MPG</div>
     </div>
@@ -428,7 +435,7 @@
     <!-- EGX -->
     <div class="client-card" onclick="toggleClient('egx', this)">
       <div class="client-logo-wrap">
-        <img src="EGX.png" alt="EGX" onerror="this.style.display='none'">
+        <img src="EGX.png" alt="EGX" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8\'>EGX</span>'">
       </div>
       <div class="client-name">EGX</div>
     </div>
@@ -436,7 +443,7 @@
     <!-- ALRAYAH -->
     <div class="client-card" onclick="toggleClient('alrayah', this)">
       <div class="client-logo-wrap">
-        <img src="ALRAYAH.png" alt="Al Rayah" onerror="this.style.display='none'">
+        <img src="ALRAYAH.png" alt="Al Rayah" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:2px;color:#f0ede8\'>AL RAYAH</span>'">
       </div>
       <div class="client-name">Al Rayah</div>
     </div>
@@ -655,7 +662,6 @@
       closePanel(id);
       return;
     }
-    // close previous
     if (activeClient) {
       document.getElementById('panel-' + activeClient).classList.remove('open');
       if (activeCard) activeCard.classList.remove('active');
@@ -664,12 +670,14 @@
     card.classList.add('active');
     activeClient = id;
     activeCard = card;
-    // smooth scroll to panel
-    setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+    setTimeout(() => {
+      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
   }
 
   function closePanel(id) {
-    document.getElementById('panel-' + id).classList.remove('open');
+    const panel = document.getElementById('panel-' + id);
+    panel.classList.remove('open');
     if (activeCard) activeCard.classList.remove('active');
     activeClient = null;
     activeCard = null;

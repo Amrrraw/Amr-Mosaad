@@ -7,43 +7,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0a0a;
-    --surface: #111111;
-    --border: #1e1e1e;
-    --accent: #e8ff47;
-    --text: #f0ede8;
-    --muted: #555;
-    --card-hover: #161616;
+    --bg: #0a0a0a; --surface: #111111; --border: #1e1e1e;
+    --accent: #e8ff47; --text: #f0ede8; --muted: #555; --card-hover: #161616;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg); color: var(--text);
-    font-family: 'DM Sans', sans-serif; font-weight: 300;
-    overflow-x: hidden;
-  }
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 999; opacity: 0.5;
-  }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 999; opacity: 0.5; }
 
-  /* HEADER */
-  header {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 24px 48px;
-    background: linear-gradient(to bottom, rgba(10,10,10,0.96), transparent);
-    backdrop-filter: blur(2px);
-  }
+  header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 24px 48px; background: linear-gradient(to bottom, rgba(10,10,10,0.96), transparent); backdrop-filter: blur(2px); }
   .logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 4px; color: var(--text); text-decoration: none; }
   .logo span { color: var(--accent); }
   nav { display: flex; gap: 32px; }
   nav a { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
   nav a:hover { color: var(--accent); }
 
-  /* HERO */
   .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 80px; position: relative; overflow: hidden; }
   .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 60% 40%, #1a1a00 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 20% 80%, #1a1a00 0%, transparent 50%); }
   .hero-line { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; margin-bottom: 24px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
@@ -52,7 +30,6 @@
   .hero h1 .accent { color: var(--accent); }
   .hero-sub { font-size: 15px; color: var(--muted); margin-top: 32px; max-width: 500px; line-height: 1.7; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
 
-  /* HERO CLIENTS */
   .hero-clients { margin-top: 36px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.7s forwards; }
   .hero-clients .clabel { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
   .hero-clients .clabel::before { content: ''; width: 20px; height: 1px; background: var(--accent); }
@@ -66,53 +43,35 @@
   .btn-ghost { background: transparent; color: var(--text); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 32px; border: 1px solid var(--border); cursor: pointer; text-decoration: none; display: inline-block; transition: border-color 0.2s, color 0.2s; }
   .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* TICKER */
   .ticker-wrap { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 16px 0; background: var(--surface); }
   .ticker { display: flex; gap: 64px; animation: ticker 22s linear infinite; white-space: nowrap; }
   .ticker span { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 3px; color: var(--muted); flex-shrink: 0; }
   .ticker .dot { color: var(--accent); }
 
-  /* SECTION */
   section { padding: 120px 48px; }
   .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
   .section-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--accent); opacity: 0.4; }
   .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 6vw, 80px); letter-spacing: 2px; line-height: 1; margin-bottom: 56px; }
 
-  /* CLIENT GRID */
   .clients-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 2px; }
-
-  .client-card {
-    background: var(--surface);
-    height: 130px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 12px; cursor: pointer;
-    border-bottom: 3px solid transparent;
-    transition: border-color 0.25s, background 0.25s;
-    position: relative; overflow: hidden;
-    text-decoration: none;
-  }
+  .client-card { background: var(--surface); height: 130px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; cursor: pointer; border-bottom: 3px solid transparent; transition: border-color 0.25s, background 0.25s; position: relative; overflow: hidden; text-decoration: none; }
   .client-card::after { content: '↗'; position: absolute; top: 10px; right: 12px; font-size: 11px; color: var(--muted); opacity: 0; transition: opacity 0.2s; }
   .client-card:hover::after { opacity: 1; color: var(--accent); }
   .client-card:hover { background: var(--card-hover); border-color: var(--accent); }
-
   .client-logo-wrap { width: 100px; height: 52px; display: flex; align-items: center; justify-content: center; filter: brightness(0) invert(1); opacity: 0.55; transition: opacity 0.25s, transform 0.25s; }
   .client-card:hover .client-logo-wrap { opacity: 1; transform: scale(1.08); }
   .client-logo-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
-
   .client-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; color: var(--text); opacity: 0.5; transition: opacity 0.25s, color 0.25s, transform 0.25s; line-height: 1; }
   .client-card:hover .client-logo-text { opacity: 1; color: var(--accent); transform: scale(1.08); }
-
   .client-name { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-align: center; transition: color 0.25s; }
   .client-card:hover .client-name { color: var(--accent); }
 
-  /* SKILLS */
   .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2px; }
   .skill-item { background: var(--surface); padding: 32px; border-top: 2px solid transparent; transition: border-color 0.2s, background 0.2s; }
   .skill-item:hover { border-color: var(--accent); background: var(--card-hover); }
   .skill-item h4 { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; margin-bottom: 8px; }
   .skill-item p { font-size: 12px; color: var(--muted); line-height: 1.6; }
 
-  /* CONTACT */
   .contact-block { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
   .contact-left { background: var(--surface); padding: 64px; }
   .contact-left p { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 40px; max-width: 400px; }
@@ -130,15 +89,12 @@
   .btn-dark { background: #000; color: var(--accent); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 32px; border: none; cursor: pointer; text-decoration: none; display: inline-block; width: fit-content; transition: background 0.2s; }
   .btn-dark:hover { background: #111; }
 
-  /* FOOTER */
   footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; }
   footer p { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
 
-  /* ANIMATIONS */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  /* RESPONSIVE */
   @media (max-width: 768px) {
     header { padding: 20px 24px; }
     nav { display: none; }
@@ -161,29 +117,19 @@
   </nav>
 </header>
 
-<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-bg"></div>
-  <div class="hero-line">Video Editor & Motion Designer — Cairo, Egypt</div>
+  <div class="hero-line">Video Editor &amp; Motion Designer — Cairo, Egypt</div>
   <h1>TELLING<br><span class="outline">STORIES</span><br>THROUGH<br><span class="accent">MOTION.</span></h1>
-  <p class="hero-sub">Nearly 2 years crafting cinematic content for leading brands at Indigo Media Agency. Adobe Premiere Pro · After Effects · DaVinci Resolve.</p>
+  <p class="hero-sub">Nearly 2 years crafting cinematic content for leading brands at Indigo Media Agency. Adobe Premiere Pro &middot; After Effects &middot; DaVinci Resolve.</p>
   <div class="hero-clients">
     <div class="clabel">Selected Clients</div>
     <div class="clients-row">
-      <span class="chip">MY E</span>
-      <span class="chip">Asfour Crystal</span>
-      <span class="chip">Gems Schools</span>
-      <span class="chip">Carofi</span>
-      <span class="chip">MPG</span>
-      <span class="chip">Cemex</span>
-      <span class="chip">Eva</span>
-      <span class="chip">Football Access</span>
-      <span class="chip">EGX</span>
-      <span class="chip">Al Rayah</span>
-      <span class="chip">SPG</span>
-      <span class="chip">Spinneys</span>
-      <span class="chip">Bodiz</span>
-      <span class="chip">Al Baraka Bank</span>
+      <span class="chip">MY E</span><span class="chip">Asfour Crystal</span><span class="chip">Gems Schools</span>
+      <span class="chip">Carofi</span><span class="chip">MPG</span><span class="chip">Cemex</span>
+      <span class="chip">Eva</span><span class="chip">Football Access</span><span class="chip">EGX</span>
+      <span class="chip">Al Rayah</span><span class="chip">SPG</span><span class="chip">Spinneys</span>
+      <span class="chip">Bodiz</span><span class="chip">Al Baraka Bank</span>
     </div>
   </div>
   <div class="hero-cta">
@@ -192,33 +138,22 @@
   </div>
 </section>
 
-<!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker">
-    <span>VIDEO EDITING</span><span class="dot"> ✦ </span>
-    <span>MOTION GRAPHICS</span><span class="dot"> ✦ </span>
-    <span>COLOR GRADING</span><span class="dot"> ✦ </span>
-    <span>AFTER EFFECTS</span><span class="dot"> ✦ </span>
-    <span>DAVINCI RESOLVE</span><span class="dot"> ✦ </span>
-    <span>AI VIDEO TOOLS</span><span class="dot"> ✦ </span>
-    <span>PREMIERE PRO</span><span class="dot"> ✦ </span>
-    <span>STORYTELLING</span><span class="dot"> ✦ </span>
-    <span>VIDEO EDITING</span><span class="dot"> ✦ </span>
-    <span>MOTION GRAPHICS</span><span class="dot"> ✦ </span>
-    <span>COLOR GRADING</span><span class="dot"> ✦ </span>
-    <span>AFTER EFFECTS</span><span class="dot"> ✦ </span>
-    <span>DAVINCI RESOLVE</span><span class="dot"> ✦ </span>
-    <span>AI VIDEO TOOLS</span><span class="dot"> ✦ </span>
-    <span>PREMIERE PRO</span><span class="dot"> ✦ </span>
-    <span>STORYTELLING</span><span class="dot"> ✦ </span>
+    <span>VIDEO EDITING</span><span class="dot"> ✦ </span><span>MOTION GRAPHICS</span><span class="dot"> ✦ </span>
+    <span>COLOR GRADING</span><span class="dot"> ✦ </span><span>AFTER EFFECTS</span><span class="dot"> ✦ </span>
+    <span>DAVINCI RESOLVE</span><span class="dot"> ✦ </span><span>AI VIDEO TOOLS</span><span class="dot"> ✦ </span>
+    <span>PREMIERE PRO</span><span class="dot"> ✦ </span><span>STORYTELLING</span><span class="dot"> ✦ </span>
+    <span>VIDEO EDITING</span><span class="dot"> ✦ </span><span>MOTION GRAPHICS</span><span class="dot"> ✦ </span>
+    <span>COLOR GRADING</span><span class="dot"> ✦ </span><span>AFTER EFFECTS</span><span class="dot"> ✦ </span>
+    <span>DAVINCI RESOLVE</span><span class="dot"> ✦ </span><span>AI VIDEO TOOLS</span><span class="dot"> ✦ </span>
+    <span>PREMIERE PRO</span><span class="dot"> ✦ </span><span>STORYTELLING</span><span class="dot"> ✦ </span>
   </div>
 </div>
 
-<!-- WORK -->
 <section id="work">
   <div class="section-label">Selected Work</div>
   <div class="section-title">WORK BY<br>CLIENT.</div>
-
   <div class="clients-grid">
 
     <a class="client-card" href="https://drive.google.com/drive/folders/1AbeeVwZW5arSbfBLom-qgidtW4khBh3-" target="_blank">
@@ -294,39 +229,19 @@
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills" style="background: var(--surface);">
   <div class="section-label">Toolkit</div>
-  <div class="section-title">SKILLS &<br>TOOLS.</div>
+  <div class="section-title">SKILLS &amp;<br>TOOLS.</div>
   <div class="skills-grid">
-    <div class="skill-item">
-      <h4>Video Editing</h4>
-      <p>Adobe Premiere Pro — advanced storytelling, pacing, multicam, and seamless transitions.</p>
-    </div>
-    <div class="skill-item">
-      <h4>Motion Graphics</h4>
-      <p>After Effects — logo animations, custom intros/outros, kinetic typography, UI animations.</p>
-    </div>
-    <div class="skill-item">
-      <h4>Color Grading</h4>
-      <p>DaVinci Resolve — node-based grading, LUTs, cinematic looks, and brand identity matching.</p>
-    </div>
-    <div class="skill-item">
-      <h4>AI Video Tools</h4>
-      <p>Sora, Kling, Pika, Runway — AI-assisted generation integrated into production workflows.</p>
-    </div>
-    <div class="skill-item">
-      <h4>Creative Direction</h4>
-      <p>Mood boarding, storyboarding, visual research, and concept development for client pitches.</p>
-    </div>
-    <div class="skill-item">
-      <h4>Visual Aesthetics</h4>
-      <p>Background in professional photography — lighting, composition, and visual storytelling.</p>
-    </div>
+    <div class="skill-item"><h4>Video Editing</h4><p>Adobe Premiere Pro — advanced storytelling, pacing, multicam, and seamless transitions.</p></div>
+    <div class="skill-item"><h4>Motion Graphics</h4><p>After Effects — logo animations, custom intros/outros, kinetic typography, UI animations.</p></div>
+    <div class="skill-item"><h4>Color Grading</h4><p>DaVinci Resolve — node-based grading, LUTs, cinematic looks, and brand identity matching.</p></div>
+    <div class="skill-item"><h4>AI Video Tools</h4><p>Sora, Kling, Pika, Runway — AI-assisted generation integrated into production workflows.</p></div>
+    <div class="skill-item"><h4>Creative Direction</h4><p>Mood boarding, storyboarding, visual research, and concept development for client pitches.</p></div>
+    <div class="skill-item"><h4>Visual Aesthetics</h4><p>Background in professional photography — lighting, composition, and visual storytelling.</p></div>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact" style="padding: 0;">
   <div class="contact-block">
     <div class="contact-left">
@@ -334,36 +249,56 @@
       <div class="section-title" style="margin-bottom:32px;">GET IN<br>TOUCH.</div>
       <p>Open to freelance projects, full-time roles, and creative collaborations. Based in Cairo — available remotely worldwide.</p>
       <div class="contact-links">
-       <a class="clink" href="mailto:amrmosaad.000@gmail.com">
-  <div class="clink-left">
-    <span class="clink-platform">Email</span>
-    <span class="clink-val">amrmosaad.000@gmail.com</span>
-  </div>
-  <span class="clink-arrow">→</span>
-</a>
+        <a class="clink" id="email-link" href="#">
+          <div class="clink-left"><span class="clink-platform">Email</span><span class="clink-val" id="email-val">—</span></div>
+          <span class="clink-arrow">&#8594;</span>
+        </a>
         <a class="clink" href="https://wa.me/201095020145" target="_blank">
           <div class="clink-left"><span class="clink-platform">WhatsApp</span><span class="clink-val">+20 109 502 0145</span></div>
-          <span class="clink-arrow">→</span>
+          <span class="clink-arrow">&#8594;</span>
         </a>
         <a class="clink" href="https://eg.linkedin.com/in/amr-mosaad-14b67b38b" target="_blank">
           <div class="clink-left"><span class="clink-platform">LinkedIn</span><span class="clink-val">Amr Mosaad</span></div>
-          <span class="clink-arrow">→</span>
+          <span class="clink-arrow">&#8594;</span>
         </a>
         <a class="clink" href="https://www.instagram.com/amrrraw" target="_blank">
           <div class="clink-left"><span class="clink-platform">Instagram</span><span class="clink-val">@amrrraw</span></div>
-          <span class="clink-arrow">→</span>
+          <span class="clink-arrow">&#8594;</span>
         </a>
         <a class="clink" href="https://vimeo.com/user227317493" target="_blank">
           <div class="clink-left"><span class="clink-platform">Vimeo</span><span class="clink-val">Amr Mosaad</span></div>
-          <span class="clink-arrow">→</span>
+          <span class="clink-arrow">&#8594;</span>
         </a>
         <a class="clink" href="https://behance.net/amrrraw" target="_blank">
           <div class="clink-left"><span class="clink-platform">Behance</span><span class="clink-val">amrrraw</span></div>
-          <span class="clink-arrow">→</span>
+          <span class="clink-arrow">&#8594;</span>
         </a>
       </div>
     </div>
     <div class="contact-right">
       <h3>READY TO CREATE SOMETHING GREAT?</h3>
       <p>Tell me about your project and let's bring your vision to life.</p>
-<a href="mailto:amrmosaad.000@gmail.com" class="btn-dark">Start a Project</a>
+      <a id="email-btn" href="#" class="btn-dark">Start a Conversation</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&#169; 2025 Amr Mosaad &mdash; Video Editor &amp; Motion Designer</p>
+  <p>Cairo, Egypt</p>
+</footer>
+
+<script>
+  (function() {
+    var u = 'amrmosaad' + '.000' + '@' + 'gmail' + '.com';
+    var el = document.getElementById('email-val');
+    var lk = document.getElementById('email-link');
+    var btn = document.getElementById('email-btn');
+    if (el) el.textContent = u;
+    if (lk) lk.href = 'mailto:' + u;
+    if (btn) btn.href = 'mailto:' + u;
+  })();
+</script>
+
+</body>
+</html>

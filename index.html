@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -29,296 +30,305 @@
     pointer-events: none; z-index: 999; opacity: 0.5;
   }
 
-  /* HEADER */
-  header {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 24px 48px;
-    background: linear-gradient(to bottom, rgba(10,10,10,0.96), transparent);
-    backdrop-filter: blur(2px);
-  }
-  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 4px; color: var(--text); }
-  .logo span { color: var(--accent); }
-  nav { display: flex; gap: 32px; }
-  nav a {
-    font-family: 'DM Mono', monospace; font-size: 11px;
-    letter-spacing: 2px; text-transform: uppercase;
-    color: var(--muted); text-decoration: none; transition: color 0.2s;
-  }
-  nav a:hover { color: var(--accent); }
+/* HEADER */
+header {
+position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+display: flex; justify-content: space-between; align-items: center;
+padding: 24px 48px;
+background: linear-gradient(to bottom, rgba(10,10,10,0.96), transparent);
+backdrop-filter: blur(2px);
+}
+.logo { font-family: ‘Bebas Neue’, sans-serif; font-size: 28px; letter-spacing: 4px; color: var(–text); }
+.logo span { color: var(–accent); }
+nav { display: flex; gap: 32px; }
+nav a {
+font-family: ‘DM Mono’, monospace; font-size: 11px;
+letter-spacing: 2px; text-transform: uppercase;
+color: var(–muted); text-decoration: none; transition: color 0.2s;
+}
+nav a:hover { color: var(–accent); }
 
-  /* HERO */
-  .hero {
-    min-height: 100vh; display: flex; flex-direction: column;
-    justify-content: flex-end; padding: 0 48px 80px;
-    position: relative; overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 60% 40%, #1a1a00 0%, transparent 60%),
-      radial-gradient(ellipse 50% 50% at 20% 80%, #1a1a00 0%, transparent 50%);
-  }
-  .hero-line {
-    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px;
-    color: var(--accent); text-transform: uppercase; margin-bottom: 24px;
-    z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
-  }
-  .hero h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(72px, 12vw, 160px); line-height: 0.9; letter-spacing: -2px;
-    z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
-  }
-  .hero h1 .outline { -webkit-text-stroke: 1px var(--text); color: transparent; }
-  .hero h1 .accent { color: var(--accent); }
-  .hero-sub {
-    font-size: 15px; color: var(--muted); margin-top: 32px;
-    max-width: 500px; line-height: 1.7; z-index: 1; position: relative;
-    opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
-  }
-  .hero-clients { margin-top: 36px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.7s forwards; }
-  .hero-clients .clabel {
-    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .hero-clients .clabel::before { content: ''; width: 20px; height: 1px; background: var(--accent); }
-  .clients-row { display: flex; flex-wrap: wrap; gap: 8px; max-width: 560px; }
-  .chip {
-    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.5px;
-    text-transform: uppercase; padding: 6px 14px;
-    border: 1px solid rgba(232,255,71,0.2);
-    color: rgba(240,237,232,0.6);
-    background: rgba(232,255,71,0.04);
-    transition: border-color 0.2s, color 0.2s, background 0.2s; cursor: default;
-  }
-  .chip:hover { border-color: var(--accent); color: var(--accent); background: rgba(232,255,71,0.08); }
-  .hero-cta { margin-top: 40px; display: flex; gap: 16px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
-  .btn-primary {
-    background: var(--accent); color: #000; font-family: 'DM Mono', monospace;
-    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-    padding: 14px 32px; border: none; cursor: pointer; text-decoration: none;
-    display: inline-block; transition: transform 0.15s, box-shadow 0.15s;
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,255,71,0.3); }
-  .btn-ghost {
-    background: transparent; color: var(--text); font-family: 'DM Mono', monospace;
-    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-    padding: 14px 32px; border: 1px solid var(--border); cursor: pointer;
-    text-decoration: none; display: inline-block; transition: border-color 0.2s, color 0.2s;
-  }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+/* HERO */
+.hero {
+min-height: 100vh; display: flex; flex-direction: column;
+justify-content: flex-end; padding: 0 48px 80px;
+position: relative; overflow: hidden;
+}
+.hero-bg {
+position: absolute; inset: 0;
+background:
+radial-gradient(ellipse 80% 60% at 60% 40%, #1a1a00 0%, transparent 60%),
+radial-gradient(ellipse 50% 50% at 20% 80%, #1a1a00 0%, transparent 50%);
+}
+.hero-line {
+font-family: ‘DM Mono’, monospace; font-size: 11px; letter-spacing: 3px;
+color: var(–accent); text-transform: uppercase; margin-bottom: 24px;
+z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+}
+.hero h1 {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: clamp(72px, 12vw, 160px); line-height: 0.9; letter-spacing: -2px;
+z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+}
+.hero h1 .outline { -webkit-text-stroke: 1px var(–text); color: transparent; }
+.hero h1 .accent { color: var(–accent); }
+.hero-sub {
+font-size: 15px; color: var(–muted); margin-top: 32px;
+max-width: 500px; line-height: 1.7; z-index: 1; position: relative;
+opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+}
+.hero-clients { margin-top: 36px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.7s forwards; }
+.hero-clients .clabel {
+font-family: ‘DM Mono’, monospace; font-size: 10px; letter-spacing: 3px;
+text-transform: uppercase; color: var(–accent); margin-bottom: 16px;
+display: flex; align-items: center; gap: 10px;
+}
+.hero-clients .clabel::before { content: ‘’; width: 20px; height: 1px; background: var(–accent); }
+.clients-row { display: flex; flex-wrap: wrap; gap: 8px; max-width: 560px; }
+.chip {
+font-family: ‘DM Mono’, monospace; font-size: 10px; letter-spacing: 1.5px;
+text-transform: uppercase; padding: 6px 14px;
+border: 1px solid rgba(232,255,71,0.2);
+color: rgba(240,237,232,0.6);
+background: rgba(232,255,71,0.04);
+transition: border-color 0.2s, color 0.2s, background 0.2s; cursor: default;
+}
+.chip:hover { border-color: var(–accent); color: var(–accent); background: rgba(232,255,71,0.08); }
+.hero-cta { margin-top: 40px; display: flex; gap: 16px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
+.btn-primary {
+background: var(–accent); color: #000; font-family: ‘DM Mono’, monospace;
+font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+padding: 14px 32px; border: none; cursor: pointer; text-decoration: none;
+display: inline-block; transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,255,71,0.3); }
+.btn-ghost {
+background: transparent; color: var(–text); font-family: ‘DM Mono’, monospace;
+font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+padding: 14px 32px; border: 1px solid var(–border); cursor: pointer;
+text-decoration: none; display: inline-block; transition: border-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover { border-color: var(–accent); color: var(–accent); }
 
-  /* TICKER */
-  .ticker-wrap {
-    overflow: hidden; border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border); padding: 16px 0; background: var(--surface);
-  }
-  .ticker { display: flex; gap: 64px; animation: ticker 22s linear infinite; white-space: nowrap; }
-  .ticker span { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 3px; color: var(--muted); flex-shrink: 0; }
-  .ticker span.dot { color: var(--accent); }
+/* TICKER */
+.ticker-wrap {
+overflow: hidden; border-top: 1px solid var(–border);
+border-bottom: 1px solid var(–border); padding: 16px 0; background: var(–surface);
+}
+.ticker { display: flex; gap: 64px; animation: ticker 22s linear infinite; white-space: nowrap; }
+.ticker span { font-family: ‘Bebas Neue’, sans-serif; font-size: 18px; letter-spacing: 3px; color: var(–muted); flex-shrink: 0; }
+.ticker span.dot { color: var(–accent); }
 
-  /* SECTION */
-  section { padding: 120px 48px; }
-  .section-label {
-    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 4px;
-    text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .section-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--accent); opacity: 0.4; }
-  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 6vw, 80px); letter-spacing: 2px; line-height: 1; margin-bottom: 56px; }
+/* SECTION */
+section { padding: 120px 48px; }
+.section-label {
+font-family: ‘DM Mono’, monospace; font-size: 10px; letter-spacing: 4px;
+text-transform: uppercase; color: var(–accent); margin-bottom: 16px;
+display: flex; align-items: center; gap: 12px;
+}
+.section-label::after { content: ‘’; flex: 1; max-width: 60px; height: 1px; background: var(–accent); opacity: 0.4; }
+.section-title { font-family: ‘Bebas Neue’, sans-serif; font-size: clamp(40px, 6vw, 80px); letter-spacing: 2px; line-height: 1; margin-bottom: 56px; }
 
-  /* CLIENT CARDS */
-  .clients-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 2px;
-    margin-bottom: 2px;
-  }
-  .client-card {
-    background: var(--surface);
-    height: 130px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 12px; cursor: pointer;
-    border-bottom: 3px solid transparent;
-    transition: border-color 0.25s, background 0.25s;
-    position: relative; overflow: hidden;
-  }
-  .client-card:hover { background: var(--card-hover); border-color: var(--accent); }
-  .client-card.active { background: var(--card-hover); border-bottom-color: var(--accent); }
+/* CLIENT CARDS */
+.clients-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+gap: 2px;
+margin-bottom: 2px;
+}
+.client-card {
+background: var(–surface);
+height: 130px;
+display: flex; flex-direction: column; align-items: center; justify-content: center;
+gap: 12px; cursor: pointer;
+border-bottom: 3px solid transparent;
+transition: border-color 0.25s, background 0.25s;
+position: relative; overflow: hidden;
+text-decoration: none;
+}
+.client-card::after {
+content: ‘↗’;
+position: absolute; top: 10px; right: 12px;
+font-size: 11px; color: var(–muted);
+opacity: 0; transition: opacity 0.2s;
+}
+.client-card:hover::after { opacity: 1; color: var(–accent); }
+.client-card:hover { background: var(–card-hover); border-color: var(–accent); }
+.client-card.active { background: var(–card-hover); border-bottom-color: var(–accent); }
 
-  .client-logo-wrap {
-    width: 100px; height: 52px;
-    display: flex; align-items: center; justify-content: center;
-    filter: brightness(0) invert(1); opacity: 0.55;
-    transition: opacity 0.25s, transform 0.25s;
-  }
-  .client-card:hover .client-logo-wrap,
-  .client-card.active .client-logo-wrap { opacity: 1; transform: scale(1.1); }
-  .client-logo-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+.client-logo-wrap {
+width: 100px; height: 52px;
+display: flex; align-items: center; justify-content: center;
+filter: brightness(0) invert(1); opacity: 0.55;
+transition: opacity 0.25s, transform 0.25s;
+}
+.client-card:hover .client-logo-wrap,
+.client-card.active .client-logo-wrap { opacity: 1; transform: scale(1.1); }
+.client-logo-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
 
-  .client-logo-text {
-    font-family: 'Bebas Neue', sans-serif; font-size: 26px;
-    letter-spacing: 2px; color: var(--text); opacity: 0.5;
-    transition: opacity 0.25s, color 0.25s, transform 0.25s;
-    line-height: 1;
-  }
-  .client-card:hover .client-logo-text,
-  .client-card.active .client-logo-text { opacity: 1; color: var(--accent); transform: scale(1.1); }
+.client-logo-text {
+font-family: ‘Bebas Neue’, sans-serif; font-size: 26px;
+letter-spacing: 2px; color: var(–text); opacity: 0.5;
+transition: opacity 0.25s, color 0.25s, transform 0.25s;
+line-height: 1;
+}
+.client-card:hover .client-logo-text,
+.client-card.active .client-logo-text { opacity: 1; color: var(–accent); transform: scale(1.1); }
 
-  .client-name {
-    font-family: 'DM Mono', monospace; font-size: 9px;
-    letter-spacing: 2px; text-transform: uppercase; color: var(--muted);
-    text-align: center; transition: color 0.25s;
-  }
-  .client-card:hover .client-name,
-  .client-card.active .client-name { color: var(--accent); }
+.client-name {
+font-family: ‘DM Mono’, monospace; font-size: 9px;
+letter-spacing: 2px; text-transform: uppercase; color: var(–muted);
+text-align: center; transition: color 0.25s;
+}
+.client-card:hover .client-name,
+.client-card.active .client-name { color: var(–accent); }
 
-  /* VIDEO PANEL */
-  .videos-panel {
-    background: var(--card-hover);
-    border: 1px solid var(--border);
-    border-top: 3px solid var(--accent);
-    padding: 32px;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
-    padding-top: 0; padding-bottom: 0;
-  }
-  .videos-panel.open {
-    max-height: 2000px;
-    opacity: 1;
-    padding-top: 32px;
-    padding-bottom: 32px;
-  }
+/* VIDEO PANEL */
+.videos-panel {
+background: var(–card-hover);
+border: 1px solid var(–border);
+border-top: 3px solid var(–accent);
+padding: 32px;
+max-height: 0;
+overflow: hidden;
+opacity: 0;
+transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+padding-top: 0; padding-bottom: 0;
+}
+.videos-panel.open {
+max-height: 2000px;
+opacity: 1;
+padding-top: 32px;
+padding-bottom: 32px;
+}
 
-  .panel-header {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 24px;
-  }
-  .panel-client-name {
-    font-family: 'Bebas Neue', sans-serif; font-size: 32px;
-    letter-spacing: 2px; color: var(--accent);
-  }
-  .panel-close {
-    font-family: 'DM Mono', monospace; font-size: 10px;
-    letter-spacing: 2px; text-transform: uppercase; color: var(--muted);
-    background: none; border: none; cursor: pointer; transition: color 0.2s;
-  }
-  .panel-close:hover { color: var(--accent); }
+.panel-header {
+display: flex; justify-content: space-between; align-items: center;
+margin-bottom: 24px;
+}
+.panel-client-name {
+font-family: ‘Bebas Neue’, sans-serif; font-size: 32px;
+letter-spacing: 2px; color: var(–accent);
+}
+.panel-close {
+font-family: ‘DM Mono’, monospace; font-size: 10px;
+letter-spacing: 2px; text-transform: uppercase; color: var(–muted);
+background: none; border: none; cursor: pointer; transition: color 0.2s;
+}
+.panel-close:hover { color: var(–accent); }
 
-  /* VIDEO PLACEHOLDERS (9:16) */
-  .videos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 2px;
-  }
-  .vid-placeholder {
-    position: relative; cursor: pointer;
-    background: #0d0d0d;
-    overflow: hidden;
-  }
-  .vid-placeholder .aspect { padding-top: 177.78%; position: relative; }
-  .vid-placeholder .inner {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 12px;
-    transition: background 0.2s;
-  }
-  .vid-placeholder:hover .inner { background: rgba(232,255,71,0.04); }
-  .vid-num {
-    font-family: 'DM Mono', monospace; font-size: 10px;
-    letter-spacing: 2px; color: rgba(232,255,71,0.4);
-    position: absolute; top: 12px; left: 14px;
-  }
-  .play-circle {
-    width: 52px; height: 52px; background: var(--accent); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .vid-placeholder:hover .play-circle { transform: scale(1.08); box-shadow: 0 0 24px rgba(232,255,71,0.4); }
-  .play-circle svg { width: 20px; height: 20px; fill: #000; margin-left: 3px; }
-  .vid-label {
-    font-family: 'DM Mono', monospace; font-size: 9px;
-    letter-spacing: 1px; text-transform: uppercase; color: var(--muted);
-  }
+/* VIDEO PLACEHOLDERS (9:16) */
+.videos-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+gap: 2px;
+}
+.vid-placeholder {
+position: relative; cursor: pointer;
+background: #0d0d0d;
+overflow: hidden;
+}
+.vid-placeholder .aspect { padding-top: 177.78%; position: relative; }
+.vid-placeholder .inner {
+position: absolute; inset: 0;
+display: flex; flex-direction: column;
+align-items: center; justify-content: center; gap: 12px;
+transition: background 0.2s;
+}
+.vid-placeholder:hover .inner { background: rgba(232,255,71,0.04); }
+.vid-num {
+font-family: ‘DM Mono’, monospace; font-size: 10px;
+letter-spacing: 2px; color: rgba(232,255,71,0.4);
+position: absolute; top: 12px; left: 14px;
+}
+.play-circle {
+width: 52px; height: 52px; background: var(–accent); border-radius: 50%;
+display: flex; align-items: center; justify-content: center;
+transition: transform 0.2s, box-shadow 0.2s;
+}
+.vid-placeholder:hover .play-circle { transform: scale(1.08); box-shadow: 0 0 24px rgba(232,255,71,0.4); }
+.play-circle svg { width: 20px; height: 20px; fill: #000; margin-left: 3px; }
+.vid-label {
+font-family: ‘DM Mono’, monospace; font-size: 9px;
+letter-spacing: 1px; text-transform: uppercase; color: var(–muted);
+}
 
-  /* SKILLS */
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2px; }
-  .skill-item {
-    background: var(--surface); padding: 32px;
-    border-top: 2px solid transparent; transition: border-color 0.2s, background 0.2s;
-  }
-  .skill-item:hover { border-color: var(--accent); background: var(--card-hover); }
-  .skill-item h4 { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; margin-bottom: 8px; }
-  .skill-item p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+/* SKILLS */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2px; }
+.skill-item {
+background: var(–surface); padding: 32px;
+border-top: 2px solid transparent; transition: border-color 0.2s, background 0.2s;
+}
+.skill-item:hover { border-color: var(–accent); background: var(–card-hover); }
+.skill-item h4 { font-family: ‘Bebas Neue’, sans-serif; font-size: 20px; letter-spacing: 1px; margin-bottom: 8px; }
+.skill-item p { font-size: 12px; color: var(–muted); line-height: 1.6; }
 
-  /* CONTACT */
-  .contact-block { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-  .contact-left { background: var(--surface); padding: 64px; }
-  .contact-left p { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 40px; max-width: 400px; }
-  .contact-links { display: flex; flex-direction: column; }
-  .clink {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 16px 0; border-bottom: 1px solid var(--border);
-    text-decoration: none; color: var(--text); transition: color 0.2s, padding-left 0.2s;
-  }
-  .clink:hover { color: var(--accent); padding-left: 8px; }
-  .clink-left { display: flex; align-items: center; gap: 14px; }
-  .clink-platform { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); width: 80px; }
-  .clink-val { font-size: 13px; }
-  .clink-arrow { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); transition: transform 0.2s, color 0.2s; }
-  .clink:hover .clink-arrow { color: var(--accent); transform: translateX(4px); }
-  .contact-right { background: var(--accent); padding: 64px; display: flex; flex-direction: column; justify-content: center; }
-  .contact-right h3 { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: #000; line-height: 1; margin-bottom: 24px; }
-  .contact-right p { font-size: 14px; color: rgba(0,0,0,0.6); line-height: 1.7; margin-bottom: 32px; }
-  .btn-dark {
-    background: #000; color: var(--accent); font-family: 'DM Mono', monospace;
-    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-    padding: 14px 32px; border: none; cursor: pointer; text-decoration: none;
-    display: inline-block; width: fit-content; transition: background 0.2s;
-  }
-  .btn-dark:hover { background: #111; }
+/* CONTACT */
+.contact-block { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.contact-left { background: var(–surface); padding: 64px; }
+.contact-left p { font-size: 15px; color: var(–muted); line-height: 1.8; margin-bottom: 40px; max-width: 400px; }
+.contact-links { display: flex; flex-direction: column; }
+.clink {
+display: flex; justify-content: space-between; align-items: center;
+padding: 16px 0; border-bottom: 1px solid var(–border);
+text-decoration: none; color: var(–text); transition: color 0.2s, padding-left 0.2s;
+}
+.clink:hover { color: var(–accent); padding-left: 8px; }
+.clink-left { display: flex; align-items: center; gap: 14px; }
+.clink-platform { font-family: ‘DM Mono’, monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(–muted); width: 80px; }
+.clink-val { font-size: 13px; }
+.clink-arrow { font-family: ‘DM Mono’, monospace; font-size: 11px; color: var(–muted); transition: transform 0.2s, color 0.2s; }
+.clink:hover .clink-arrow { color: var(–accent); transform: translateX(4px); }
+.contact-right { background: var(–accent); padding: 64px; display: flex; flex-direction: column; justify-content: center; }
+.contact-right h3 { font-family: ‘Bebas Neue’, sans-serif; font-size: 48px; color: #000; line-height: 1; margin-bottom: 24px; }
+.contact-right p { font-size: 14px; color: rgba(0,0,0,0.6); line-height: 1.7; margin-bottom: 32px; }
+.btn-dark {
+background: #000; color: var(–accent); font-family: ‘DM Mono’, monospace;
+font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+padding: 14px 32px; border: none; cursor: pointer; text-decoration: none;
+display: inline-block; width: fit-content; transition: background 0.2s;
+}
+.btn-dark:hover { background: #111; }
 
-  footer {
-    border-top: 1px solid var(--border); padding: 32px 48px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  footer p { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
+footer {
+border-top: 1px solid var(–border); padding: 32px 48px;
+display: flex; justify-content: space-between; align-items: center;
+}
+footer p { font-family: ‘DM Mono’, monospace; font-size: 10px; letter-spacing: 2px; color: var(–muted); text-transform: uppercase; }
 
-  /* MODAL */
-  .modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.97);
-    z-index: 1000; display: flex; align-items: center; justify-content: center;
-    opacity: 0; pointer-events: none; transition: opacity 0.3s;
-  }
-  .modal-overlay.open { opacity: 1; pointer-events: all; }
-  .modal-inner { position: relative; width: min(90vw, 480px); }
-  .modal-video { position: relative; padding-top: 177.78%; background: #000; }
-  .modal-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
-  .modal-close {
-    position: absolute; top: -44px; right: 0; background: none; border: none;
-    color: var(--muted); font-family: 'DM Mono', monospace; font-size: 11px;
-    letter-spacing: 2px; cursor: pointer; text-transform: uppercase;
-    display: flex; align-items: center; gap: 8px; transition: color 0.2s;
-  }
-  .modal-close:hover { color: var(--accent); }
+/* MODAL */
+.modal-overlay {
+position: fixed; inset: 0; background: rgba(0,0,0,0.97);
+z-index: 1000; display: flex; align-items: center; justify-content: center;
+opacity: 0; pointer-events: none; transition: opacity 0.3s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal-inner { position: relative; width: min(90vw, 480px); }
+.modal-video { position: relative; padding-top: 177.78%; background: #000; }
+.modal-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+.modal-close {
+position: absolute; top: -44px; right: 0; background: none; border: none;
+color: var(–muted); font-family: ‘DM Mono’, monospace; font-size: 11px;
+letter-spacing: 2px; cursor: pointer; text-transform: uppercase;
+display: flex; align-items: center; gap: 8px; transition: color 0.2s;
+}
+.modal-close:hover { color: var(–accent); }
 
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  @media (max-width: 768px) {
-    header { padding: 20px 24px; }
-    nav { display: none; }
-    .hero { padding: 0 24px 60px; }
-    section { padding: 80px 24px; }
-    .contact-block { grid-template-columns: 1fr; }
-    .contact-left, .contact-right { padding: 40px 24px; }
-    footer { flex-direction: column; gap: 12px; text-align: center; }
-    .videos-panel { padding: 20px; }
-  }
+@media (max-width: 768px) {
+header { padding: 20px 24px; }
+nav { display: none; }
+.hero { padding: 0 24px 60px; }
+section { padding: 80px 24px; }
+.contact-block { grid-template-columns: 1fr; }
+.contact-left, .contact-right { padding: 40px 24px; }
+footer { flex-direction: column; gap: 12px; text-align: center; }
+.videos-panel { padding: 20px; }
+}
 </style>
+
 </head>
 <body>
 
@@ -332,6 +342,7 @@
 </header>
 
 <!-- HERO -->
+
 <section class="hero" id="home">
   <div class="hero-bg"></div>
   <div class="hero-line">Video Editor & Motion Designer — Cairo, Egypt</div>
@@ -361,6 +372,7 @@
 </section>
 
 <!-- TICKER -->
+
 <div class="ticker-wrap">
   <div class="ticker">
     <span>VIDEO EDITING</span><span class="dot"> ✦ </span>
@@ -383,256 +395,85 @@
 </div>
 
 <!-- WORK -->
+
 <section id="work">
   <div class="section-label">Selected Work</div>
   <div class="section-title">WORK BY<br>CLIENT.</div>
 
-  <div class="clients-grid" id="clientsGrid">
+  <div class="clients-grid">
 
-    <!-- MY E -->
-    <div class="client-card" onclick="toggleClient('mye', this)">
-      <div class="client-logo-wrap">
-        <img src="mye.png" alt="MY E" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8\'>MY E</span>'">
-      </div>
-      <div class="client-name">MY E</div>
-    </div>
+```
+<a class="client-card" href="https://drive.google.com/drive/folders/1AbeeVwZW5arSbfBLom-qgidtW4khBh3-" target="_blank">
+  <div class="client-logo-wrap"><img src="mye.png" alt="MY E" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8\'>MY E</span>'"></div>
+  <div class="client-name">MY E</div>
+</a>
 
-    <!-- Asfour Crystal -->
-    <div class="client-card" onclick="toggleClient('asfour', this)">
-      <div class="client-logo-wrap">
-        <img src="Afour.png" alt="Asfour Crystal" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:2px;color:#f0ede8\'>ASFOUR</span>'">
-      </div>
-      <div class="client-name">Asfour Crystal</div>
-    </div>
+<a class="client-card" href="https://drive.google.com/drive/folders/1o5EOO5HRS3FRh5X1onaBjgowDk4dDgwl" target="_blank">
+  <div class="client-logo-wrap"><img src="Afour.png" alt="Asfour" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:2px;color:#f0ede8\'>ASFOUR</span>'"></div>
+  <div class="client-name">Asfour Crystal</div>
+</a>
 
-    <!-- Gems -->
-    <div class="client-card" onclick="toggleClient('gems', this)">
-      <div class="client-logo-wrap">
-        <img src="gems.png" alt="Gems" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8\'>GEMS</span>'">
-      </div>
-      <div class="client-name">Gems</div>
-    </div>
+<a class="client-card" href="https://drive.google.com/drive/folders/1432iXK55eMDJ1OgBbF2eYgavghiXeZsA" target="_blank">
+  <div class="client-logo-wrap"><img src="gems.png" alt="Gems" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8\'>GEMS</span>'"></div>
+  <div class="client-name">Gems Schools</div>
+</a>
 
-    <!-- Carofi -->
-    <div class="client-card" onclick="toggleClient('carofi', this)">
-      <div class="client-logo-wrap">
-        <img src="Carofi.png" alt="Carofi" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8\'>CAROFI</span>'">
-      </div>
-      <div class="client-name">Carofi</div>
-    </div>
+<a class="client-card" href="https://drive.google.com/drive/folders/149rAX8mkdBkxKbPvFBg5vonu4j3rLEdV" target="_blank">
+  <div class="client-logo-wrap"><img src="Carofi.png" alt="Carofi" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8\'>CAROFI</span>'"></div>
+  <div class="client-name">Carofi</div>
+</a>
 
-    <!-- MPG -->
-    <div class="client-card" onclick="toggleClient('mpg', this)">
-      <div class="client-logo-wrap">
-        <img src="MBG.png" alt="MPG" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8\'>MPG</span>'">
-      </div>
-      <div class="client-name">MPG</div>
-    </div>
+<a class="client-card" href="https://drive.google.com/drive/folders/1U0rzNuYAHUVrmkqMd1scyjW73-oHKj9O" target="_blank">
+  <div class="client-logo-wrap"><img src="MBG.png" alt="MPG" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8\'>MPG</span>'"></div>
+  <div class="client-name">MPG</div>
+</a>
 
-    <!-- Cemex (text only) -->
-    <div class="client-card" onclick="toggleClient('cemex', this)">
-      <div class="client-logo-text">CEMEX</div>
-      <div class="client-name">Cemex</div>
-    </div>
+<a class="client-card" href="https://drive.google.com/drive/folders/1nuz_B4YvUog_K2gYnvzu2BUTZ13Qp9rF" target="_blank">
+  <div class="client-logo-wrap"><img src="CEMEX.png" alt="Cemex" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8\'>CEMEX</span>'"></div>
+  <div class="client-name">Cemex</div>
+</a>
 
-    <!-- Eva (text only) -->
-    <div class="client-card" onclick="toggleClient('eva', this)">
-      <div class="client-logo-text">EVA</div>
-      <div class="client-name">Eva</div>
-    </div>
+<a class="client-card" href="https://drive.google.com/drive/folders/17uI-q3qxoubnKbjaj8nrY7AZLaG2K8VM" target="_blank">
+  <div class="client-logo-wrap"><img src="Football Access.png" alt="Football Access" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:16px;letter-spacing:2px;color:#f0ede8\'>FOOTBALL</span>'"></div>
+  <div class="client-name">Football Access</div>
+</a>
 
-    <!-- Football Access (text only) -->
-    <div class="client-card" onclick="toggleClient('football', this)">
-      <div class="client-logo-text">FOOTBALL</div>
-      <div class="client-name">Football Access</div>
-    </div>
+<a class="client-card" href="https://drive.google.com/drive/folders/1R1x_F6UCHPUOpNzPF4irnTW3yQ0PaLjD" target="_blank">
+  <div class="client-logo-wrap"><img src="EGX.png" alt="EGX" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8\'>EGX</span>'"></div>
+  <div class="client-name">EGX</div>
+</a>
 
-    <!-- EGX -->
-    <div class="client-card" onclick="toggleClient('egx', this)">
-      <div class="client-logo-wrap">
-        <img src="EGX.png" alt="EGX" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8\'>EGX</span>'">
-      </div>
-      <div class="client-name">EGX</div>
-    </div>
+<a class="client-card" href="https://drive.google.com/drive/folders/1RzxnFowjRLGtnWIZxNEwwxkWOhOVdheR" target="_blank">
+  <div class="client-logo-wrap"><img src="AL Rayah.png" alt="Al Rayah" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:2px;color:#f0ede8\'>AL RAYAH</span>'"></div>
+  <div class="client-name">Al Rayah</div>
+</a>
 
-    <!-- ALRAYAH -->
-    <div class="client-card" onclick="toggleClient('alrayah', this)">
-      <div class="client-logo-wrap">
-        <img src="AL Rayah.png" alt="Al Rayah" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:2px;color:#f0ede8\'>AL RAYAH</span>'">
-      </div>
-      <div class="client-name">Al Rayah</div>
-    </div>
+<a class="client-card" href="https://drive.google.com/drive/folders/1gw0Rbj46gbeUFFeTrdyEBuf3WWxq3ya3" target="_blank">
+  <div class="client-logo-wrap"><img src="SGP Logo White.png" alt="SPG" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8\'>SPG</span>'"></div>
+  <div class="client-name">SPG</div>
+</a>
 
-    <!-- SPG -->
-    <div class="client-card" onclick="toggleClient('spg', this)">
-      <div class="client-logo-wrap">
-        <img src="SGP Logo White.png" alt="SPG" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8\'>SPG</span>'">
-      </div>
-      <div class="client-name">SPG</div>
-    </div>
+<a class="client-card" href="https://drive.google.com/drive/folders/1X1qz85JyPdSa3pga315exGpxmDFbMf4x" target="_blank">
+  <div class="client-logo-wrap"><img src="Spinneys.png" alt="Spinneys" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:2px;color:#f0ede8\'>SPINNEYS</span>'"></div>
+  <div class="client-name">Spinneys</div>
+</a>
 
-    <!-- Spinneys -->
-    <div class="client-card" onclick="toggleClient('spinneys', this)">
-      <div class="client-logo-wrap">
-        <img src="Spinneys.png" alt="Spinneys" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:2px;color:#f0ede8\'>SPINNEYS</span>'">
-      </div>
-      <div class="client-name">Spinneys</div>
-    </div>
+<a class="client-card" href="https://drive.google.com/drive/folders/1Xc7q8ONNECxcYnc2vNEVosiJaMT-V5Xi" target="_blank">
+  <div class="client-logo-wrap"><img src="Bodiz.png" alt="Bodiz" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8\'>BODIZ</span>'"></div>
+  <div class="client-name">Bodiz</div>
+</a>
+
+<a class="client-card" href="https://drive.google.com/drive/folders/1Uws87jf92E4U6iwfcSE8v2rrOu4ZUuHx" target="_blank">
+  <div class="client-logo-wrap"><img src="Al Baraka.png" alt="Al Baraka" onerror="this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue,sans-serif;font-size:16px;letter-spacing:2px;color:#f0ede8\'>AL BARAKA</span>'"></div>
+  <div class="client-name">Al Baraka Bank</div>
+</a>
+```
 
   </div>
-
-  <!-- VIDEO PANELS -->
-  <div class="videos-panel" id="panel-mye">
-    <div class="panel-header">
-      <div class="panel-client-name">MY E</div>
-      <button class="panel-close" onclick="closePanel('mye')">✕ Close</button>
-    </div>
-    <div class="videos-grid">
-      <div class="vid-placeholder" onclick="openModal('1BdZuZV0QJ9TqUFw7YiR4cjcCVxPbaqiH')">
-        <div class="aspect"><div class="inner"><div class="vid-num">01</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
-      </div>
-      <div class="vid-placeholder" onclick="openModal('1p1uWqnrLrhihBRnhirieE89tHqeSOdet')">
-        <div class="aspect"><div class="inner"><div class="vid-num">02</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
-      </div>
-      <div class="vid-placeholder" onclick="openModal('1oU8sHj0dRaecyorCpjQdDhvi3txIeop1')">
-        <div class="aspect"><div class="inner"><div class="vid-num">03</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="videos-panel" id="panel-asfour">
-    <div class="panel-header">
-      <div class="panel-client-name">ASFOUR CRYSTAL</div>
-      <button class="panel-close" onclick="closePanel('asfour')">✕ Close</button>
-    </div>
-    <div class="videos-grid">
-      <div class="vid-placeholder" onclick="openModal('1ro7xe7PBvZLoarP01ovbWvbUI2Ct0YmA')">
-        <div class="aspect"><div class="inner"><div class="vid-num">06</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
-      </div>
-      <div class="vid-placeholder" onclick="openModal('1BzPHhprOICZQdM9xdHWrtpO8jKLqL3nh')">
-        <div class="aspect"><div class="inner"><div class="vid-num">07</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
-      </div>
-      <div class="vid-placeholder" onclick="openModal('1lXoT2EZMLxH5w-Cm5aCSMJpS156H9721')">
-        <div class="aspect"><div class="inner"><div class="vid-num">08</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="videos-panel" id="panel-gems">
-    <div class="panel-header">
-      <div class="panel-client-name">GEMS</div>
-      <button class="panel-close" onclick="closePanel('gems')">✕ Close</button>
-    </div>
-    <div class="videos-grid">
-      <div class="vid-placeholder" onclick="openModal('1SuGW0Pk1_QyCI2V8OdRZaD8xfqyxrKYX')">
-        <div class="aspect"><div class="inner"><div class="vid-num">12</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="videos-panel" id="panel-carofi">
-    <div class="panel-header">
-      <div class="panel-client-name">CAROFI</div>
-      <button class="panel-close" onclick="closePanel('carofi')">✕ Close</button>
-    </div>
-    <div class="videos-grid">
-      <div class="vid-placeholder" onclick="openModal('1kzjSAn133u9ZK6Eup660y_c-QtJRpIsW')">
-        <div class="aspect"><div class="inner"><div class="vid-num">10</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="videos-panel" id="panel-mpg">
-    <div class="panel-header">
-      <div class="panel-client-name">MPG</div>
-      <button class="panel-close" onclick="closePanel('mpg')">✕ Close</button>
-    </div>
-    <div class="videos-grid">
-      <div class="vid-placeholder" onclick="openModal('1FR9kjw2B0eQK-OHNNQdrGe1zGQgkUfvX')">
-        <div class="aspect"><div class="inner"><div class="vid-num">11</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="videos-panel" id="panel-cemex">
-    <div class="panel-header">
-      <div class="panel-client-name">CEMEX</div>
-      <button class="panel-close" onclick="closePanel('cemex')">✕ Close</button>
-    </div>
-    <div class="videos-grid">
-      <div class="vid-placeholder" onclick="openModal('1-EA2_Jb-faVbfScE2b2UAzcYOcbwOX85')">
-        <div class="aspect"><div class="inner"><div class="vid-num">05</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="videos-panel" id="panel-eva">
-    <div class="panel-header">
-      <div class="panel-client-name">EVA</div>
-      <button class="panel-close" onclick="closePanel('eva')">✕ Close</button>
-    </div>
-    <div class="videos-grid">
-      <div class="vid-placeholder" onclick="openModal('1oQsggzdWZ4yPd1-yrZdf6x81X0Qqbh1q')">
-        <div class="aspect"><div class="inner"><div class="vid-num">09</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="videos-panel" id="panel-football">
-    <div class="panel-header">
-      <div class="panel-client-name">FOOTBALL ACCESS</div>
-      <button class="panel-close" onclick="closePanel('football')">✕ Close</button>
-    </div>
-    <div class="videos-grid">
-      <div class="vid-placeholder" onclick="openModal('1JoYWTYuS8wQH4NbsDCi1EEjoBAZysKi4')">
-        <div class="aspect"><div class="inner"><div class="vid-num">04</div><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="vid-label">Play</div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="videos-panel" id="panel-egx">
-    <div class="panel-header">
-      <div class="panel-client-name">EGX</div>
-      <button class="panel-close" onclick="closePanel('egx')">✕ Close</button>
-    </div>
-    <div class="videos-grid">
-      <!-- فيديوهات EGX هتتضاف هنا -->
-    </div>
-  </div>
-
-  <div class="videos-panel" id="panel-alrayah">
-    <div class="panel-header">
-      <div class="panel-client-name">AL RAYAH</div>
-      <button class="panel-close" onclick="closePanel('alrayah')">✕ Close</button>
-    </div>
-    <div class="videos-grid">
-      <!-- فيديوهات Al Rayah هتتضاف هنا -->
-    </div>
-  </div>
-
-  <div class="videos-panel" id="panel-spg">
-    <div class="panel-header">
-      <div class="panel-client-name">SPG</div>
-      <button class="panel-close" onclick="closePanel('spg')">✕ Close</button>
-    </div>
-    <div class="videos-grid">
-      <!-- فيديوهات SPG هتتضاف هنا -->
-    </div>
-  </div>
-
-  <div class="videos-panel" id="panel-spinneys">
-    <div class="panel-header">
-      <div class="panel-client-name">SPINNEYS</div>
-      <button class="panel-close" onclick="closePanel('spinneys')">✕ Close</button>
-    </div>
-    <div class="videos-grid">
-      <!-- فيديوهات Spinneys هتتضاف هنا -->
-    </div>
-  </div>
-
 </section>
 
 <!-- SKILLS -->
+
 <section id="skills" style="background: var(--surface);">
   <div class="section-label">Toolkit</div>
   <div class="section-title">SKILLS &<br>TOOLS.</div>
@@ -665,6 +506,7 @@
 </section>
 
 <!-- CONTACT -->
+
 <section id="contact" style="padding: 0;">
   <div class="contact-block">
     <div class="contact-left">
@@ -672,7 +514,7 @@
       <div class="section-title" style="margin-bottom:32px;">GET IN<br>TOUCH.</div>
       <p>Open to freelance projects, full-time roles, and creative collaborations. Based in Cairo — available remotely worldwide.</p>
       <div class="contact-links">
-        <a class="clink" href="/cdn-cgi/l/email-protection#72131f001f1d011313165c42424232151f131b1e5c111d1f"><div class="clink-left"><span class="clink-platform">Email</span><span class="clink-val"><span class="__cf_email__" data-cfemail="7819150a15170b19191c56484848381f15191114561b1715">[email&#160;protected]</span></span></div><span class="clink-arrow">→</span></a>
+        <a class="clink" href="mailto:amrmosaad.000@gmail.com"><div class="clink-left"><span class="clink-platform">Email</span><span class="clink-val">amrmosaad.000@gmail.com</span></div><span class="clink-arrow">→</span></a>
         <a class="clink" href="https://wa.me/201095020145" target="_blank"><div class="clink-left"><span class="clink-platform">WhatsApp</span><span class="clink-val">+20 109 502 0145</span></div><span class="clink-arrow">→</span></a>
         <a class="clink" href="https://eg.linkedin.com/in/amr-mosaad-14b67b38b" target="_blank"><div class="clink-left"><span class="clink-platform">LinkedIn</span><span class="clink-val">Amr Mosaad</span></div><span class="clink-arrow">→</span></a>
         <a class="clink" href="https://www.instagram.com/amrrraw" target="_blank"><div class="clink-left"><span class="clink-platform">Instagram</span><span class="clink-val">@amrrraw</span></div><span class="clink-arrow">→</span></a>
@@ -683,7 +525,7 @@
     <div class="contact-right">
       <h3>READY TO CREATE SOMETHING GREAT?</h3>
       <p>Tell me about your project and let's bring your vision to life.</p>
-      <a href="/cdn-cgi/l/email-protection#b4d5d9c6d9dbc7d5d5d09a848484f4d3d9d5ddd89ad7dbd9" class="btn-dark">Start a Conversation</a>
+      <a href="mailto:amrmosaad.000@gmail.com" class="btn-dark">Start a Conversation</a>
     </div>
   </div>
 </section>
@@ -694,6 +536,7 @@
 </footer>
 
 <!-- MODAL -->
+
 <div class="modal-overlay" id="modal">
   <div class="modal-inner">
     <button class="modal-close" onclick="closeModal()">✕ Close</button>
@@ -704,41 +547,42 @@
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  let activeClient = null;
-  let activeCard = null;
 
-  function toggleClient(id, card) {
-    const panel = document.getElementById('panel-' + id);
-    if (activeClient === id) {
-      closePanel(id);
-      return;
-    }
-    if (activeClient) {
-      document.getElementById('panel-' + activeClient).classList.remove('open');
-      if (activeCard) activeCard.classList.remove('active');
-    }
-    panel.classList.add('open');
-    card.classList.add('active');
-    activeClient = id;
-    activeCard = card;
-    setTimeout(() => {
-      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 80);
-  }
+let activeClient = null;
+let activeCard = null;
 
-  function closePanel(id) {
-    const panel = document.getElementById('panel-' + id);
-    panel.classList.remove('open');
-    if (activeCard) activeCard.classList.remove('active');
-    activeClient = null;
-    activeCard = null;
-  }
+function toggleClient(id, card) {
+const panel = document.getElementById(‘panel-’ + id);
+if (activeClient === id) {
+closePanel(id);
+return;
+}
+if (activeClient) {
+document.getElementById(‘panel-’ + activeClient).classList.remove(‘open’);
+if (activeCard) activeCard.classList.remove(‘active’);
+}
+panel.classList.add(‘open’);
+card.classList.add(‘active’);
+activeClient = id;
+activeCard = card;
+setTimeout(() => {
+panel.scrollIntoView({ behavior: ‘smooth’, block: ‘start’ });
+}, 80);
+}
 
-  function openModal(fileId) {
-    document.getElementById('modal-iframe').src = 'https://drive.google.com/file/d/' + fileId + '/preview';
-    document.getElementById('modal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeModal() {
-    document.getElementById('modal').classList.remove('open');
-    document.getElementById('modal-if
+function closePanel(id) {
+const panel = document.getElementById(‘panel-’ + id);
+panel.classList.remove(‘open’);
+if (activeCard) activeCard.classList.remove(‘active’);
+activeClient = null;
+activeCard = null;
+}
+
+function openModal(fileId) {
+document.getElementById(‘modal-iframe’).src = ‘https://drive.google.com/file/d/’ + fileId + ‘/preview’;
+document.getElementById(‘modal’).classList.add(‘open’);
+document.body.style.overflow = ‘hidden’;
+}
+function closeModal() {
+document.getElementById(‘modal’).classList.remove(‘open’);
+document.getElementById(’modal-if

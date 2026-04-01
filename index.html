@@ -13,17 +13,18 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
-  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 999; opacity: 0.5; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: -1; opacity: 0.4; }
 
   header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 24px 48px; background: linear-gradient(to bottom, rgba(10,10,10,0.96), transparent); backdrop-filter: blur(2px); }
   .logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 4px; color: var(--text); text-decoration: none; }
   .logo span { color: var(--accent); }
   nav { display: flex; gap: 32px; }
-  nav a { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  nav a:hover { color: var(--accent); }
+  nav a { font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); text-decoration: none; transition: opacity 0.2s; opacity: 0.7; }
+  nav a:hover { opacity: 1; }
 
   .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 80px; position: relative; overflow: hidden; }
-  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 60% 40%, #1a1a00 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 20% 80%, #1a1a00 0%, transparent 50%); }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 60% 40%, #1a1a00 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 20% 80%, #1a1a00 0%, transparent 50%); z-index: 0; }
+  .hero-fade { position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to bottom, transparent, var(--bg)); z-index: 0; pointer-events: none; }
   .hero-line { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; margin-bottom: 24px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
   .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(72px, 12vw, 160px); line-height: 0.9; letter-spacing: -2px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
   .hero h1 .outline { -webkit-text-stroke: 1px var(--text); color: transparent; }
@@ -120,6 +121,7 @@
 
 <section class="hero" id="home">
   <div class="hero-bg"></div>
+  <div class="hero-fade"></div>
   <div class="hero-line">Video Editor &amp; Motion Designer — Cairo, Egypt</div>
   <h1>TELLING<br><span class="outline">STORIES</span><br>THROUGH<br><span class="accent">MOTION.</span></h1>
   <p class="hero-sub">Nearly 2 years crafting cinematic content for leading brands at Indigo Media Agency. Adobe Premiere Pro &middot; After Effects &middot; DaVinci Resolve.</p>
@@ -163,7 +165,7 @@
     </a>
 
     <a class="client-card" href="https://drive.google.com/drive/folders/1o5EOO5HRS3FRh5X1onaBjgowDk4dDgwl" target="_blank">
-      <div class="client-logo-wrap"><img src="Afour.png" alt="Asfour" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:2px;color:#f0ede8&quot;>ASFOUR</span>'"></div>
+      <div class="client-logo-wrap"><img src="ASFOUR CRYSTAL.png" alt="Asfour" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:2px;color:#f0ede8&quot;>ASFOUR</span>'"></div>
       <div class="client-name">Asfour Crystal</div>
     </a>
 
@@ -225,6 +227,16 @@
     <a class="client-card" href="https://drive.google.com/drive/folders/1Uws87jf92E4U6iwfcSE8v2rrOu4ZUuHx" target="_blank">
       <div class="client-logo-wrap"><img src="Al Baraka.png" alt="Al Baraka" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:15px;letter-spacing:2px;color:#f0ede8&quot;>AL BARAKA</span>'"></div>
       <div class="client-name">Al Baraka Bank</div>
+    </a>
+
+    <a class="client-card" href="https://drive.google.com/drive/folders/1uKg327Y9FtKeTI6akicGn8JuPH6dlHlX" target="_blank">
+      <div class="client-logo-wrap"><img src="ZAHF.png" alt="ZAHF" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>ZAHF</span>'"></div>
+      <div class="client-name">ZAHF</div>
+    </a>
+
+    <a class="client-card" href="https://drive.google.com/drive/folders/12-UsGpCiTjSbP97jATLQ1WVfs57tTHKY" target="_blank">
+      <div class="client-logo-wrap"><img src="ASFOUR CRYSTAL.png" alt="Asfour Crystal" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:16px;letter-spacing:2px;color:#f0ede8&quot;>ASFOUR 2</span>'"></div>
+      <div class="client-name">Asfour Crystal 2</div>
     </a>
 
   </div>

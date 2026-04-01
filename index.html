@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -15,96 +16,97 @@
   body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
   body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 999; opacity: 0.5; }
 
-  header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 24px 48px; background: linear-gradient(to bottom, rgba(10,10,10,0.96), transparent); backdrop-filter: blur(2px); }
-  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 4px; color: var(--text); text-decoration: none; }
-  .logo span { color: var(--accent); }
-  nav { display: flex; gap: 32px; }
-  nav a { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  nav a:hover { color: var(--accent); }
+header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 24px 48px; background: linear-gradient(to bottom, rgba(10,10,10,0.96), transparent); backdrop-filter: blur(2px); }
+.logo { font-family: ‘Bebas Neue’, sans-serif; font-size: 28px; letter-spacing: 4px; color: var(–text); text-decoration: none; }
+.logo span { color: var(–accent); }
+nav { display: flex; gap: 32px; }
+nav a { font-family: ‘DM Mono’, monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(–muted); text-decoration: none; transition: color 0.2s; }
+nav a:hover { color: var(–accent); }
 
-  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 80px; position: relative; overflow: hidden; }
-  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 60% 40%, #1a1a00 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 20% 80%, #1a1a00 0%, transparent 50%); }
-  .hero-line { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; margin-bottom: 24px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
-  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(72px, 12vw, 160px); line-height: 0.9; letter-spacing: -2px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
-  .hero h1 .outline { -webkit-text-stroke: 1px var(--text); color: transparent; }
-  .hero h1 .accent { color: var(--accent); }
-  .hero-sub { font-size: 15px; color: var(--muted); margin-top: 32px; max-width: 500px; line-height: 1.7; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
+.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 80px; position: relative; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 60% 40%, #1a1a00 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 20% 80%, #1a1a00 0%, transparent 50%); }
+.hero-line { font-family: ‘DM Mono’, monospace; font-size: 11px; letter-spacing: 3px; color: var(–accent); text-transform: uppercase; margin-bottom: 24px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+.hero h1 { font-family: ‘Bebas Neue’, sans-serif; font-size: clamp(72px, 12vw, 160px); line-height: 0.9; letter-spacing: -2px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
+.hero h1 .outline { -webkit-text-stroke: 1px var(–text); color: transparent; }
+.hero h1 .accent { color: var(–accent); }
+.hero-sub { font-size: 15px; color: var(–muted); margin-top: 32px; max-width: 500px; line-height: 1.7; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
 
-  .hero-clients { margin-top: 36px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.7s forwards; }
-  .hero-clients .clabel { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-  .hero-clients .clabel::before { content: ''; width: 20px; height: 1px; background: var(--accent); }
-  .clients-row { display: flex; flex-wrap: wrap; gap: 8px; max-width: 600px; }
-  .chip { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 14px; border: 1px solid rgba(232,255,71,0.2); color: rgba(240,237,232,0.6); background: rgba(232,255,71,0.04); transition: border-color 0.2s, color 0.2s; cursor: default; }
-  .chip:hover { border-color: var(--accent); color: var(--accent); }
+.hero-clients { margin-top: 36px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.7s forwards; }
+.hero-clients .clabel { font-family: ‘DM Mono’, monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(–accent); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+.hero-clients .clabel::before { content: ‘’; width: 20px; height: 1px; background: var(–accent); }
+.clients-row { display: flex; flex-wrap: wrap; gap: 8px; max-width: 600px; }
+.chip { font-family: ‘DM Mono’, monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 14px; border: 1px solid rgba(232,255,71,0.2); color: rgba(240,237,232,0.6); background: rgba(232,255,71,0.04); transition: border-color 0.2s, color 0.2s; cursor: default; }
+.chip:hover { border-color: var(–accent); color: var(–accent); }
 
-  .hero-cta { margin-top: 40px; display: flex; gap: 16px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
-  .btn-primary { background: var(--accent); color: #000; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 32px; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: transform 0.15s, box-shadow 0.15s; }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,255,71,0.3); }
-  .btn-ghost { background: transparent; color: var(--text); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 32px; border: 1px solid var(--border); cursor: pointer; text-decoration: none; display: inline-block; transition: border-color 0.2s, color 0.2s; }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.hero-cta { margin-top: 40px; display: flex; gap: 16px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
+.btn-primary { background: var(–accent); color: #000; font-family: ‘DM Mono’, monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 32px; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: transform 0.15s, box-shadow 0.15s; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,255,71,0.3); }
+.btn-ghost { background: transparent; color: var(–text); font-family: ‘DM Mono’, monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 32px; border: 1px solid var(–border); cursor: pointer; text-decoration: none; display: inline-block; transition: border-color 0.2s, color 0.2s; }
+.btn-ghost:hover { border-color: var(–accent); color: var(–accent); }
 
-  .ticker-wrap { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 16px 0; background: var(--surface); }
-  .ticker { display: flex; gap: 64px; animation: ticker 22s linear infinite; white-space: nowrap; }
-  .ticker span { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 3px; color: var(--muted); flex-shrink: 0; }
-  .ticker .dot { color: var(--accent); }
+.ticker-wrap { overflow: hidden; border-top: 1px solid var(–border); border-bottom: 1px solid var(–border); padding: 16px 0; background: var(–surface); }
+.ticker { display: flex; gap: 64px; animation: ticker 22s linear infinite; white-space: nowrap; }
+.ticker span { font-family: ‘Bebas Neue’, sans-serif; font-size: 18px; letter-spacing: 3px; color: var(–muted); flex-shrink: 0; }
+.ticker .dot { color: var(–accent); }
 
-  section { padding: 120px 48px; }
-  .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
-  .section-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--accent); opacity: 0.4; }
-  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 6vw, 80px); letter-spacing: 2px; line-height: 1; margin-bottom: 56px; }
+section { padding: 120px 48px; }
+.section-label { font-family: ‘DM Mono’, monospace; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(–accent); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+.section-label::after { content: ‘’; flex: 1; max-width: 60px; height: 1px; background: var(–accent); opacity: 0.4; }
+.section-title { font-family: ‘Bebas Neue’, sans-serif; font-size: clamp(40px, 6vw, 80px); letter-spacing: 2px; line-height: 1; margin-bottom: 56px; }
 
-  .clients-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 2px; }
-  .client-card { background: var(--surface); height: 130px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; cursor: pointer; border-bottom: 3px solid transparent; transition: border-color 0.25s, background 0.25s; position: relative; overflow: hidden; text-decoration: none; }
-  .client-card::after { content: '↗'; position: absolute; top: 10px; right: 12px; font-size: 11px; color: var(--muted); opacity: 0; transition: opacity 0.2s; }
-  .client-card:hover::after { opacity: 1; color: var(--accent); }
-  .client-card:hover { background: var(--card-hover); border-color: var(--accent); }
-  .client-logo-wrap { width: 100px; height: 52px; display: flex; align-items: center; justify-content: center; filter: brightness(0) invert(1); opacity: 0.55; transition: opacity 0.25s, transform 0.25s; }
-  .client-card:hover .client-logo-wrap { opacity: 1; transform: scale(1.08); }
-  .client-logo-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
-  .client-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; color: var(--text); opacity: 0.5; transition: opacity 0.25s, color 0.25s, transform 0.25s; line-height: 1; }
-  .client-card:hover .client-logo-text { opacity: 1; color: var(--accent); transform: scale(1.08); }
-  .client-name { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-align: center; transition: color 0.25s; }
-  .client-card:hover .client-name { color: var(--accent); }
+.clients-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 2px; }
+.client-card { background: var(–surface); height: 130px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; cursor: pointer; border-bottom: 3px solid transparent; transition: border-color 0.25s, background 0.25s; position: relative; overflow: hidden; text-decoration: none; }
+.client-card::after { content: ‘↗’; position: absolute; top: 10px; right: 12px; font-size: 11px; color: var(–muted); opacity: 0; transition: opacity 0.2s; }
+.client-card:hover::after { opacity: 1; color: var(–accent); }
+.client-card:hover { background: var(–card-hover); border-color: var(–accent); }
+.client-logo-wrap { width: 100px; height: 52px; display: flex; align-items: center; justify-content: center; filter: brightness(0) invert(1); opacity: 0.55; transition: opacity 0.25s, transform 0.25s; }
+.client-card:hover .client-logo-wrap { opacity: 1; transform: scale(1.08); }
+.client-logo-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+.client-logo-text { font-family: ‘Bebas Neue’, sans-serif; font-size: 26px; letter-spacing: 2px; color: var(–text); opacity: 0.5; transition: opacity 0.25s, color 0.25s, transform 0.25s; line-height: 1; }
+.client-card:hover .client-logo-text { opacity: 1; color: var(–accent); transform: scale(1.08); }
+.client-name { font-family: ‘DM Mono’, monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(–muted); text-align: center; transition: color 0.25s; }
+.client-card:hover .client-name { color: var(–accent); }
 
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2px; }
-  .skill-item { background: var(--surface); padding: 32px; border-top: 2px solid transparent; transition: border-color 0.2s, background 0.2s; }
-  .skill-item:hover { border-color: var(--accent); background: var(--card-hover); }
-  .skill-item h4 { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; margin-bottom: 8px; }
-  .skill-item p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2px; }
+.skill-item { background: var(–surface); padding: 32px; border-top: 2px solid transparent; transition: border-color 0.2s, background 0.2s; }
+.skill-item:hover { border-color: var(–accent); background: var(–card-hover); }
+.skill-item h4 { font-family: ‘Bebas Neue’, sans-serif; font-size: 20px; letter-spacing: 1px; margin-bottom: 8px; }
+.skill-item p { font-size: 12px; color: var(–muted); line-height: 1.6; }
 
-  .contact-block { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-  .contact-left { background: var(--surface); padding: 64px; }
-  .contact-left p { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 40px; max-width: 400px; }
-  .contact-links { display: flex; flex-direction: column; }
-  .clink { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--border); text-decoration: none; color: var(--text); transition: color 0.2s, padding-left 0.2s; }
-  .clink:hover { color: var(--accent); padding-left: 8px; }
-  .clink-left { display: flex; align-items: center; gap: 14px; }
-  .clink-platform { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); width: 80px; }
-  .clink-val { font-size: 13px; }
-  .clink-arrow { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); transition: transform 0.2s, color 0.2s; }
-  .clink:hover .clink-arrow { color: var(--accent); transform: translateX(4px); }
-  .contact-right { background: var(--accent); padding: 64px; display: flex; flex-direction: column; justify-content: center; }
-  .contact-right h3 { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: #000; line-height: 1; margin-bottom: 24px; }
-  .contact-right p { font-size: 14px; color: rgba(0,0,0,0.6); line-height: 1.7; margin-bottom: 32px; }
-  .btn-dark { background: #000; color: var(--accent); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 32px; border: none; cursor: pointer; text-decoration: none; display: inline-block; width: fit-content; transition: background 0.2s; }
-  .btn-dark:hover { background: #111; }
+.contact-block { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.contact-left { background: var(–surface); padding: 64px; }
+.contact-left p { font-size: 15px; color: var(–muted); line-height: 1.8; margin-bottom: 40px; max-width: 400px; }
+.contact-links { display: flex; flex-direction: column; }
+.clink { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(–border); text-decoration: none; color: var(–text); transition: color 0.2s, padding-left 0.2s; }
+.clink:hover { color: var(–accent); padding-left: 8px; }
+.clink-left { display: flex; align-items: center; gap: 14px; }
+.clink-platform { font-family: ‘DM Mono’, monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(–muted); width: 80px; }
+.clink-val { font-size: 13px; }
+.clink-arrow { font-family: ‘DM Mono’, monospace; font-size: 11px; color: var(–muted); transition: transform 0.2s, color 0.2s; }
+.clink:hover .clink-arrow { color: var(–accent); transform: translateX(4px); }
+.contact-right { background: var(–accent); padding: 64px; display: flex; flex-direction: column; justify-content: center; }
+.contact-right h3 { font-family: ‘Bebas Neue’, sans-serif; font-size: 48px; color: #000; line-height: 1; margin-bottom: 24px; }
+.contact-right p { font-size: 14px; color: rgba(0,0,0,0.6); line-height: 1.7; margin-bottom: 32px; }
+.btn-dark { background: #000; color: var(–accent); font-family: ‘DM Mono’, monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 32px; border: none; cursor: pointer; text-decoration: none; display: inline-block; width: fit-content; transition: background 0.2s; }
+.btn-dark:hover { background: #111; }
 
-  footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; }
-  footer p { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
+footer { border-top: 1px solid var(–border); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; }
+footer p { font-family: ‘DM Mono’, monospace; font-size: 10px; letter-spacing: 2px; color: var(–muted); text-transform: uppercase; }
 
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  @media (max-width: 768px) {
-    header { padding: 20px 24px; }
-    nav { display: none; }
-    .hero { padding: 0 24px 60px; }
-    section { padding: 80px 24px; }
-    .contact-block { grid-template-columns: 1fr; }
-    .contact-left, .contact-right { padding: 40px 24px; }
-    footer { flex-direction: column; gap: 12px; text-align: center; }
-  }
+@media (max-width: 768px) {
+header { padding: 20px 24px; }
+nav { display: none; }
+.hero { padding: 0 24px 60px; }
+section { padding: 80px 24px; }
+.contact-block { grid-template-columns: 1fr; }
+.contact-left, .contact-right { padding: 40px 24px; }
+footer { flex-direction: column; gap: 12px; text-align: center; }
+}
 </style>
+
 </head>
 <body>
 
@@ -112,6 +114,7 @@
   <a class="logo" href="#">AMR<span>.</span></a>
   <nav>
     <a href="#work">Work</a>
+    <a href="#experience">Experience</a>
     <a href="#skills">Skills</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -156,76 +159,109 @@
   <div class="section-title">WORK BY<br>CLIENT.</div>
   <div class="clients-grid">
 
-    <a class="client-card" href="https://drive.google.com/drive/folders/1AbeeVwZW5arSbfBLom-qgidtW4khBh3-" target="_blank">
-      <div class="client-logo-wrap"><img src="mye.png" alt="MY E" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>MY E</span>'"></div>
-      <div class="client-name">MY E</div>
-    </a>
+```
+<a class="client-card" href="https://drive.google.com/drive/folders/1AbeeVwZW5arSbfBLom-qgidtW4khBh3-" target="_blank">
+  <div class="client-logo-wrap"><img src="mye.png" alt="MY E" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>MY E</span>'"></div>
+  <div class="client-name">MY E</div>
+</a>
 
-    <a class="client-card" href="https://drive.google.com/drive/folders/1o5EOO5HRS3FRh5X1onaBjgowDk4dDgwl" target="_blank">
-      <div class="client-logo-wrap"><img src="Afour.png" alt="Asfour" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:2px;color:#f0ede8&quot;>ASFOUR</span>'"></div>
-      <div class="client-name">Asfour Crystal</div>
-    </a>
+<a class="client-card" href="https://drive.google.com/drive/folders/1o5EOO5HRS3FRh5X1onaBjgowDk4dDgwl" target="_blank">
+  <div class="client-logo-wrap"><img src="Afour.png" alt="Asfour" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:2px;color:#f0ede8&quot;>ASFOUR</span>'"></div>
+  <div class="client-name">Asfour Crystal</div>
+</a>
 
-    <a class="client-card" href="https://drive.google.com/drive/folders/1432iXK55eMDJ1OgBbF2eYgavghiXeZsA" target="_blank">
-      <div class="client-logo-wrap"><img src="gems.png" alt="Gems" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>GEMS</span>'"></div>
-      <div class="client-name">Gems Schools</div>
-    </a>
+<a class="client-card" href="https://drive.google.com/drive/folders/1432iXK55eMDJ1OgBbF2eYgavghiXeZsA" target="_blank">
+  <div class="client-logo-wrap"><img src="gems.png" alt="Gems" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>GEMS</span>'"></div>
+  <div class="client-name">Gems Schools</div>
+</a>
 
-    <a class="client-card" href="https://drive.google.com/drive/folders/149rAX8mkdBkxKbPvFBg5vonu4j3rLEdV" target="_blank">
-      <div class="client-logo-wrap"><img src="Carofi.png" alt="Carofi" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>CAROFI</span>'"></div>
-      <div class="client-name">Carofi</div>
-    </a>
+<a class="client-card" href="https://drive.google.com/drive/folders/149rAX8mkdBkxKbPvFBg5vonu4j3rLEdV" target="_blank">
+  <div class="client-logo-wrap"><img src="Carofi.png" alt="Carofi" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>CAROFI</span>'"></div>
+  <div class="client-name">Carofi</div>
+</a>
 
-    <a class="client-card" href="https://drive.google.com/drive/folders/1U0rzNuYAHUVrmkqMd1scyjW73-oHKj9O" target="_blank">
-      <div class="client-logo-wrap"><img src="MBG.png" alt="MPG" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>MPG</span>'"></div>
-      <div class="client-name">MPG</div>
-    </a>
+<a class="client-card" href="https://drive.google.com/drive/folders/1U0rzNuYAHUVrmkqMd1scyjW73-oHKj9O" target="_blank">
+  <div class="client-logo-wrap"><img src="MBG.png" alt="MPG" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>MPG</span>'"></div>
+  <div class="client-name">MPG</div>
+</a>
 
-    <a class="client-card" href="https://drive.google.com/drive/folders/1nuz_B4YvUog_K2gYnvzu2BUTZ13Qp9rF" target="_blank">
-      <div class="client-logo-wrap"><img src="CEMEX.png" alt="Cemex" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>CEMEX</span>'"></div>
-      <div class="client-name">Cemex</div>
-    </a>
+<a class="client-card" href="https://drive.google.com/drive/folders/1nuz_B4YvUog_K2gYnvzu2BUTZ13Qp9rF" target="_blank">
+  <div class="client-logo-wrap"><img src="CEMEX.png" alt="Cemex" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>CEMEX</span>'"></div>
+  <div class="client-name">Cemex</div>
+</a>
 
-    <a class="client-card" href="https://drive.google.com/drive/folders/1sbNjb5l5Z9TnK66BJU3eDsUWLM0LuxaM" target="_blank">
-      <div class="client-logo-wrap"><img src="Eva.png" alt="Eva" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:26px;letter-spacing:2px;color:#f0ede8&quot;>EVA</span>'"></div>
-      <div class="client-name">Eva</div>
-    </a>
+<a class="client-card" href="https://drive.google.com/drive/folders/1sbNjb5l5Z9TnK66BJU3eDsUWLM0LuxaM" target="_blank">
+  <div class="client-logo-wrap"><img src="Eva.png" alt="Eva" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:26px;letter-spacing:2px;color:#f0ede8&quot;>EVA</span>'"></div>
+  <div class="client-name">Eva</div>
+</a>
 
-    <a class="client-card" href="https://drive.google.com/drive/folders/17uI-q3qxoubnKbjaj8nrY7AZLaG2K8VM" target="_blank">
-      <div class="client-logo-wrap"><img src="Football Access.png" alt="Football Access" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:16px;letter-spacing:2px;color:#f0ede8&quot;>FOOTBALL</span>'"></div>
-      <div class="client-name">Football Access</div>
-    </a>
+<a class="client-card" href="https://drive.google.com/drive/folders/17uI-q3qxoubnKbjaj8nrY7AZLaG2K8VM" target="_blank">
+  <div class="client-logo-wrap"><img src="Football Access.png" alt="Football Access" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:16px;letter-spacing:2px;color:#f0ede8&quot;>FOOTBALL</span>'"></div>
+  <div class="client-name">Football Access</div>
+</a>
 
-    <a class="client-card" href="https://drive.google.com/drive/folders/1R1x_F6UCHPUOpNzPF4irnTW3yQ0PaLjD" target="_blank">
-      <div class="client-logo-wrap"><img src="EGX.png" alt="EGX" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>EGX</span>'"></div>
-      <div class="client-name">EGX</div>
-    </a>
+<a class="client-card" href="https://drive.google.com/drive/folders/1R1x_F6UCHPUOpNzPF4irnTW3yQ0PaLjD" target="_blank">
+  <div class="client-logo-wrap"><img src="EGX.png" alt="EGX" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>EGX</span>'"></div>
+  <div class="client-name">EGX</div>
+</a>
 
-    <a class="client-card" href="https://drive.google.com/drive/folders/1RzxnFowjRLGtnWIZxNEwwxkWOhOVdheR" target="_blank">
-      <div class="client-logo-wrap"><img src="AL Rayah.png" alt="Al Rayah" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:2px;color:#f0ede8&quot;>AL RAYAH</span>'"></div>
-      <div class="client-name">Al Rayah</div>
-    </a>
+<a class="client-card" href="https://drive.google.com/drive/folders/1RzxnFowjRLGtnWIZxNEwwxkWOhOVdheR" target="_blank">
+  <div class="client-logo-wrap"><img src="AL Rayah.png" alt="Al Rayah" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:2px;color:#f0ede8&quot;>AL RAYAH</span>'"></div>
+  <div class="client-name">Al Rayah</div>
+</a>
 
-    <a class="client-card" href="https://drive.google.com/drive/folders/1gw0Rbj46gbeUFFeTrdyEBuf3WWxq3ya3" target="_blank">
-      <div class="client-logo-wrap"><img src="SGP Logo White.png" alt="SPG" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>SPG</span>'"></div>
-      <div class="client-name">SPG</div>
-    </a>
+<a class="client-card" href="https://drive.google.com/drive/folders/1gw0Rbj46gbeUFFeTrdyEBuf3WWxq3ya3" target="_blank">
+  <div class="client-logo-wrap"><img src="SGP Logo White.png" alt="SPG" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>SPG</span>'"></div>
+  <div class="client-name">SPG</div>
+</a>
 
-    <a class="client-card" href="https://drive.google.com/drive/folders/1X1qz85JyPdSa3pga315exGpxmDFbMf4x" target="_blank">
-      <div class="client-logo-wrap"><img src="Spinneys.png" alt="Spinneys" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:2px;color:#f0ede8&quot;>SPINNEYS</span>'"></div>
-      <div class="client-name">Spinneys</div>
-    </a>
+<a class="client-card" href="https://drive.google.com/drive/folders/1X1qz85JyPdSa3pga315exGpxmDFbMf4x" target="_blank">
+  <div class="client-logo-wrap"><img src="Spinneys.png" alt="Spinneys" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:2px;color:#f0ede8&quot;>SPINNEYS</span>'"></div>
+  <div class="client-name">Spinneys</div>
+</a>
 
-    <a class="client-card" href="https://drive.google.com/drive/folders/1Xc7q8ONNECxcYnc2vNEVosiJaMT-V5Xi" target="_blank">
-      <div class="client-logo-wrap"><img src="Bodïz.png" alt="Bodiz" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>BODIZ</span>'"></div>
-      <div class="client-name">Bodiz</div>
-    </a>
+<a class="client-card" href="https://drive.google.com/drive/folders/1Xc7q8ONNECxcYnc2vNEVosiJaMT-V5Xi" target="_blank">
+  <div class="client-logo-wrap"><img src="Bodïz.png" alt="Bodiz" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>BODIZ</span>'"></div>
+  <div class="client-name">Bodiz</div>
+</a>
 
-    <a class="client-card" href="https://drive.google.com/drive/folders/1Uws87jf92E4U6iwfcSE8v2rrOu4ZUuHx" target="_blank">
-      <div class="client-logo-wrap"><img src="Al Baraka.png" alt="Al Baraka" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:15px;letter-spacing:2px;color:#f0ede8&quot;>AL BARAKA</span>'"></div>
-      <div class="client-name">Al Baraka Bank</div>
-    </a>
+<a class="client-card" href="https://drive.google.com/drive/folders/1Uws87jf92E4U6iwfcSE8v2rrOu4ZUuHx" target="_blank">
+  <div class="client-logo-wrap"><img src="Al Baraka.png" alt="Al Baraka" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:15px;letter-spacing:2px;color:#f0ede8&quot;>AL BARAKA</span>'"></div>
+  <div class="client-name">Al Baraka Bank</div>
+</a>
+```
 
+  </div>
+</section>
+
+<section id="experience" style="background: var(--card-hover);">
+  <div class="section-label">Experience</div>
+  <div class="section-title">THE<br>STORY.</div>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;">
+    <div>
+      <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:3px; color:var(--accent); text-transform:uppercase; margin-bottom:10px;">2024 — Present</div>
+      <div style="font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:1px; margin-bottom:6px;">Mid-Level Video Editor</div>
+      <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin-bottom:24px;">Indigo Media Agency &middot; Cairo</div>
+      <p style="font-size:14px; color:#7a7570; line-height:1.9;">Dynamic and detail-oriented video editor specializing in the full post-production workflow — bridging technical precision with artistic storytelling. Background in professional photography provides a unique edge in visual aesthetics, lighting, and composition.</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div style="border-left: 2px solid var(--accent); padding-left: 20px;">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:1px; margin-bottom:4px;">Video Editing &amp; Storytelling</div>
+        <div style="font-size:12px; color:var(--muted); line-height:1.6;">End-to-end post-production, advanced pacing, color grading, and brand identity.</div>
+      </div>
+      <div style="border-left: 2px solid var(--border); padding-left: 20px;">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:1px; margin-bottom:4px;">Motion Design</div>
+        <div style="font-size:12px; color:var(--muted); line-height:1.6;">Logo animations, custom intros/outros, UI animations via After Effects.</div>
+      </div>
+      <div style="border-left: 2px solid var(--border); padding-left: 20px;">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:1px; margin-bottom:4px;">Creative Direction</div>
+        <div style="font-size:12px; color:var(--muted); line-height:1.6;">Mood boards, storyboards, and visual concepts for client pitches.</div>
+      </div>
+      <div style="border-left: 2px solid var(--border); padding-left: 20px;">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:1px; margin-bottom:4px;">Key Clients</div>
+        <div style="font-size:12px; color:var(--muted); line-height:1.6;">Tamara &middot; Asfour Crystal &middot; Tetra Pak &middot; Cemex &middot; EGX &middot; AUC</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -249,7 +285,7 @@
       <div class="section-title" style="margin-bottom:32px;">GET IN<br>TOUCH.</div>
       <p>Open to freelance projects, full-time roles, and creative collaborations. Based in Cairo — available remotely worldwide.</p>
       <div class="contact-links">
-        <a class="clink" id="email-link" href="#">
+        <a class="clink" id="email-link" href="#" target="_blank">
           <div class="clink-left"><span class="clink-platform">Email</span><span class="clink-val" id="email-val">—</span></div>
           <span class="clink-arrow">&#8594;</span>
         </a>

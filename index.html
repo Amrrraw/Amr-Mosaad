@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amr Mosaad — Video Editor & Motion Designer</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200;300&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0a0a0a; --surface: #111111; --border: #1e1e1e;
@@ -22,13 +22,13 @@
   nav a { font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); text-decoration: none; transition: opacity 0.2s; opacity: 0.7; }
   nav a:hover { opacity: 1; }
 
-  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 80px; position: relative; overflow: hidden; }
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 200px 48px 80px; position: relative; overflow: hidden; }
   .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 60% 40%, #1a1a00 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 20% 80%, #1a1a00 0%, transparent 50%); z-index: 0; }
   .hero-fade { position: absolute; bottom: 0; left: 0; right: 0; height: 15%; background: linear-gradient(to bottom, transparent, var(--bg)); z-index: 0; pointer-events: none; }
   .hero-line { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; margin-bottom: 24px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
-  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(72px, 12vw, 160px); line-height: 0.9; letter-spacing: -2px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
-  .hero h1 .outline { -webkit-text-stroke: 1px var(--text); color: transparent; }
-  .hero h1 .accent { color: var(--accent); }
+  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(72px, 12vw, 160px); line-height: 0.95; letter-spacing: 8px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; margin-top: auto; padding-top: 80px; }
+  .hero h1 .outline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(72px, 12vw, 160px); letter-spacing: 8px; -webkit-text-stroke: 3px var(--text); color: transparent; }
+  .hero h1 .accent { font-family: 'Bebas Neue', sans-serif; color: var(--accent); letter-spacing: 8px; }
   .hero-sub { font-size: 15px; color: var(--muted); margin-top: 32px; max-width: 500px; line-height: 1.7; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
 
   .hero-clients { margin-top: 36px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.7s forwards; }

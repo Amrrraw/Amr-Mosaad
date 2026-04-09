@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amr Mosaad — Video Editor & Motion Designer</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200;300&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0a0a0a; --surface: #111111; --border: #1e1e1e;
@@ -15,6 +15,7 @@
   body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
   body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: -1; opacity: 0.4; }
 
+  /* HEADER */
   header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 24px 48px; background: linear-gradient(to bottom, rgba(10,10,10,0.96), transparent); backdrop-filter: blur(2px); }
   .logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 4px; color: var(--text); text-decoration: none; }
   .logo span { color: var(--accent); }
@@ -22,6 +23,7 @@
   nav a { font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); text-decoration: none; transition: opacity 0.2s; opacity: 0.7; }
   nav a:hover { opacity: 1; }
 
+  /* HERO */
   .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 80px; position: relative; overflow: hidden; }
   .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(26,26,0,0.4) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 20% 80%, rgba(26,26,0,0.3) 0%, transparent 50%); z-index: 0; }
   .hero-fade { position: absolute; bottom: 0; left: 0; right: 0; height: 15%; background: linear-gradient(to bottom, transparent, var(--bg)); z-index: 0; pointer-events: none; }
@@ -44,16 +46,33 @@
   .btn-ghost { background: transparent; color: var(--text); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 32px; border: 1px solid var(--border); cursor: pointer; text-decoration: none; display: inline-block; transition: border-color 0.2s, color 0.2s; }
   .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
+  /* TICKER */
   .ticker-wrap { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 16px 0; background: var(--surface); }
   .ticker { display: flex; gap: 64px; animation: ticker 22s linear infinite; white-space: nowrap; }
   .ticker span { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 3px; color: var(--muted); flex-shrink: 0; }
   .ticker .dot { color: var(--accent); }
 
+  /* SECTION */
   section { padding: 120px 48px; }
   .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
   .section-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--accent); opacity: 0.4; }
   .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 6vw, 80px); letter-spacing: 2px; line-height: 1; margin-bottom: 56px; }
 
+  /* ABOUT */
+  #about { background: var(--bg); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-img-wrap { position: relative; }
+  .about-img-wrap::before { content: ''; position: absolute; top: 16px; left: 16px; right: -16px; bottom: -16px; border: 1px solid rgba(232,255,71,0.2); z-index: 0; }
+  .about-img-wrap img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; display: block; position: relative; z-index: 1; filter: grayscale(20%); }
+  .about-text p { font-size: 15px; color: var(--muted); line-height: 2; margin-bottom: 20px; }
+  .about-text p strong { color: var(--text); }
+  .about-text .tagline { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 2px; color: var(--accent); margin-top: 28px; }
+  .about-meta { margin-top: 36px; display: flex; flex-direction: column; gap: 10px; }
+  .meta-row { display: flex; gap: 20px; }
+  .meta-key { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); width: 70px; flex-shrink: 0; padding-top: 2px; }
+  .meta-val { font-size: 13px; color: var(--muted); }
+
+  /* CLIENTS GRID */
   .clients-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 2px; }
   .client-card { background: var(--surface); height: 130px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; cursor: pointer; border-bottom: 3px solid transparent; transition: border-color 0.25s, background 0.25s; position: relative; overflow: hidden; text-decoration: none; }
   .client-card::after { content: '↗'; position: absolute; top: 10px; right: 12px; font-size: 11px; color: var(--muted); opacity: 0; transition: opacity 0.2s; }
@@ -67,12 +86,27 @@
   .client-name { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-align: center; transition: color 0.25s; }
   .client-card:hover .client-name { color: var(--accent); }
 
+  /* EXPERIENCE */
+  #experience { background: var(--card-hover); }
+  .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .exp-intro { font-size: 14px; color: var(--muted); line-height: 2; margin-bottom: 40px; }
+  .exp-company { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 2px; color: var(--text); margin-bottom: 4px; }
+  .exp-period { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); }
+  .skills-list { display: flex; flex-direction: column; gap: 0; }
+  .skill-row { display: flex; align-items: flex-start; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--border); }
+  .skill-row:first-child { border-top: 1px solid var(--border); }
+  .skill-num { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 1px; color: var(--accent); width: 24px; flex-shrink: 0; padding-top: 3px; }
+  .skill-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; margin-bottom: 4px; }
+  .skill-desc { font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+  /* SKILLS */
   .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2px; }
   .skill-item { background: var(--surface); padding: 32px; border-top: 2px solid transparent; transition: border-color 0.2s, background 0.2s; }
   .skill-item:hover { border-color: var(--accent); background: var(--card-hover); }
   .skill-item h4 { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; margin-bottom: 8px; }
   .skill-item p { font-size: 12px; color: var(--muted); line-height: 1.6; }
 
+  /* CONTACT */
   .contact-block { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
   .contact-left { background: var(--surface); padding: 64px; }
   .contact-left p { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 40px; max-width: 400px; }
@@ -101,7 +135,7 @@
     nav { display: none; }
     .hero { padding: 0 24px 60px; }
     section { padding: 80px 24px; }
-    .contact-block { grid-template-columns: 1fr; }
+    .about-grid, .exp-grid, .contact-block { grid-template-columns: 1fr; }
     .contact-left, .contact-right { padding: 40px 24px; }
     footer { flex-direction: column; gap: 12px; text-align: center; }
   }
@@ -112,6 +146,7 @@
 <header>
   <a class="logo" href="#">AMR MOSAAD<span>.</span></a>
   <nav>
+    <a href="#about">About</a>
     <a href="#work">Work</a>
     <a href="#experience">Experience</a>
     <a href="#skills">Skills</a>
@@ -119,20 +154,21 @@
   </nav>
 </header>
 
+<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-bg"></div>
   <div class="hero-fade"></div>
   <div class="hero-line">Video Editor &amp; Motion Designer — Cairo, Egypt</div>
   <h1>TELLING<br><span class="outline">STORIES</span><br>THROUGH<br><span class="accent">FRAMES.</span></h1>
-  <p class="hero-sub">Nearly 2 years crafting cinematic content for leading brands at Indigo Media Agency. Adobe Premiere Pro &middot; After Effects &middot; DaVinci Resolve.</p>
+  <p class="hero-sub">Nearly 2 years crafting cinematic content for leading brands at Indigo Media Agency. Adobe Premiere Pro · After Effects · DaVinci Resolve.</p>
   <div class="hero-clients">
     <div class="clabel">Selected Clients</div>
     <div class="clients-row">
-      <span class="chip">MY E</span><span class="chip">Asfour Crystal</span><span class="chip">Asfour Creations</span><span class="chip">Gems Schools</span>
-      <span class="chip">Carofi</span><span class="chip">MPG</span><span class="chip">Cemex</span>
-      <span class="chip">Eva</span><span class="chip">Football Access</span><span class="chip">EGX</span>
-      <span class="chip">Al Rayah</span><span class="chip">SPG</span><span class="chip">Spinneys</span>
-      <span class="chip">Bodiz</span><span class="chip">Al Baraka Bank</span><span class="chip">ZAHF</span>
+      <span class="chip">MY E</span><span class="chip">Asfour Crystal</span><span class="chip">Asfour Creations</span>
+      <span class="chip">Gems Schools</span><span class="chip">Carofi</span><span class="chip">MPG</span>
+      <span class="chip">Cemex</span><span class="chip">Eva</span><span class="chip">Football Access</span>
+      <span class="chip">EGX</span><span class="chip">Al Rayah</span><span class="chip">SPG</span>
+      <span class="chip">Spinneys</span><span class="chip">Bodiz</span><span class="chip">Al Baraka Bank</span><span class="chip">ZAHF</span>
     </div>
   </div>
   <div class="hero-cta">
@@ -141,6 +177,7 @@
   </div>
 </section>
 
+<!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker">
     <span>VIDEO EDITING</span><span class="dot"> ✦ </span><span>MOTION GRAPHICS</span><span class="dot"> ✦ </span>
@@ -154,7 +191,30 @@
   </div>
 </div>
 
-<section id="work">
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About Me</div>
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <img src="amr.jpg" alt="Amr Mosaad">
+    </div>
+    <div class="about-text">
+      <div class="section-title">THE<br>EDITOR.</div>
+      <p>I'm <strong>Amr Mosaad</strong>, a 23-year-old Video Editor &amp; Motion Designer — I don't just cut footage, I build worlds.</p>
+      <p>Nearly 2 years at INDIGO taught me to bridge <strong>technical precision</strong> with visual storytelling. Every frame is intentional, every transition purposeful, every project built to international brand standards.</p>
+      <div class="tagline">I'M HERE TO MAKE YOUR VISION MOVE.</div>
+      <div class="about-meta">
+        <div class="meta-row"><span class="meta-key">Based</span><span class="meta-val">Cairo, Egypt</span></div>
+        <div class="meta-row"><span class="meta-key">Role</span><span class="meta-val">Video Editor &amp; Motion Designer</span></div>
+        <div class="meta-row"><span class="meta-key">Agency</span><span class="meta-val">Indigo Media Agency</span></div>
+        <div class="meta-row"><span class="meta-key">Exp.</span><span class="meta-val">Nearly 2 Years</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work" style="background: var(--surface);">
   <div class="section-label">Selected Work</div>
   <div class="section-title">WORK BY<br>CLIENT.</div>
   <div class="clients-grid">
@@ -163,124 +223,95 @@
       <div class="client-logo-wrap"><img src="mye.png" alt="MY E" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>MY E</span>'"></div>
       <div class="client-name">MY E</div>
     </a>
-
     <a class="client-card" href="https://drive.google.com/drive/folders/1o5EOO5HRS3FRh5X1onaBjgowDk4dDgwl" target="_blank">
-      <div class="client-logo-wrap"><img src="ASFOUR CRYSTAL.png" alt="Asfour" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:2px;color:#f0ede8&quot;>ASFOUR</span>'"></div>
+      <div class="client-logo-wrap"><img src="ASFOUR CRYSTAL.png" alt="Asfour Crystal" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:16px;letter-spacing:2px;color:#f0ede8&quot;>ASFOUR CRYSTAL</span>'"></div>
       <div class="client-name">Asfour Crystal</div>
     </a>
-
+    <a class="client-card" href="https://drive.google.com/drive/folders/12-UsGpCiTjSbP97jATLQ1WVfs57tTHKY" target="_blank">
+      <div class="client-logo-wrap"><img src="Afour.png" alt="Asfour Creations" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:14px;letter-spacing:2px;color:#f0ede8&quot;>ASFOUR CREATIONS</span>'"></div>
+      <div class="client-name">Asfour Creations</div>
+    </a>
     <a class="client-card" href="https://drive.google.com/drive/folders/1432iXK55eMDJ1OgBbF2eYgavghiXeZsA" target="_blank">
       <div class="client-logo-wrap"><img src="gems.png" alt="Gems" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>GEMS</span>'"></div>
       <div class="client-name">Gems Schools</div>
     </a>
-
     <a class="client-card" href="https://drive.google.com/drive/folders/149rAX8mkdBkxKbPvFBg5vonu4j3rLEdV" target="_blank">
       <div class="client-logo-wrap"><img src="Carofi.png" alt="Carofi" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>CAROFI</span>'"></div>
       <div class="client-name">Carofi</div>
     </a>
-
     <a class="client-card" href="https://drive.google.com/drive/folders/1U0rzNuYAHUVrmkqMd1scyjW73-oHKj9O" target="_blank">
       <div class="client-logo-wrap"><img src="MBG.png" alt="MPG" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>MPG</span>'"></div>
       <div class="client-name">MPG</div>
     </a>
-
     <a class="client-card" href="https://drive.google.com/drive/folders/1nuz_B4YvUog_K2gYnvzu2BUTZ13Qp9rF" target="_blank">
       <div class="client-logo-wrap"><img src="CEMEX.png" alt="Cemex" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>CEMEX</span>'"></div>
       <div class="client-name">Cemex</div>
     </a>
-
     <a class="client-card" href="https://drive.google.com/drive/folders/1sbNjb5l5Z9TnK66BJU3eDsUWLM0LuxaM" target="_blank">
-      <div class="client-logo-wrap"><img src="Eva.png" alt="Eva" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:26px;letter-spacing:2px;color:#f0ede8&quot;>EVA</span>'"></div>
+      <div class="client-logo-wrap"><img src="EVA.png" alt="Eva" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:26px;letter-spacing:2px;color:#f0ede8&quot;>EVA</span>'"></div>
       <div class="client-name">Eva</div>
     </a>
-
     <a class="client-card" href="https://drive.google.com/drive/folders/17uI-q3qxoubnKbjaj8nrY7AZLaG2K8VM" target="_blank">
       <div class="client-logo-wrap"><img src="Football Access.png" alt="Football Access" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:16px;letter-spacing:2px;color:#f0ede8&quot;>FOOTBALL</span>'"></div>
       <div class="client-name">Football Access</div>
     </a>
-
     <a class="client-card" href="https://drive.google.com/drive/folders/1R1x_F6UCHPUOpNzPF4irnTW3yQ0PaLjD" target="_blank">
       <div class="client-logo-wrap"><img src="EGX.png" alt="EGX" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>EGX</span>'"></div>
       <div class="client-name">EGX</div>
     </a>
-
     <a class="client-card" href="https://drive.google.com/drive/folders/1RzxnFowjRLGtnWIZxNEwwxkWOhOVdheR" target="_blank">
       <div class="client-logo-wrap"><img src="AL Rayah.png" alt="Al Rayah" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:2px;color:#f0ede8&quot;>AL RAYAH</span>'"></div>
       <div class="client-name">Al Rayah</div>
     </a>
-
     <a class="client-card" href="https://drive.google.com/drive/folders/1gw0Rbj46gbeUFFeTrdyEBuf3WWxq3ya3" target="_blank">
       <div class="client-logo-wrap"><img src="SGP Logo White.png" alt="SPG" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>SPG</span>'"></div>
       <div class="client-name">SPG</div>
     </a>
-
     <a class="client-card" href="https://drive.google.com/drive/folders/1X1qz85JyPdSa3pga315exGpxmDFbMf4x" target="_blank">
       <div class="client-logo-wrap"><img src="Spinneys.png" alt="Spinneys" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:2px;color:#f0ede8&quot;>SPINNEYS</span>'"></div>
       <div class="client-name">Spinneys</div>
     </a>
-
     <a class="client-card" href="https://drive.google.com/drive/folders/1Xc7q8ONNECxcYnc2vNEVosiJaMT-V5Xi" target="_blank">
       <div class="client-logo-wrap"><img src="Bodïz.png" alt="Bodiz" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>BODIZ</span>'"></div>
       <div class="client-name">Bodiz</div>
     </a>
-
     <a class="client-card" href="https://drive.google.com/drive/folders/1Uws87jf92E4U6iwfcSE8v2rrOu4ZUuHx" target="_blank">
       <div class="client-logo-wrap"><img src="Al Baraka.png" alt="Al Baraka" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:15px;letter-spacing:2px;color:#f0ede8&quot;>AL BARAKA</span>'"></div>
       <div class="client-name">Al Baraka Bank</div>
     </a>
-
     <a class="client-card" href="https://drive.google.com/drive/folders/1uKg327Y9FtKeTI6akicGn8JuPH6dlHlX" target="_blank">
       <div class="client-logo-wrap"><img src="ZAHF.png" alt="ZAHF" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#f0ede8&quot;>ZAHF</span>'"></div>
       <div class="client-name">ZAHF</div>
     </a>
 
-    <a class="client-card" href="https://drive.google.com/drive/folders/12-UsGpCiTjSbP97jATLQ1WVfs57tTHKY" target="_blank">
-      <div class="client-logo-wrap"><img src="Afour.png" alt="Asfour Creations" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:14px;letter-spacing:2px;color:#f0ede8&quot;>ASFOUR CREATIONS</span>'"></div>
-      <div class="client-name">Asfour Creations</div>
-    </a>
-
   </div>
 </section>
 
+<!-- EXPERIENCE -->
 <section id="experience" style="background: var(--card-hover);">
   <div class="section-label">Experience</div>
   <div class="section-title">THE<br>STORY.</div>
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;">
+  <div class="exp-grid">
     <div>
-      <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:3px; color:var(--accent); text-transform:uppercase; margin-bottom:10px;">2024 — Present</div>
-      <div style="font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:1px; margin-bottom:6px;">Mid-Level Video Editor</div>
-      <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin-bottom:24px;">Indigo Media Agency &middot; Cairo</div>
-      <p style="font-size:14px; color:#7a7570; line-height:1.9;">Dynamic and detail-oriented video editor specializing in the full post-production workflow — bridging technical precision with artistic storytelling. Background in professional photography provides a unique edge in visual aesthetics, lighting, and composition.</p>
+      <p class="exp-intro">Dynamic and detail-oriented video editor specializing in the full post-production workflow — bridging technical precision with artistic storytelling. Strong foundation in art direction for visual aesthetics, lighting, and composition.</p>
+      <div style="border-left: 2px solid var(--accent); padding-left: 24px; margin-top: 8px;">
+        <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:3px; color:var(--accent); text-transform:uppercase; margin-bottom:8px;">2024 — Present</div>
+        <div class="exp-company">Indigo Media Agency</div>
+        <div class="exp-period">Mid-Level Video Editor · Cairo</div>
+      </div>
     </div>
-    <div style="display:flex; flex-direction:column; gap:16px;">
-      <div style="border-left: 2px solid var(--accent); padding-left: 20px;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:1px; margin-bottom:4px;">Video Editing &amp; Storytelling</div>
-        <div style="font-size:12px; color:var(--muted); line-height:1.6;">Primary expertise — advanced pacing, seamless transitions, multicam, and narrative-driven cutting in Adobe Premiere Pro.</div>
-      </div>
-      <div style="border-left: 2px solid var(--accent); padding-left: 20px;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:1px; margin-bottom:4px;">Color Grading</div>
-        <div style="font-size:12px; color:var(--muted); line-height:1.6;">DaVinci Resolve — cinematic looks, LUTs, and brand identity color matching.</div>
-      </div>
-      <div style="border-left: 2px solid var(--accent); padding-left: 20px;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:1px; margin-bottom:4px;">Motion Design</div>
-        <div style="font-size:12px; color:var(--muted); line-height:1.6;">After Effects — logo animations, custom intros/outros, and UI animations to complement editing work.</div>
-      </div>
-      <div style="border-left: 2px solid var(--accent); padding-left: 20px;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:1px; margin-bottom:4px;">Creative Direction</div>
-        <div style="font-size:12px; color:var(--muted); line-height:1.6;">Mood boards, storyboards, and visual concepts for client pitches at Indigo Media Agency.</div>
-      </div>
-      <div style="border-left: 2px solid var(--accent); padding-left: 20px;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:1px; margin-bottom:4px;">AI Video Generation</div>
-        <div style="font-size:12px; color:var(--muted); line-height:1.6;">Kling &middot; Google Veo3 &middot; Sora &middot; Seedance &middot; Motion Control &middot; Envato &middot; Freepik — AI-assisted video generation integrated into production workflows.</div>
-      </div>
-      <div style="border-left: 2px solid var(--accent); padding-left: 20px;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:1px; margin-bottom:4px;">AI Voice Generation</div>
-        <div style="font-size:12px; color:var(--muted); line-height:1.6;">ElevenLabs &middot; Freepik — AI voiceover and audio generation for video content.</div>
-      </div>
+    <div class="skills-list">
+      <div class="skill-row"><span class="skill-num">01</span><div><div class="skill-name">Video Editing &amp; Storytelling</div><div class="skill-desc">Primary expertise — advanced pacing, seamless transitions, multicam, and narrative-driven cutting in Adobe Premiere Pro.</div></div></div>
+      <div class="skill-row"><span class="skill-num">02</span><div><div class="skill-name">Color Grading</div><div class="skill-desc">DaVinci Resolve — cinematic looks, LUTs, and brand identity color matching.</div></div></div>
+      <div class="skill-row"><span class="skill-num">03</span><div><div class="skill-name">Motion Design</div><div class="skill-desc">After Effects — logo animations, custom intros/outros, and UI animations to complement editing work.</div></div></div>
+      <div class="skill-row"><span class="skill-num">04</span><div><div class="skill-name">Creative Direction</div><div class="skill-desc">Mood boards, storyboards, and visual concepts for client pitches at Indigo Media Agency.</div></div></div>
+      <div class="skill-row"><span class="skill-num">05</span><div><div class="skill-name">AI Video Generation</div><div class="skill-desc">Kling · Google Veo3 · Sora · Seedance · Motion Control · Envato · Freepik</div></div></div>
+      <div class="skill-row"><span class="skill-num">06</span><div><div class="skill-name">AI Voice Generation</div><div class="skill-desc">ElevenLabs · Freepik — AI voiceover and audio generation for video content.</div></div></div>
     </div>
   </div>
 </section>
 
+<!-- SKILLS -->
 <section id="skills" style="background: var(--surface);">
   <div class="section-label">Toolkit</div>
   <div class="section-title">SKILLS &amp;<br>TOOLS.</div>
@@ -288,12 +319,13 @@
     <div class="skill-item"><h4>Video Editing</h4><p>Adobe Premiere Pro — advanced storytelling, pacing, multicam, and seamless transitions.</p></div>
     <div class="skill-item"><h4>Motion Graphics</h4><p>After Effects — logo animations, custom intros/outros, kinetic typography, UI animations.</p></div>
     <div class="skill-item"><h4>Color Grading</h4><p>DaVinci Resolve — node-based grading, LUTs, cinematic looks, and brand identity matching.</p></div>
-    <div class="skill-item"><h4>AI Video Tools</h4><p>Sora, Kling, Pika, Runway — AI-assisted generation integrated into production workflows.</p></div>
+    <div class="skill-item"><h4>AI Video Tools</h4><p>Sora, Kling, Google Veo3, Runway, Seedance — AI-assisted generation in workflows.</p></div>
     <div class="skill-item"><h4>Creative Direction</h4><p>Mood boarding, storyboarding, visual research, and concept development for client pitches.</p></div>
-    <div class="skill-item"><h4>Visual Aesthetics</h4><p>Background in professional photography — lighting, composition, and visual storytelling.</p></div>
+    <div class="skill-item"><h4>Visual Aesthetics</h4><p>Foundation in art direction — lighting, composition, and visual storytelling.</p></div>
   </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact" style="padding: 0;">
   <div class="contact-block">
     <div class="contact-left">
@@ -301,30 +333,12 @@
       <div class="section-title" style="margin-bottom:32px;">GET IN<br>TOUCH.</div>
       <p>Open to freelance projects, full-time roles, and creative collaborations. Based in Cairo — available remotely worldwide.</p>
       <div class="contact-links">
-        <a class="clink" id="email-link" href="#" target="_blank">
-          <div class="clink-left"><span class="clink-platform">Email</span><span class="clink-val" id="email-val">—</span></div>
-          <span class="clink-arrow">&#8594;</span>
-        </a>
-        <a class="clink" href="https://wa.me/201095020145" target="_blank">
-          <div class="clink-left"><span class="clink-platform">WhatsApp</span><span class="clink-val">+20 109 502 0145</span></div>
-          <span class="clink-arrow">&#8594;</span>
-        </a>
-        <a class="clink" href="https://eg.linkedin.com/in/amr-mosaad-14b67b38b" target="_blank">
-          <div class="clink-left"><span class="clink-platform">LinkedIn</span><span class="clink-val">Amr Mosaad</span></div>
-          <span class="clink-arrow">&#8594;</span>
-        </a>
-        <a class="clink" href="https://www.instagram.com/amrrraw" target="_blank">
-          <div class="clink-left"><span class="clink-platform">Instagram</span><span class="clink-val">@amrrraw</span></div>
-          <span class="clink-arrow">&#8594;</span>
-        </a>
-        <a class="clink" href="https://vimeo.com/user227317493" target="_blank">
-          <div class="clink-left"><span class="clink-platform">Vimeo</span><span class="clink-val">Amr Mosaad</span></div>
-          <span class="clink-arrow">&#8594;</span>
-        </a>
-        <a class="clink" href="https://behance.net/amrrraw" target="_blank">
-          <div class="clink-left"><span class="clink-platform">Behance</span><span class="clink-val">amrrraw</span></div>
-          <span class="clink-arrow">&#8594;</span>
-        </a>
+        <a class="clink" id="email-link" href="#" target="_blank"><div class="clink-left"><span class="clink-platform">Email</span><span class="clink-val" id="email-val">—</span></div><span class="clink-arrow">→</span></a>
+        <a class="clink" href="https://wa.me/201095020145" target="_blank"><div class="clink-left"><span class="clink-platform">WhatsApp</span><span class="clink-val">+20 109 502 0145</span></div><span class="clink-arrow">→</span></a>
+        <a class="clink" href="https://eg.linkedin.com/in/amr-mosaad-14b67b38b" target="_blank"><div class="clink-left"><span class="clink-platform">LinkedIn</span><span class="clink-val">Amr Mosaad</span></div><span class="clink-arrow">→</span></a>
+        <a class="clink" href="https://www.instagram.com/amrrraw" target="_blank"><div class="clink-left"><span class="clink-platform">Instagram</span><span class="clink-val">@amrrraw</span></div><span class="clink-arrow">→</span></a>
+        <a class="clink" href="https://vimeo.com/user227317493" target="_blank"><div class="clink-left"><span class="clink-platform">Vimeo</span><span class="clink-val">Amr Mosaad</span></div><span class="clink-arrow">→</span></a>
+        <a class="clink" href="https://www.behance.net/amrmosad" target="_blank"><div class="clink-left"><span class="clink-platform">Behance</span><span class="clink-val">amrmosad</span></div><span class="clink-arrow">→</span></a>
       </div>
     </div>
     <div class="contact-right">
@@ -336,21 +350,20 @@
 </section>
 
 <footer>
-  <p>&#169; 2025 Amr Mosaad &mdash; Video Editor &amp; Motion Designer</p>
+  <p>&#169; 2025 Amr Mosaad — Video Editor &amp; Motion Designer</p>
   <p>Cairo, Egypt</p>
 </footer>
 
 <script>
-  (function() {
+  (function(){
     var u = 'amrmosaad' + '.000' + '@' + 'gmail' + '.com';
     var el = document.getElementById('email-val');
     var lk = document.getElementById('email-link');
     var btn = document.getElementById('email-btn');
-    if (el) el.textContent = u;
-    if (lk) lk.href = 'mailto:' + u;
-    if (btn) btn.href = 'mailto:' + u;
+    if(el) el.textContent = u;
+    if(lk) lk.href = 'mailto:' + u;
+    if(btn) btn.href = 'mailto:' + u;
   })();
 </script>
-
 </body>
 </html>

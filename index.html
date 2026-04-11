@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -15,149 +16,153 @@
   body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
   body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: -1; opacity: 0.4; }
 
-  /* HEADER */
-  header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 24px 48px; background: linear-gradient(to bottom, rgba(10,10,10,0.96), transparent); backdrop-filter: blur(2px); }
-  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 4px; color: var(--text); text-decoration: none; }
-  .logo span { color: var(--accent); }
-  nav { display: flex; gap: 32px; }
-  nav a { font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); text-decoration: none; transition: opacity 0.2s; opacity: 0.7; }
-  nav a:hover { opacity: 1; }
+/* HEADER */
+header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 24px 48px; background: linear-gradient(to bottom, rgba(10,10,10,0.96), transparent); backdrop-filter: blur(2px); }
+.logo { font-family: ‘Bebas Neue’, sans-serif; font-size: 28px; letter-spacing: 4px; color: var(–text); text-decoration: none; }
+.logo span { color: var(–accent); }
+nav { display: flex; gap: 32px; }
+nav a { font-family: ‘DM Mono’, monospace; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(–accent); text-decoration: none; transition: opacity 0.2s; opacity: 0.7; }
+nav a:hover { opacity: 1; }
 
-  /* HERO */
-  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 80px; position: relative; overflow: hidden; }
-  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(26,26,0,0.4) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 20% 80%, rgba(26,26,0,0.3) 0%, transparent 50%); z-index: 0; }
-  .hero-fade { position: absolute; bottom: 0; left: 0; right: 0; height: 15%; background: linear-gradient(to bottom, transparent, var(--bg)); z-index: 0; pointer-events: none; }
-  .hero-line { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; margin-bottom: 24px; margin-top: 100px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
-  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(72px, 12vw, 160px); line-height: 0.95; letter-spacing: 4px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
-  .hero h1 .outline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(72px, 12vw, 160px); letter-spacing: 4px; -webkit-text-stroke: 1px var(--text); color: transparent; }
-  .hero h1 .accent { font-family: 'Bebas Neue', sans-serif; color: var(--accent); letter-spacing: 4px; }
-  .hero-sub { font-size: 15px; color: var(--muted); margin-top: 32px; max-width: 500px; line-height: 1.7; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
-  .hero-clients { margin-top: 36px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.7s forwards; }
-  .hero-clients .clabel { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-  .hero-clients .clabel::before { content: ''; width: 20px; height: 1px; background: var(--accent); }
-  .clients-row { display: flex; flex-wrap: wrap; gap: 8px; max-width: 600px; }
-  .chip { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 14px; border: 1px solid rgba(232,255,71,0.2); color: rgba(240,237,232,0.6); background: rgba(232,255,71,0.04); transition: border-color 0.2s, color 0.2s; cursor: default; }
-  .chip:hover { border-color: var(--accent); color: var(--accent); }
-  .hero-cta { margin-top: 40px; display: flex; gap: 16px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
-  .btn-primary { background: var(--accent); color: #000; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 32px; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: transform 0.15s, box-shadow 0.15s; }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,255,71,0.3); }
-  .btn-ghost { background: transparent; color: var(--text); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 32px; border: 1px solid var(--border); cursor: pointer; text-decoration: none; display: inline-block; transition: border-color 0.2s, color 0.2s; }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+/* HERO */
+.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 80px; position: relative; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(26,26,0,0.4) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 20% 80%, rgba(26,26,0,0.3) 0%, transparent 50%); z-index: 0; }
+.hero-fade { position: absolute; bottom: 0; left: 0; right: 0; height: 15%; background: linear-gradient(to bottom, transparent, var(–bg)); z-index: 0; pointer-events: none; }
+.hero-line { font-family: ‘DM Mono’, monospace; font-size: 11px; letter-spacing: 3px; color: var(–accent); text-transform: uppercase; margin-bottom: 24px; margin-top: 100px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+.hero h1 { font-family: ‘Bebas Neue’, sans-serif; font-size: clamp(72px, 12vw, 160px); line-height: 0.95; letter-spacing: 4px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
+.hero h1 .outline { font-family: ‘Bebas Neue’, sans-serif; font-size: clamp(72px, 12vw, 160px); letter-spacing: 4px; -webkit-text-stroke: 1px var(–text); color: transparent; }
+.hero h1 .accent { font-family: ‘Bebas Neue’, sans-serif; color: var(–accent); letter-spacing: 4px; }
+.hero-sub { font-size: 15px; color: var(–muted); margin-top: 32px; max-width: 500px; line-height: 1.7; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
+.hero-clients { margin-top: 36px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.7s forwards; }
+.hero-clients .clabel { font-family: ‘DM Mono’, monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(–accent); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+.hero-clients .clabel::before { content: ‘’; width: 20px; height: 1px; background: var(–accent); }
+.clients-row { display: flex; flex-wrap: wrap; gap: 8px; max-width: 600px; }
+.chip { font-family: ‘DM Mono’, monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 14px; border: 1px solid rgba(232,255,71,0.2); color: rgba(240,237,232,0.6); background: rgba(232,255,71,0.04); transition: border-color 0.2s, color 0.2s; cursor: default; }
+.chip:hover { border-color: var(–accent); color: var(–accent); }
+.hero-cta { margin-top: 40px; display: flex; gap: 16px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
+.btn-primary { background: var(–accent); color: #000; font-family: ‘DM Mono’, monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 32px; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: transform 0.15s, box-shadow 0.15s; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,255,71,0.3); }
+.btn-ghost { background: transparent; color: var(–text); font-family: ‘DM Mono’, monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 32px; border: 1px solid var(–border); cursor: pointer; text-decoration: none; display: inline-block; transition: border-color 0.2s, color 0.2s; }
+.btn-ghost:hover { border-color: var(–accent); color: var(–accent); }
 
-  /* TICKER */
-  .ticker-wrap { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 16px 0; background: var(--surface); }
-  .ticker { display: flex; gap: 64px; animation: ticker 22s linear infinite; white-space: nowrap; }
-  .ticker span { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 3px; color: var(--muted); flex-shrink: 0; }
-  .ticker .dot { color: var(--accent); }
+/* TICKER */
+.ticker-wrap { overflow: hidden; border-top: 1px solid var(–border); border-bottom: 1px solid var(–border); padding: 16px 0; background: var(–surface); }
+.ticker { display: flex; gap: 64px; animation: ticker 22s linear infinite; white-space: nowrap; }
+.ticker span { font-family: ‘Bebas Neue’, sans-serif; font-size: 18px; letter-spacing: 3px; color: var(–muted); flex-shrink: 0; }
+.ticker .dot { color: var(–accent); }
 
-  /* SECTION */
-  section { padding: 120px 48px; }
-  .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
-  .section-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--accent); opacity: 0.4; }
-  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 6vw, 80px); letter-spacing: 2px; line-height: 1; margin-bottom: 56px; }
+/* SECTION */
+section { padding: 120px 48px; }
+.section-label { font-family: ‘DM Mono’, monospace; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(–accent); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+.section-label::after { content: ‘’; flex: 1; max-width: 60px; height: 1px; background: var(–accent); opacity: 0.4; }
+.section-title { font-family: ‘Bebas Neue’, sans-serif; font-size: clamp(40px, 6vw, 80px); letter-spacing: 2px; line-height: 1; margin-bottom: 56px; }
 
-  /* ABOUT */
-  #about { background: var(--bg); }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-  .about-img-wrap { position: relative; }
-  .about-img-wrap::before { content: ''; position: absolute; top: 16px; left: 16px; right: -16px; bottom: -16px; border: 1px solid rgba(232,255,71,0.2); z-index: 0; }
-  .about-img-wrap img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; display: block; position: relative; z-index: 1; filter: grayscale(20%); }
-  .about-text p { font-size: 15px; color: var(--muted); line-height: 2; margin-bottom: 20px; }
-  .about-text p strong { color: var(--text); }
-  .about-text .tagline { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 2px; color: var(--accent); margin-top: 28px; }
-  .about-meta { margin-top: 36px; display: flex; flex-direction: column; gap: 10px; }
-  .meta-row { display: flex; gap: 20px; }
-  .meta-key { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); width: 70px; flex-shrink: 0; padding-top: 2px; }
-  .meta-val { font-size: 13px; color: var(--muted); }
+/* ABOUT */
+#about { background: var(–bg); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.about-img-wrap { position: relative; }
+.about-img-wrap::before { content: ‘’; position: absolute; top: 16px; left: 16px; right: -16px; bottom: -16px; border: 1px solid rgba(232,255,71,0.2); z-index: 0; }
+.about-img-wrap img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; display: block; position: relative; z-index: 1; filter: grayscale(20%); }
+.about-text p { font-size: 15px; color: var(–muted); line-height: 2; margin-bottom: 20px; }
+.about-text p strong { color: var(–text); }
+.about-text .tagline { font-family: ‘Bebas Neue’, sans-serif; font-size: 24px; letter-spacing: 2px; color: var(–accent); margin-top: 28px; }
+.about-meta { margin-top: 36px; display: flex; flex-direction: column; gap: 10px; }
+.meta-row { display: flex; gap: 20px; }
+.meta-key { font-family: ‘DM Mono’, monospace; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(–accent); width: 70px; flex-shrink: 0; padding-top: 2px; }
+.meta-val { font-size: 13px; color: var(–muted); }
 
-  /* ABOUT VIDEO */
-  .about-video-wrap { margin: 28px 0 4px; position: relative; }
-  .about-video-wrap video { width: 100%; display: block; border: 1px solid var(--border); }
-  .about-video-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); opacity: 0.6; margin-bottom: 10px; }
+/* ABOUT VIDEO */
+.about-video-wrap { margin: 28px 0 4px; position: relative; }
+.about-video-wrap video { width: 100%; display: block; border: 1px solid var(–border); }
+.about-video-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.about-video-label { font-family: ‘DM Mono’, monospace; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(–accent); opacity: 0.6; }
+.mute-btn { background: transparent; border: 1px solid var(–border); color: var(–muted); font-family: ‘DM Mono’, monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 4px 10px; cursor: pointer; transition: border-color 0.2s, color 0.2s; }
+.mute-btn:hover { border-color: var(–accent); color: var(–accent); }
 
-  /* WORK — 4 CATEGORIES */
-  #work { background: var(--surface); padding: 120px 0; }
-  #work .section-inner { padding: 0 48px; margin-bottom: 56px; }
-  .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-  .work-card { background: var(--bg); padding: 56px 48px; border-bottom: 3px solid transparent; transition: border-color 0.3s, background 0.3s; cursor: pointer; text-decoration: none; display: block; position: relative; overflow: hidden; }
-  .work-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 0% 100%, rgba(232,255,71,0.04) 0%, transparent 70%); opacity: 0; transition: opacity 0.3s; }
-  .work-card:hover::before { opacity: 1; }
-  .work-card:hover { background: var(--card-hover); border-bottom-color: var(--accent); }
-  .work-card-num { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; color: var(--accent); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
-  .work-card-num::after { content: ''; flex: 1; max-width: 40px; height: 1px; background: var(--accent); opacity: 0.3; }
-  .work-card-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 4vw, 52px); letter-spacing: 2px; line-height: 1; margin-bottom: 16px; color: var(--text); transition: color 0.3s; }
-  .work-card:hover .work-card-title { color: var(--accent); }
-  .work-card-desc { font-size: 13px; color: var(--muted); line-height: 1.8; margin-bottom: 32px; max-width: 360px; }
-  .work-card-cta { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 10px; transition: color 0.3s; }
-  .work-card:hover .work-card-cta { color: var(--accent); }
-  .work-card-cta::after { content: '↗'; font-size: 14px; transition: transform 0.2s; }
-  .work-card:hover .work-card-cta::after { transform: translate(2px, -2px); }
+/* WORK — 4 CATEGORIES */
+#work { background: var(–surface); padding: 120px 0; }
+#work .section-inner { padding: 0 48px; margin-bottom: 56px; }
+.work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.work-card { background: var(–bg); padding: 56px 48px; border-bottom: 3px solid transparent; transition: border-color 0.3s, background 0.3s; cursor: pointer; text-decoration: none; display: block; position: relative; overflow: hidden; }
+.work-card::before { content: ‘’; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 0% 100%, rgba(232,255,71,0.04) 0%, transparent 70%); opacity: 0; transition: opacity 0.3s; }
+.work-card:hover::before { opacity: 1; }
+.work-card:hover { background: var(–card-hover); border-bottom-color: var(–accent); }
+.work-card-num { font-family: ‘DM Mono’, monospace; font-size: 11px; letter-spacing: 2px; color: var(–accent); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+.work-card-num::after { content: ‘’; flex: 1; max-width: 40px; height: 1px; background: var(–accent); opacity: 0.3; }
+.work-card-title { font-family: ‘Bebas Neue’, sans-serif; font-size: clamp(32px, 4vw, 52px); letter-spacing: 2px; line-height: 1; margin-bottom: 16px; color: var(–text); transition: color 0.3s; }
+.work-card:hover .work-card-title { color: var(–accent); }
+.work-card-desc { font-size: 13px; color: var(–muted); line-height: 1.8; margin-bottom: 32px; max-width: 360px; }
+.work-card-cta { font-family: ‘DM Mono’, monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(–muted); display: flex; align-items: center; gap: 10px; transition: color 0.3s; }
+.work-card:hover .work-card-cta { color: var(–accent); }
+.work-card-cta::after { content: ‘↗’; font-size: 14px; transition: transform 0.2s; }
+.work-card:hover .work-card-cta::after { transform: translate(2px, -2px); }
 
-  /* BRANDS */
-  #brands { background: var(--card-hover); }
-  .brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 2px; }
-  .brand-item { background: var(--surface); height: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 20px; }
-  .brand-logo-wrap { width: 90px; height: 48px; display: flex; align-items: center; justify-content: center; filter: brightness(0) invert(1); opacity: 0.4; }
-  .brand-logo-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
-  .brand-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--text); opacity: 0.4; line-height: 1; }
-  .brand-name { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-align: center; }
+/* BRANDS */
+#brands { background: var(–card-hover); }
+.brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 2px; }
+.brand-item { background: var(–surface); height: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 20px; }
+.brand-logo-wrap { width: 90px; height: 48px; display: flex; align-items: center; justify-content: center; filter: brightness(0) invert(1); opacity: 0.4; }
+.brand-logo-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+.brand-logo-text { font-family: ‘Bebas Neue’, sans-serif; font-size: 22px; letter-spacing: 2px; color: var(–text); opacity: 0.4; line-height: 1; }
+.brand-name { font-family: ‘DM Mono’, monospace; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: var(–muted); text-align: center; }
 
-  /* EXPERIENCE */
-  #experience { background: var(--bg); }
-  .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-  .exp-intro { font-size: 14px; color: var(--muted); line-height: 2; margin-bottom: 40px; }
-  .exp-company { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 2px; color: var(--text); margin-bottom: 4px; }
-  .exp-period { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); }
-  .skills-list { display: flex; flex-direction: column; gap: 0; }
-  .skill-row { display: flex; align-items: flex-start; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--border); }
-  .skill-row:first-child { border-top: 1px solid var(--border); }
-  .skill-num { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 1px; color: var(--accent); width: 24px; flex-shrink: 0; padding-top: 3px; }
-  .skill-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; margin-bottom: 4px; }
-  .skill-desc { font-size: 12px; color: var(--muted); line-height: 1.7; }
+/* EXPERIENCE */
+#experience { background: var(–bg); }
+.exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.exp-intro { font-size: 14px; color: var(–muted); line-height: 2; margin-bottom: 40px; }
+.exp-company { font-family: ‘Bebas Neue’, sans-serif; font-size: 28px; letter-spacing: 2px; color: var(–text); margin-bottom: 4px; }
+.exp-period { font-family: ‘DM Mono’, monospace; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(–accent); }
+.skills-list { display: flex; flex-direction: column; gap: 0; }
+.skill-row { display: flex; align-items: flex-start; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(–border); }
+.skill-row:first-child { border-top: 1px solid var(–border); }
+.skill-num { font-family: ‘DM Mono’, monospace; font-size: 9px; letter-spacing: 1px; color: var(–accent); width: 24px; flex-shrink: 0; padding-top: 3px; }
+.skill-name { font-family: ‘Bebas Neue’, sans-serif; font-size: 22px; letter-spacing: 1px; margin-bottom: 4px; }
+.skill-desc { font-size: 12px; color: var(–muted); line-height: 1.7; }
 
-  /* SKILLS */
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2px; }
-  .skill-item { background: var(--surface); padding: 32px; border-top: 2px solid transparent; transition: border-color 0.2s, background 0.2s; }
-  .skill-item:hover { border-color: var(--accent); background: var(--card-hover); }
-  .skill-item h4 { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; margin-bottom: 8px; }
-  .skill-item p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+/* SKILLS */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2px; }
+.skill-item { background: var(–surface); padding: 32px; border-top: 2px solid transparent; transition: border-color 0.2s, background 0.2s; }
+.skill-item:hover { border-color: var(–accent); background: var(–card-hover); }
+.skill-item h4 { font-family: ‘Bebas Neue’, sans-serif; font-size: 20px; letter-spacing: 1px; margin-bottom: 8px; }
+.skill-item p { font-size: 12px; color: var(–muted); line-height: 1.6; }
 
-  /* CONTACT */
-  .contact-block { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-  .contact-left { background: var(--surface); padding: 64px; }
-  .contact-left p { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 40px; max-width: 400px; }
-  .contact-links { display: flex; flex-direction: column; }
-  .clink { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--border); text-decoration: none; color: var(--text); transition: color 0.2s, padding-left 0.2s; }
-  .clink:hover { color: var(--accent); padding-left: 8px; }
-  .clink-left { display: flex; align-items: center; gap: 14px; }
-  .clink-platform { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); width: 80px; }
-  .clink-val { font-size: 13px; color: var(--accent); }
-  .clink-arrow { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); transition: transform 0.2s, color 0.2s; }
-  .clink:hover .clink-arrow { color: var(--accent); transform: translateX(4px); }
-  .contact-right { background: var(--accent); padding: 64px; display: flex; flex-direction: column; justify-content: center; }
-  .contact-right h3 { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: #000; line-height: 1; margin-bottom: 24px; }
-  .contact-right p { font-size: 14px; color: rgba(0,0,0,0.6); line-height: 1.7; margin-bottom: 32px; }
-  .btn-dark { background: #000; color: var(--accent); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 32px; border: none; cursor: pointer; text-decoration: none; display: inline-block; width: fit-content; transition: background 0.2s; }
-  .btn-dark:hover { background: #111; }
+/* CONTACT */
+.contact-block { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.contact-left { background: var(–surface); padding: 64px; }
+.contact-left p { font-size: 15px; color: var(–muted); line-height: 1.8; margin-bottom: 40px; max-width: 400px; }
+.contact-links { display: flex; flex-direction: column; }
+.clink { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(–border); text-decoration: none; color: var(–text); transition: color 0.2s, padding-left 0.2s; }
+.clink:hover { color: var(–accent); padding-left: 8px; }
+.clink-left { display: flex; align-items: center; gap: 14px; }
+.clink-platform { font-family: ‘DM Mono’, monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(–accent); width: 80px; }
+.clink-val { font-size: 13px; color: var(–accent); }
+.clink-arrow { font-family: ‘DM Mono’, monospace; font-size: 11px; color: var(–muted); transition: transform 0.2s, color 0.2s; }
+.clink:hover .clink-arrow { color: var(–accent); transform: translateX(4px); }
+.contact-right { background: var(–accent); padding: 64px; display: flex; flex-direction: column; justify-content: center; }
+.contact-right h3 { font-family: ‘Bebas Neue’, sans-serif; font-size: 48px; color: #000; line-height: 1; margin-bottom: 24px; }
+.contact-right p { font-size: 14px; color: rgba(0,0,0,0.6); line-height: 1.7; margin-bottom: 32px; }
+.btn-dark { background: #000; color: var(–accent); font-family: ‘DM Mono’, monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 32px; border: none; cursor: pointer; text-decoration: none; display: inline-block; width: fit-content; transition: background 0.2s; }
+.btn-dark:hover { background: #111; }
 
-  footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; }
-  footer p { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
+footer { border-top: 1px solid var(–border); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; }
+footer p { font-family: ‘DM Mono’, monospace; font-size: 10px; letter-spacing: 2px; color: var(–muted); text-transform: uppercase; }
 
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  @media (max-width: 768px) {
-    header { padding: 20px 24px; }
-    nav { display: none; }
-    .hero { padding: 0 24px 60px; }
-    section { padding: 80px 24px; }
-    #work .section-inner { padding: 0 24px; }
-    .work-grid { grid-template-columns: 1fr; }
-    .about-grid, .exp-grid, .contact-block { grid-template-columns: 1fr; }
-    .contact-left, .contact-right { padding: 40px 24px; }
-    footer { flex-direction: column; gap: 12px; text-align: center; }
-  }
+@media (max-width: 768px) {
+header { padding: 20px 24px; }
+nav { display: none; }
+.hero { padding: 0 24px 60px; }
+section { padding: 80px 24px; }
+#work .section-inner { padding: 0 24px; }
+.work-grid { grid-template-columns: 1fr; }
+.about-grid, .exp-grid, .contact-block { grid-template-columns: 1fr; }
+.contact-left, .contact-right { padding: 40px 24px; }
+footer { flex-direction: column; gap: 12px; text-align: center; }
+}
 </style>
+
 </head>
 <body>
 
@@ -174,6 +179,7 @@
 </header>
 
 <!-- HERO -->
+
 <section class="hero" id="home">
   <div class="hero-bg"></div>
   <div class="hero-fade"></div>
@@ -197,6 +203,7 @@
 </section>
 
 <!-- TICKER -->
+
 <div class="ticker-wrap">
   <div class="ticker">
     <span>VIDEO EDITING</span><span class="dot"> ✦ </span><span>MOTION GRAPHICS</span><span class="dot"> ✦ </span>
@@ -211,6 +218,7 @@
 </div>
 
 <!-- ABOUT -->
+
 <section id="about">
   <div class="section-label">About Me</div>
   <div class="about-grid">
@@ -222,8 +230,11 @@
       <p>I'm <strong>Amr Mosaad</strong>, a 23-year-old Video Editor &amp; Motion Designer — I don't just cut footage, I build worlds.</p>
       <p>Nearly 2 years at INDIGO taught me to bridge <strong>technical precision</strong> with visual storytelling. Every frame is intentional, every transition purposeful, every project built to international brand standards.</p>
       <div class="about-video-wrap">
-        <div class="about-video-label">Show Reel</div>
-        <video src="showreel.mp4" autoplay muted loop playsinline></video>
+        <div class="about-video-header">
+          <div class="about-video-label">Show Reel</div>
+          <button class="mute-btn" id="mute-btn" onclick="toggleMute()">🔇 Unmute</button>
+        </div>
+        <video id="showreel" src="showreel.mp4" autoplay muted loop playsinline></video>
       </div>
       <div class="tagline">I'M HERE TO MAKE YOUR VISION MOVE.</div>
       <div class="about-meta">
@@ -237,6 +248,7 @@
 </section>
 
 <!-- WORK — 4 CATEGORIES -->
+
 <section id="work" style="padding: 120px 0;">
   <div class="section-inner">
     <div class="section-label">Selected Work</div>
@@ -244,127 +256,133 @@
   </div>
   <div class="work-grid">
 
-    <a class="work-card" href="https://drive.google.com/drive/folders/114cgugcHQnhnJALZ2k195yRI5QLxwErn" target="_blank">
-      <div class="work-card-num">01</div>
-      <div class="work-card-title">Short-Form &amp;<br>Social Media Content</div>
-      <p class="work-card-desc">Reels, TikToks, and platform-optimized cuts designed to stop the scroll — fast-paced editing built for maximum engagement.</p>
-      <div class="work-card-cta">View on Drive</div>
-    </a>
+```
+<a class="work-card" href="https://drive.google.com/drive/folders/114cgugcHQnhnJALZ2k195yRI5QLxwErn" target="_blank">
+  <div class="work-card-num">01</div>
+  <div class="work-card-title">Short-Form &amp;<br>Social Media Content</div>
+  <p class="work-card-desc">Reels, TikToks, and platform-optimized cuts designed to stop the scroll — fast-paced editing built for maximum engagement.</p>
+  <div class="work-card-cta">View on Drive</div>
+</a>
 
-    <a class="work-card" href="https://drive.google.com/drive/folders/1gtGnYcnMoK5i2egpfYC7IFVinbhcjMJb" target="_blank">
-      <div class="work-card-num">02</div>
-      <div class="work-card-title">Motion<br>Graphics</div>
-      <p class="work-card-desc">Logo animations, title sequences, kinetic typography, and UI animations that bring brands to life with precision and style.</p>
-      <div class="work-card-cta">View on Drive</div>
-    </a>
+<a class="work-card" href="https://drive.google.com/drive/folders/1gtGnYcnMoK5i2egpfYC7IFVinbhcjMJb" target="_blank">
+  <div class="work-card-num">02</div>
+  <div class="work-card-title">Motion<br>Graphics</div>
+  <p class="work-card-desc">Logo animations, title sequences, kinetic typography, and UI animations that bring brands to life with precision and style.</p>
+  <div class="work-card-cta">View on Drive</div>
+</a>
 
-    <a class="work-card" href="https://drive.google.com/drive/folders/1jqqYHM_0CfwDM-qdXy9dIQpqIqleqr-0" target="_blank">
-      <div class="work-card-num">03</div>
-      <div class="work-card-title">AI-Driven<br>Content</div>
-      <p class="work-card-desc">Next-gen production integrating Kling, Sora, Google Veo3, and Seedance — pushing the boundaries of AI-assisted filmmaking.</p>
-      <div class="work-card-cta">View on Drive</div>
-    </a>
+<a class="work-card" href="https://drive.google.com/drive/folders/1jqqYHM_0CfwDM-qdXy9dIQpqIqleqr-0" target="_blank">
+  <div class="work-card-num">03</div>
+  <div class="work-card-title">AI-Driven<br>Content</div>
+  <p class="work-card-desc">Next-gen production integrating Kling, Sora, Google Veo3, and Seedance — pushing the boundaries of AI-assisted filmmaking.</p>
+  <div class="work-card-cta">View on Drive</div>
+</a>
 
-    <a class="work-card" href="https://drive.google.com/drive/folders/17cdZ780gS4zIKc8LoGKl48gGMkcVX4L9" target="_blank">
-      <div class="work-card-num">04</div>
-      <div class="work-card-title">Podcast &amp;<br>Interviews</div>
-      <p class="work-card-desc">Multi-camera edits, lower thirds, clean audio-driven storytelling, and professional formatting for long-form content.</p>
-      <div class="work-card-cta">View on Drive</div>
-    </a>
+<a class="work-card" href="https://drive.google.com/drive/folders/17cdZ780gS4zIKc8LoGKl48gGMkcVX4L9" target="_blank">
+  <div class="work-card-num">04</div>
+  <div class="work-card-title">Podcast &amp;<br>Interviews</div>
+  <p class="work-card-desc">Multi-camera edits, lower thirds, clean audio-driven storytelling, and professional formatting for long-form content.</p>
+  <div class="work-card-cta">View on Drive</div>
+</a>
+```
 
   </div>
 </section>
 
 <!-- BRANDS -->
+
 <section id="brands" style="background: var(--card-hover);">
   <div class="section-label">Brands</div>
   <div class="section-title">BRANDS I'VE<br>WORKED WITH.</div>
   <div class="brands-grid">
 
-    <div class="brand-item">
-      <div class="brand-logo-wrap"><img src="mye.png" alt="MY E" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:2px;color:#f0ede8&quot;>MY E</span>'"></div>
-      <div class="brand-name">MY E</div>
-    </div>
+```
+<div class="brand-item">
+  <div class="brand-logo-wrap"><img src="mye.png" alt="MY E" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:2px;color:#f0ede8&quot;>MY E</span>'"></div>
+  <div class="brand-name">MY E</div>
+</div>
 
-    <div class="brand-item">
-      <div class="brand-logo-wrap"><img src="ASFOUR CRYSTAL.png" alt="Asfour Crystal" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:13px;letter-spacing:2px;color:#f0ede8&quot;>ASFOUR CRYSTAL</span>'"></div>
-      <div class="brand-name">Asfour Crystal</div>
-    </div>
+<div class="brand-item">
+  <div class="brand-logo-wrap"><img src="ASFOUR CRYSTAL.png" alt="Asfour Crystal" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:13px;letter-spacing:2px;color:#f0ede8&quot;>ASFOUR CRYSTAL</span>'"></div>
+  <div class="brand-name">Asfour Crystal</div>
+</div>
 
-    <div class="brand-item">
-      <div class="brand-logo-wrap"><img src="Afour.png" alt="Asfour Creations" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:12px;letter-spacing:2px;color:#f0ede8&quot;>ASFOUR CREATIONS</span>'"></div>
-      <div class="brand-name">Asfour Creations</div>
-    </div>
+<div class="brand-item">
+  <div class="brand-logo-wrap"><img src="Afour.png" alt="Asfour Creations" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:12px;letter-spacing:2px;color:#f0ede8&quot;>ASFOUR CREATIONS</span>'"></div>
+  <div class="brand-name">Asfour Creations</div>
+</div>
 
-    <div class="brand-item">
-      <div class="brand-logo-wrap"><img src="gems.png" alt="Gems Schools" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:2px;color:#f0ede8&quot;>GEMS</span>'"></div>
-      <div class="brand-name">Gems Schools</div>
-    </div>
+<div class="brand-item">
+  <div class="brand-logo-wrap"><img src="gems.png" alt="Gems Schools" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:2px;color:#f0ede8&quot;>GEMS</span>'"></div>
+  <div class="brand-name">Gems Schools</div>
+</div>
 
-    <div class="brand-item">
-      <div class="brand-logo-wrap"><img src="Carofi.png" alt="Carofi" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:2px;color:#f0ede8&quot;>CAROFI</span>'"></div>
-      <div class="brand-name">Carofi</div>
-    </div>
+<div class="brand-item">
+  <div class="brand-logo-wrap"><img src="Carofi.png" alt="Carofi" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:2px;color:#f0ede8&quot;>CAROFI</span>'"></div>
+  <div class="brand-name">Carofi</div>
+</div>
 
-    <div class="brand-item">
-      <div class="brand-logo-wrap"><img src="MBG.png" alt="MPG" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:2px;color:#f0ede8&quot;>MPG</span>'"></div>
-      <div class="brand-name">MPG</div>
-    </div>
+<div class="brand-item">
+  <div class="brand-logo-wrap"><img src="MBG.png" alt="MPG" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:2px;color:#f0ede8&quot;>MPG</span>'"></div>
+  <div class="brand-name">MPG</div>
+</div>
 
-    <div class="brand-item">
-      <div class="brand-logo-wrap"><img src="CEMEX.png" alt="Cemex" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:2px;color:#f0ede8&quot;>CEMEX</span>'"></div>
-      <div class="brand-name">Cemex</div>
-    </div>
+<div class="brand-item">
+  <div class="brand-logo-wrap"><img src="CEMEX.png" alt="Cemex" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:2px;color:#f0ede8&quot;>CEMEX</span>'"></div>
+  <div class="brand-name">Cemex</div>
+</div>
 
-    <div class="brand-item">
-      <div class="brand-logo-wrap"><img src="EVA.png" alt="Eva" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:24px;letter-spacing:2px;color:#f0ede8&quot;>EVA</span>'"></div>
-      <div class="brand-name">Eva</div>
-    </div>
+<div class="brand-item">
+  <div class="brand-logo-wrap"><img src="EVA.png" alt="Eva" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:24px;letter-spacing:2px;color:#f0ede8&quot;>EVA</span>'"></div>
+  <div class="brand-name">Eva</div>
+</div>
 
-    <div class="brand-item">
-      <div class="brand-logo-wrap"><img src="Football Access.png" alt="Football Access" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:14px;letter-spacing:2px;color:#f0ede8&quot;>FOOTBALL</span>'"></div>
-      <div class="brand-name">Football Access</div>
-    </div>
+<div class="brand-item">
+  <div class="brand-logo-wrap"><img src="Football Access.png" alt="Football Access" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:14px;letter-spacing:2px;color:#f0ede8&quot;>FOOTBALL</span>'"></div>
+  <div class="brand-name">Football Access</div>
+</div>
 
-    <div class="brand-item">
-      <div class="brand-logo-wrap"><img src="EGX.png" alt="EGX" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:2px;color:#f0ede8&quot;>EGX</span>'"></div>
-      <div class="brand-name">EGX</div>
-    </div>
+<div class="brand-item">
+  <div class="brand-logo-wrap"><img src="EGX.png" alt="EGX" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:2px;color:#f0ede8&quot;>EGX</span>'"></div>
+  <div class="brand-name">EGX</div>
+</div>
 
-    <div class="brand-item">
-      <div class="brand-logo-wrap"><img src="AL Rayah.png" alt="Al Rayah" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:16px;letter-spacing:2px;color:#f0ede8&quot;>AL RAYAH</span>'"></div>
-      <div class="brand-name">Al Rayah</div>
-    </div>
+<div class="brand-item">
+  <div class="brand-logo-wrap"><img src="AL Rayah.png" alt="Al Rayah" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:16px;letter-spacing:2px;color:#f0ede8&quot;>AL RAYAH</span>'"></div>
+  <div class="brand-name">Al Rayah</div>
+</div>
 
-    <div class="brand-item">
-      <div class="brand-logo-wrap"><img src="SGP Logo White.png" alt="SPG" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:2px;color:#f0ede8&quot;>SPG</span>'"></div>
-      <div class="brand-name">SPG</div>
-    </div>
+<div class="brand-item">
+  <div class="brand-logo-wrap"><img src="SGP Logo White.png" alt="SPG" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:2px;color:#f0ede8&quot;>SPG</span>'"></div>
+  <div class="brand-name">SPG</div>
+</div>
 
-    <div class="brand-item">
-      <div class="brand-logo-wrap"><img src="Spinneys.png" alt="Spinneys" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:16px;letter-spacing:2px;color:#f0ede8&quot;>SPINNEYS</span>'"></div>
-      <div class="brand-name">Spinneys</div>
-    </div>
+<div class="brand-item">
+  <div class="brand-logo-wrap"><img src="Spinneys.png" alt="Spinneys" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:16px;letter-spacing:2px;color:#f0ede8&quot;>SPINNEYS</span>'"></div>
+  <div class="brand-name">Spinneys</div>
+</div>
 
-    <div class="brand-item">
-      <div class="brand-logo-wrap"><img src="Bodïz.png" alt="Bodiz" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:2px;color:#f0ede8&quot;>BODIZ</span>'"></div>
-      <div class="brand-name">Bodiz</div>
-    </div>
+<div class="brand-item">
+  <div class="brand-logo-wrap"><img src="Bodïz.png" alt="Bodiz" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:2px;color:#f0ede8&quot;>BODIZ</span>'"></div>
+  <div class="brand-name">Bodiz</div>
+</div>
 
-    <div class="brand-item">
-      <div class="brand-logo-wrap"><img src="Al Baraka.png" alt="Al Baraka Bank" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:14px;letter-spacing:2px;color:#f0ede8&quot;>AL BARAKA</span>'"></div>
-      <div class="brand-name">Al Baraka Bank</div>
-    </div>
+<div class="brand-item">
+  <div class="brand-logo-wrap"><img src="Al Baraka.png" alt="Al Baraka Bank" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:14px;letter-spacing:2px;color:#f0ede8&quot;>AL BARAKA</span>'"></div>
+  <div class="brand-name">Al Baraka Bank</div>
+</div>
 
-    <div class="brand-item">
-      <div class="brand-logo-wrap"><img src="ZAHF.png" alt="ZAHF" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:2px;color:#f0ede8&quot;>ZAHF</span>'"></div>
-      <div class="brand-name">ZAHF</div>
-    </div>
+<div class="brand-item">
+  <div class="brand-logo-wrap"><img src="ZAHF.png" alt="ZAHF" onerror="this.parentElement.innerHTML='<span style=&quot;font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:2px;color:#f0ede8&quot;>ZAHF</span>'"></div>
+  <div class="brand-name">ZAHF</div>
+</div>
+```
 
   </div>
 </section>
 
 <!-- EXPERIENCE -->
+
 <section id="experience">
   <div class="section-label">Experience</div>
   <div class="section-title">THE<br>STORY.</div>
@@ -389,6 +407,7 @@
 </section>
 
 <!-- SKILLS -->
+
 <section id="skills" style="background: var(--surface);">
   <div class="section-label">Toolkit</div>
   <div class="section-title">SKILLS &amp;<br>TOOLS.</div>
@@ -403,6 +422,7 @@
 </section>
 
 <!-- CONTACT -->
+
 <section id="contact" style="padding: 0;">
   <div class="contact-block">
     <div class="contact-left">
@@ -441,6 +461,15 @@
     if(lk) lk.href = 'mailto:' + u;
     if(btn) btn.href = 'mailto:' + u;
   })();
+
+  function toggleMute() {
+    var v = document.getElementById('showreel');
+    var b = document.getElementById('mute-btn');
+    if (!v) return;
+    v.muted = !v.muted;
+    b.textContent = v.muted ? '🔇 Unmute' : '🔊 Mute';
+  }
 </script>
+
 </body>
 </html>

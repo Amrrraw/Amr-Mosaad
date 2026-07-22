@@ -7,22 +7,32 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-color: #050507;
+    /* New Vibrant Palette from Reference Image 3 */
+    --bg-color: #000000;
     --text-main: #ffffff;
-    --text-muted: #8892b0;
-    --accent-blue: #00e1ff;
-    --accent-purple: #9d00ff;
+    --text-muted: #aaaaaa;
+    
+    --theme-black: #000000;
+    --theme-red-orange: #FF4502;
+    --theme-bitter-lime: #C2FF01;
+    --theme-mauve: #DC88FF;
+    --theme-blue: #0044FF;
+    
+    /* Variables mapping to palette for easy updates */
+    --accent: var(--theme-red-orange); /* Main bold accent */
+    --secondary: var(--theme-bitter-lime); /* Secondary highlight */
+    --mauve-bg: rgba(220, 136, 255, 0.05); /* Tint for glass panels */
   }
   
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { background-color: var(--bg-color); color: var(--text-main); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; position: relative; }
+  body { background-color: var(--theme-black); color: var(--text-main); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; position: relative; }
 
   /* --- AMBIENT GLOW ORBS --- */
   .glow-orb { position: fixed; border-radius: 50%; filter: blur(140px); z-index: -1; opacity: 0.35; animation: float 15s infinite alternate ease-in-out; pointer-events: none; }
-  .orb-1 { width: 50vw; height: 50vw; background: var(--accent-purple); top: -20%; left: -10%; }
-  .orb-2 { width: 40vw; height: 40vw; background: var(--accent-blue); bottom: -10%; right: -5%; animation-delay: -5s; }
-  .orb-3 { width: 30vw; height: 30vw; background: rgba(0, 225, 255, 0.15); top: 30%; left: 35%; animation-delay: -2s; }
+  .orb-1 { width: 50vw; height: 50vw; background: var(--theme-mauve); top: -20%; left: -10%; }
+  .orb-2 { width: 40vw; height: 40vw; background: var(--theme-blue); bottom: -10%; right: -5%; animation-delay: -5s; }
+  .orb-3 { width: 30vw; height: 30vw; background: rgba(255, 69, 2, 0.15); top: 30%; left: 35%; animation-delay: -2s; }
 
   @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(40px, 20px) scale(1.1); } }
 
@@ -47,12 +57,12 @@
   }
 
   .text-gradient { background: linear-gradient(135deg, #fff, #7a7a85); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .accent-gradient { background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .accent-gradient { background: linear-gradient(135deg, var(--accent), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
   /* HEADER */
   header { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 16px 32px; width: 90%; max-width: 1200px; border-radius: 50px; }
   .logo { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 3px; color: var(--text-main); text-decoration: none; }
-  .logo span { color: var(--accent-blue); }
+  .logo span { color: var(--theme-blue); }
   nav { display: flex; gap: 32px; }
   nav a { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
   nav a:hover { color: var(--text-main); }
@@ -70,11 +80,11 @@
   .ticker-wrap { overflow: hidden; padding: 24px 0; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.3); backdrop-filter: blur(10px); }
   .ticker { display: flex; gap: 64px; animation: ticker 25s linear infinite; white-space: nowrap; }
   .ticker span { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px; color: var(--text-muted); }
-  .ticker .dot { color: var(--accent-blue); font-family: 'DM Sans'; font-size: 12px; }
+  .ticker .dot { color: var(--secondary); font-family: 'DM Sans'; font-size: 12px; }
 
   /* SECTION STRUCTURE */
   section { padding: 140px 5%; max-width: 1400px; margin: 0 auto; }
-  .section-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 16px; display: block; }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--theme-blue); margin-bottom: 16px; display: block; }
   .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 6vw, 70px); letter-spacing: 1.5px; line-height: 1; margin-bottom: 64px; }
 
   /* ABOUT */
@@ -86,22 +96,23 @@
   
   .about-meta { margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.05); }
   .meta-block { display: flex; flex-direction: column; gap: 8px; }
-  .meta-key { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-blue); }
+  .meta-key { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
   .meta-val { font-size: 15px; color: var(--text-main); }
 
-  /* WORK CARDS */
-  .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-  .work-card { padding: 40px; text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; min-height: 320px; text-align: left; }
-  .work-card-num { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; color: var(--accent-purple); margin-bottom: auto; }
-  .work-card-title { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 1px; color: var(--text-main); margin-bottom: 16px; margin-top: 40px; }
-  .work-card-desc { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 24px; }
-  .work-card-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-blue); display: flex; align-items: center; gap: 8px; }
+  /* WORK CARDS — NEW 2x2 GRID LAYOUT */
+  .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .work-card { padding: 48px; text-decoration: none; display: flex; flex-direction: column; justify-content: flex-end; min-height: 380px; text-align: left; }
+  .work-card-num { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; color: var(--secondary); margin-bottom: 16px; display: block; }
+  .work-card-title { font-family: 'Bebas Neue', sans-serif; font-size: 48px; letter-spacing: 1.5px; color: var(--text-main); margin-bottom: 16px; margin-top: 0px; }
+  .work-card-title .accent-gradient { display: block; }
+  .work-card-desc { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 32px; max-width: 420px;}
+  .work-card-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--theme-blue); display: flex; align-items: center; gap: 8px; }
 
   /* BRANDS */
-  .brands-container { padding: 64px 48px; }
-  .brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 24px; align-items: center; justify-items: center; }
-  .brand-item { width: 100%; height: 120px; display: flex; align-items: center; justify-content: center; padding: 20px; }
-  .brand-logo-wrap { height: 50px; width: 100%; display: flex; align-items: center; justify-content: center; filter: brightness(0) invert(1); opacity: 0.5; transition: opacity 0.3s, transform 0.3s; }
+  .brands-container { padding: 80px 48px; background: rgba(0,0,0,0.5); backdrop-filter: blur(30px);}
+  .brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 32px; align-items: center; justify-items: center; }
+  .brand-item { width: 100%; height: 140px; display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .brand-logo-wrap { height: 60px; width: 100%; display: flex; align-items: center; justify-content: center; filter: brightness(0) invert(1); opacity: 0.5; transition: opacity 0.3s, transform 0.3s; }
   .brand-item:hover .brand-logo-wrap { opacity: 1; transform: scale(1.05); }
   .brand-logo-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
@@ -110,30 +121,38 @@
   .exp-intro { font-size: 16px; color: var(--text-muted); line-height: 1.9; margin-bottom: 32px; }
   .skills-list { display: flex; flex-direction: column; gap: 24px; }
   .skill-item { padding: 32px; display: flex; align-items: flex-start; gap: 24px; }
-  .skill-num { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; color: var(--accent-blue); width: 30px; flex-shrink: 0; }
+  .skill-num { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; color: var(--theme-blue); width: 30px; flex-shrink: 0; }
   .skill-info h4 { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px; color: var(--text-main); margin-bottom: 8px; }
   .skill-info p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
 
   /* CONTACT */
-  .contact-block { padding: 80px; text-align: center; display: flex; flex-direction: column; align-items: center; border-radius: 40px; }
-  .contact-block h3 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 8vw, 90px); line-height: 1; margin-bottom: 32px; }
+  .contact-block { padding: 100px; text-align: center; display: flex; flex-direction: column; align-items: center; border-radius: 40px; }
+  .contact-block h3 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 8vw, 100px); line-height: 1; margin-bottom: 32px; }
   .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 48px; }
   .clink { padding: 14px 28px; text-decoration: none; color: var(--text-main); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-radius: 50px; }
+  .clink:hover { background: rgba(255,255,255,0.05); }
   
-  footer { padding: 32px 5%; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 64px; }
+  footer { padding: 40px 5%; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 64px; }
   footer p { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; }
 
   @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
+  @media (max-width: 1200px) {
+    .work-grid { grid-template-columns: 1fr 1fr; gap: 20px;}
+    .work-card { padding: 32px; min-height: 320px;}
+    .work-card-title { font-size: 36px; }
+  }
   @media (max-width: 992px) {
     .about-grid, .exp-wrapper { grid-template-columns: 1fr; }
     .about-grid { padding: 32px; }
     header { width: 95%; padding: 16px 24px; }
+    .work-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 768px) {
     nav { display: none; }
     .hero-cta { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
     .contact-block { padding: 48px 24px; }
+    .work-grid { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 16px; text-align: center; }
   }
 </style>
@@ -188,7 +207,7 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-grid liquid-glass">
+  <div class="about-grid liquid-glass" style="background-color: rgba(0,0,0,0.5);">
     <div class="about-img-wrap">
       <img src="amr.jpg" alt="Amr Mosaad">
     </div>
@@ -220,7 +239,7 @@
   </div>
 </section>
 
-<!-- WORK -->
+<!-- WORK - NEW 2x2 RECTANGULAR LAYOUT -->
 <section id="work">
   <span class="section-label">Selected Work</span>
   <h2 class="section-title">PROJECTS BY<br>CATEGORY.</h2>
@@ -229,7 +248,7 @@
     <a class="work-card liquid-glass" href="https://drive.google.com/drive/folders/114cgugcHQnhnJALZ2k195yRI5QLxwErn" target="_blank">
       <div class="work-card-num">01</div>
       <div>
-        <h3 class="work-card-title">Short-Form<br>&amp; Social</h3>
+        <h3 class="work-card-title">Short-Form<br>&amp; Social <span class="accent-gradient">Content</span></h3>
         <p class="work-card-desc">Platform-optimized, fast-paced edits designed for high engagement.</p>
         <div class="work-card-link">View Project →</div>
       </div>
@@ -238,7 +257,7 @@
     <a class="work-card liquid-glass" href="https://drive.google.com/drive/folders/1gtGnYcnMoK5i2egpfYC7IFVinbhcjMJb" target="_blank">
       <div class="work-card-num">02</div>
       <div>
-        <h3 class="work-card-title">Motion<br>Graphics</h3>
+        <h3 class="work-card-title">Motion <span class="accent-gradient">Graphics</span></h3>
         <p class="work-card-desc">Branded intros, outros, and UI elements animated in After Effects.</p>
         <div class="work-card-link">View Project →</div>
       </div>
@@ -247,7 +266,7 @@
     <a class="work-card liquid-glass" href="https://drive.google.com/drive/folders/1jqqYHM_0CfwDM-qdXy9dIQpqIqleqr-0" target="_blank">
       <div class="work-card-num">03</div>
       <div>
-        <h3 class="work-card-title">AI-Driven<br>Content</h3>
+        <h3 class="work-card-title">AI-Driven <span class="accent-gradient">Content</span></h3>
         <p class="work-card-desc">Workflows integrating Kling, Sora, Google Veo3, and motion control.</p>
         <div class="work-card-link">View Project →</div>
       </div>
@@ -256,7 +275,7 @@
     <a class="work-card liquid-glass" href="https://drive.google.com/drive/folders/17cdZ780gS4zIKc8LoGKl48gGMkcVX4L9" target="_blank">
       <div class="work-card-num">04</div>
       <div>
-        <h3 class="work-card-title">Podcast &amp;<br>Interview</h3>
+        <h3 class="work-card-title">Podcast &amp;<br>Interview <span class="accent-gradient">Story</span></h3>
         <p class="work-card-desc">Long-form editing, multi-camera sequences, and audio storytelling.</p>
         <div class="work-card-link">View Project →</div>
       </div>
@@ -264,29 +283,30 @@
   </div>
 </section>
 
-<!-- BRANDS -->
+<!-- BRANDS WITH REFINED GLASS PANEL & NEW CLIENT PLACEHOLDERS -->
 <section id="brands">
-  <div class="brands-container liquid-glass">
-    <span class="section-label" style="text-align: center;">Trusted By</span>
-    <h2 class="section-title" style="text-align: center; margin-bottom: 48px;">BRANDS I'VE<br>WORKED WITH.</h2>
+  <div class="brands-container liquid-glass" style="background-color: var(--surface);">
+    <span class="section-label" style="text-align: center; color: var(--secondary);">Trusted By</span>
+    <h2 class="section-title" style="text-align: center; margin-bottom: 64px;">BRANDS I'VE<br>WORKED WITH.</h2>
     <div class="brands-grid">
-      <!-- New Clients added as Liquid Glass cards -->
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Carofi Studio.png" alt="Carofi Studio"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="TBS.png" alt="TBS"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="ULT.png" alt="ULT"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Luqta.png" alt="Luqta"></div></div>
+      
+      <!-- Placeholder for New Clients: You must add images like TBS.png, ULT.png to your GitHub -->
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="TBS.png" alt="TBS (New Client)"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="ULT.png" alt="ULT (New Client)"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Luqta.png" alt="Luqta (New Client)"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Carofi Studio.png" alt="Carofi Studio (New Client)"></div></div>
       
       <!-- Existing Clients as Liquid Glass cards -->
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="mye.png" alt="MY E"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="ASFOUR CRYSTAL.png" alt="Asfour Crystal"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="mayai.png" alt="MY E"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="ASFOUR.png" alt="Asfour Crystal"></div></div>
       <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="gems.png" alt="Gems Schools"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="CEMEX.png" alt="Cemex"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="EVA.png" alt="Eva"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Football Access.png" alt="Football Access"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="EGX.png" alt="EGX"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="SGP Logo White.png" alt="SPG"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Spinneys.png" alt="Spinneys"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Carofi.png" alt="Carofi"></div></div>
       <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="MBG.png" alt="MPG"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="CEMEX.png" alt="Cemex"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="EVA.png" alt="Eva Pharma"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Football Access.png" alt="Football Access"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Spinneys.png" alt="Spinneys"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="BODIZ.png" alt="BODIZ"></div></div>
       <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="ZAHF.png" alt="ZAHF"></div></div>
     </div>
   </div>
@@ -336,17 +356,17 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="contact-block liquid-glass">
-    <span class="section-label">Let's Create</span>
+  <div class="contact-block liquid-glass" style="background-color: var(--theme-blue);">
+    <span class="section-label" style="color: var(--text-main);">Let's Create</span>
     <h3 class="text-gradient">READY TO BRING YOUR<br><span class="accent-gradient">VISION TO LIFE?</span></h3>
-    <a id="email-btn" href="#" class="btn-liquid liquid-glass" style="margin-top: 24px;">Start a Conversation</a>
+    <a id="email-btn" href="#" class="btn-liquid liquid-glass" style="margin-top: 24px; color: var(--theme-blue); background-color: var(--text-main);">Start a Conversation</a>
     
     <div class="contact-links">
-      <a class="clink liquid-glass" href="https://wa.me/201095020145" target="_blank">WhatsApp</a>
-      <a class="clink liquid-glass" href="https://eg.linkedin.com/in/amr-mosaad-14b67b38b" target="_blank">LinkedIn</a>
-      <a class="clink liquid-glass" href="https://www.instagram.com/amrrraw" target="_blank">Instagram</a>
-      <a class="clink liquid-glass" href="https://vimeo.com/user227317493" target="_blank">Vimeo</a>
-      <a class="clink liquid-glass" href="https://www.behance.net/amrmosad" target="_blank">Behance</a>
+      <a class="clink liquid-glass" href="https://wa.me/201095020145" target="_blank" style="color: var(--text-main);">WhatsApp</a>
+      <a class="clink liquid-glass" href="https://eg.linkedin.com/in/amr-mosaad-14b67b38b" target="_blank" style="color: var(--text-main);">LinkedIn</a>
+      <a class="clink liquid-glass" href="https://www.instagram.com/amrrraw" target="_blank" style="color: var(--text-main);">Instagram</a>
+      <a class="clink liquid-glass" href="https://vimeo.com/user227317493" target="_blank" style="color: var(--text-main);">Vimeo</a>
+      <a class="clink liquid-glass" href="https://www.behance.net/amrmosad" target="_blank" style="color: var(--text-main);">Behance</a>
     </div>
   </div>
 </section>

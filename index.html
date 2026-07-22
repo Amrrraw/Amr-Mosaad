@@ -7,112 +7,113 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* New Vibrant Palette from Reference Image 3 */
-    --bg-color: #000000;
+    /* Sleek, Dark Cinematic Palette */
+    --bg-color: #030305;
     --text-main: #ffffff;
-    --text-muted: #aaaaaa;
+    --text-muted: #8a8d98;
     
-    --theme-black: #000000;
-    --theme-red-orange: #FF4502;
-    --theme-bitter-lime: #C2FF01;
-    --theme-mauve: #DC88FF;
-    --theme-blue: #0044FF;
-    
-    /* Variables mapping to palette for easy updates */
-    --accent: var(--theme-red-orange); /* Main bold accent */
-    --secondary: var(--theme-bitter-lime); /* Secondary highlight */
-    --mauve-bg: rgba(220, 136, 255, 0.05); /* Tint for glass panels */
+    --accent: #00d2ff; /* Ice Blue */
+    --secondary: #9d4edd; /* Deep Purple */
   }
   
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { background-color: var(--theme-black); color: var(--text-main); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; position: relative; }
+  body { background-color: var(--bg-color); color: var(--text-main); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; position: relative; }
 
-  /* --- AMBIENT GLOW ORBS --- */
-  .glow-orb { position: fixed; border-radius: 50%; filter: blur(140px); z-index: -1; opacity: 0.35; animation: float 15s infinite alternate ease-in-out; pointer-events: none; }
-  .orb-1 { width: 50vw; height: 50vw; background: var(--theme-mauve); top: -20%; left: -10%; }
-  .orb-2 { width: 40vw; height: 40vw; background: var(--theme-blue); bottom: -10%; right: -5%; animation-delay: -5s; }
-  .orb-3 { width: 30vw; height: 30vw; background: rgba(255, 69, 2, 0.15); top: 30%; left: 35%; animation-delay: -2s; }
+  /* --- AMBIENT GLOW ORBS (Subtle) --- */
+  .glow-orb { position: fixed; border-radius: 50%; filter: blur(120px); z-index: -1; opacity: 0.15; animation: float 15s infinite alternate ease-in-out; pointer-events: none; }
+  .orb-1 { width: 50vw; height: 50vw; background: var(--secondary); top: -10%; left: -10%; }
+  .orb-2 { width: 40vw; height: 40vw; background: var(--accent); bottom: -10%; right: -5%; animation-delay: -5s; }
 
-  @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(40px, 20px) scale(1.1); } }
+  @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(30px, 15px) scale(1.05); } }
 
-  /* --- LIQUID GLASS UTILITY --- */
+  /* --- LIQUID GLASS UTILITY (For Cards & Buttons) --- */
   .liquid-glass {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-top: 1px solid rgba(255, 255, 255, 0.25);
-    border-left: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.03);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.02);
     border-radius: 20px;
     transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
   }
   .liquid-glass:hover {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 100%);
-    box-shadow: 0 15px 40px 0 rgba(0, 225, 255, 0.15), inset 0 0 30px rgba(255, 255, 255, 0.08);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+    box-shadow: 0 15px 40px 0 rgba(0, 210, 255, 0.1), inset 0 0 30px rgba(255, 255, 255, 0.05);
     transform: translateY(-5px);
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
-    border-left: 1px solid rgba(255, 255, 255, 0.25);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
   }
 
-  .text-gradient { background: linear-gradient(135deg, #fff, #7a7a85); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .accent-gradient { background: linear-gradient(135deg, var(--accent), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  /* --- STATIC GLASS FOR HEADER (Fixes the Glitch) --- */
+  .static-glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .accent-text { color: var(--accent); }
 
   /* HEADER */
   header { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 16px 32px; width: 90%; max-width: 1200px; border-radius: 50px; }
-  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 3px; color: var(--text-main); text-decoration: none; }
-  .logo span { color: var(--theme-blue); }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 3px; color: var(--text-main); text-decoration: none; transition: color 0.3s; }
+  .logo span { color: var(--accent); }
   nav { display: flex; gap: 32px; }
   nav a { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
   nav a:hover { color: var(--text-main); }
 
   /* HERO */
   .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 24px; position: relative; }
-  .hero-tag { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-main); padding: 12px 28px; margin-bottom: 32px; display: inline-block; border-radius: 50px; }
-  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(60px, 12vw, 140px); line-height: 0.9; letter-spacing: 2px; margin-bottom: 24px; }
-  .hero-sub { font-size: 18px; color: var(--text-muted); max-width: 600px; line-height: 1.8; margin-bottom: 48px; }
+  .hero-tag { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); padding: 12px 28px; margin-bottom: 32px; display: inline-block; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1); }
+  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(50px, 10vw, 120px); line-height: 0.95; letter-spacing: 2px; margin-bottom: 24px; color: var(--text-main); }
+  .hero h1 span { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.8); }
+  .hero-sub { font-size: 17px; color: var(--text-muted); max-width: 600px; line-height: 1.8; margin-bottom: 48px; }
   
   .hero-cta { display: flex; gap: 20px; justify-content: center; }
   .btn-liquid { color: #fff; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; padding: 18px 40px; text-decoration: none; display: inline-block; border-radius: 50px; cursor: pointer; }
   
   /* TICKER */
-  .ticker-wrap { overflow: hidden; padding: 24px 0; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.3); backdrop-filter: blur(10px); }
+  .ticker-wrap { overflow: hidden; padding: 24px 0; border-top: 1px solid rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.03); background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); }
   .ticker { display: flex; gap: 64px; animation: ticker 25s linear infinite; white-space: nowrap; }
   .ticker span { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px; color: var(--text-muted); }
-  .ticker .dot { color: var(--secondary); font-family: 'DM Sans'; font-size: 12px; }
+  .ticker .dot { color: var(--accent); font-family: 'DM Sans'; font-size: 12px; opacity: 0.5; }
 
   /* SECTION STRUCTURE */
   section { padding: 140px 5%; max-width: 1400px; margin: 0 auto; }
-  .section-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--theme-blue); margin-bottom: 16px; display: block; }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: block; }
   .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 6vw, 70px); letter-spacing: 1.5px; line-height: 1; margin-bottom: 64px; }
 
   /* ABOUT */
   .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: center; padding: 48px; }
-  .about-img-wrap { border-radius: 16px; overflow: hidden; position: relative; }
-  .about-img-wrap img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; opacity: 0.9; }
+  .about-img-wrap { border-radius: 16px; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,0.1); }
+  .about-img-wrap img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; opacity: 0.9; filter: grayscale(20%); }
   .about-text p { font-size: 16px; color: var(--text-muted); line-height: 1.9; margin-bottom: 24px; }
-  .about-text p strong { color: var(--text-main); }
+  .about-text p strong { color: var(--text-main); font-weight: 400; }
   
   .about-meta { margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.05); }
   .meta-block { display: flex; flex-direction: column; gap: 8px; }
-  .meta-key { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
-  .meta-val { font-size: 15px; color: var(--text-main); }
+  .meta-key { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); opacity: 0.8; }
+  .meta-val { font-size: 14px; color: var(--text-main); }
 
-  /* WORK CARDS — NEW 2x2 GRID LAYOUT */
+  /* WORK CARDS — STRICT 2x2 RECTANGULAR GRID */
   .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-  .work-card { padding: 48px; text-decoration: none; display: flex; flex-direction: column; justify-content: flex-end; min-height: 380px; text-align: left; }
+  .work-card { padding: 48px; text-decoration: none; display: flex; flex-direction: column; justify-content: flex-end; min-height: 340px; text-align: left; }
   .work-card-num { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; color: var(--secondary); margin-bottom: 16px; display: block; }
-  .work-card-title { font-family: 'Bebas Neue', sans-serif; font-size: 48px; letter-spacing: 1.5px; color: var(--text-main); margin-bottom: 16px; margin-top: 0px; }
-  .work-card-title .accent-gradient { display: block; }
-  .work-card-desc { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 32px; max-width: 420px;}
-  .work-card-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--theme-blue); display: flex; align-items: center; gap: 8px; }
+  .work-card-title { font-family: 'Bebas Neue', sans-serif; font-size: 44px; letter-spacing: 1.5px; color: var(--text-main); margin-bottom: 16px; margin-top: 0px; line-height: 1.1; }
+  .work-card-desc { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 32px; max-width: 90%; }
+  .work-card-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 8px; opacity: 0.8; transition: opacity 0.3s; }
+  .work-card:hover .work-card-link { opacity: 1; }
 
   /* BRANDS */
-  .brands-container { padding: 80px 48px; background: rgba(0,0,0,0.5); backdrop-filter: blur(30px);}
-  .brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 32px; align-items: center; justify-items: center; }
-  .brand-item { width: 100%; height: 140px; display: flex; align-items: center; justify-content: center; padding: 24px; }
-  .brand-logo-wrap { height: 60px; width: 100%; display: flex; align-items: center; justify-content: center; filter: brightness(0) invert(1); opacity: 0.5; transition: opacity 0.3s, transform 0.3s; }
+  .brands-container { padding: 80px 48px; }
+  .brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px; align-items: center; justify-items: center; }
+  .brand-item { width: 100%; height: 120px; display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .brand-logo-wrap { height: 50px; width: 100%; display: flex; align-items: center; justify-content: center; filter: brightness(0) invert(1); opacity: 0.4; transition: opacity 0.3s, transform 0.3s; }
   .brand-item:hover .brand-logo-wrap { opacity: 1; transform: scale(1.05); }
   .brand-logo-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
@@ -121,15 +122,15 @@
   .exp-intro { font-size: 16px; color: var(--text-muted); line-height: 1.9; margin-bottom: 32px; }
   .skills-list { display: flex; flex-direction: column; gap: 24px; }
   .skill-item { padding: 32px; display: flex; align-items: flex-start; gap: 24px; }
-  .skill-num { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; color: var(--theme-blue); width: 30px; flex-shrink: 0; }
+  .skill-num { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; color: var(--accent); width: 30px; flex-shrink: 0; opacity: 0.7; }
   .skill-info h4 { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px; color: var(--text-main); margin-bottom: 8px; }
   .skill-info p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
 
   /* CONTACT */
   .contact-block { padding: 100px; text-align: center; display: flex; flex-direction: column; align-items: center; border-radius: 40px; }
-  .contact-block h3 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 8vw, 100px); line-height: 1; margin-bottom: 32px; }
+  .contact-block h3 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 8vw, 80px); line-height: 1; margin-bottom: 32px; }
   .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 48px; }
-  .clink { padding: 14px 28px; text-decoration: none; color: var(--text-main); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-radius: 50px; }
+  .clink { padding: 14px 28px; text-decoration: none; color: var(--text-main); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1); transition: background 0.3s; }
   .clink:hover { background: rgba(255,255,255,0.05); }
   
   footer { padding: 40px 5%; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 64px; }
@@ -137,16 +138,15 @@
 
   @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1024px) {
     .work-grid { grid-template-columns: 1fr 1fr; gap: 20px;}
-    .work-card { padding: 32px; min-height: 320px;}
-    .work-card-title { font-size: 36px; }
+    .work-card { padding: 32px; min-height: 300px;}
+    .work-card-title { font-size: 32px; }
   }
   @media (max-width: 992px) {
     .about-grid, .exp-wrapper { grid-template-columns: 1fr; }
     .about-grid { padding: 32px; }
     header { width: 95%; padding: 16px 24px; }
-    .work-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 768px) {
     nav { display: none; }
@@ -162,9 +162,9 @@
 <!-- AMBIENT GLOW ORBS -->
 <div class="glow-orb orb-1"></div>
 <div class="glow-orb orb-2"></div>
-<div class="glow-orb orb-3"></div>
 
-<header class="liquid-glass">
+<!-- HEADER (Static Glass to fix glitch) -->
+<header class="static-glass">
   <a class="logo" href="#">AMR MOSAAD<span>.</span></a>
   <nav>
     <a href="#about">About</a>
@@ -176,8 +176,8 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-tag liquid-glass">Video Editor & Motion Designer</div>
-  <h1 class="text-gradient">TELLING STORIES<br><span class="accent-gradient">THROUGH FRAMES.</span></h1>
+  <div class="hero-tag static-glass">Video Editor & Motion Designer</div>
+  <h1>TELLING STORIES<br><span>THROUGH FRAMES.</span></h1>
   <p class="hero-sub">Crafting cinematic content and motion graphics for leading brands. Specializing in Premiere Pro, After Effects, DaVinci Resolve, and next-gen AI production tools.</p>
   
   <div class="hero-cta">
@@ -207,7 +207,7 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-grid liquid-glass" style="background-color: rgba(0,0,0,0.5);">
+  <div class="about-grid liquid-glass">
     <div class="about-img-wrap">
       <img src="amr.jpg" alt="Amr Mosaad">
     </div>
@@ -239,7 +239,7 @@
   </div>
 </section>
 
-<!-- WORK - NEW 2x2 RECTANGULAR LAYOUT -->
+<!-- WORK - STRICT 2x2 GRID -->
 <section id="work">
   <span class="section-label">Selected Work</span>
   <h2 class="section-title">PROJECTS BY<br>CATEGORY.</h2>
@@ -248,7 +248,7 @@
     <a class="work-card liquid-glass" href="https://drive.google.com/drive/folders/114cgugcHQnhnJALZ2k195yRI5QLxwErn" target="_blank">
       <div class="work-card-num">01</div>
       <div>
-        <h3 class="work-card-title">Short-Form<br>&amp; Social <span class="accent-gradient">Content</span></h3>
+        <h3 class="work-card-title">Short-Form<br>&amp; Social</h3>
         <p class="work-card-desc">Platform-optimized, fast-paced edits designed for high engagement.</p>
         <div class="work-card-link">View Project →</div>
       </div>
@@ -257,7 +257,7 @@
     <a class="work-card liquid-glass" href="https://drive.google.com/drive/folders/1gtGnYcnMoK5i2egpfYC7IFVinbhcjMJb" target="_blank">
       <div class="work-card-num">02</div>
       <div>
-        <h3 class="work-card-title">Motion <span class="accent-gradient">Graphics</span></h3>
+        <h3 class="work-card-title">Motion<br>Graphics</h3>
         <p class="work-card-desc">Branded intros, outros, and UI elements animated in After Effects.</p>
         <div class="work-card-link">View Project →</div>
       </div>
@@ -266,7 +266,7 @@
     <a class="work-card liquid-glass" href="https://drive.google.com/drive/folders/1jqqYHM_0CfwDM-qdXy9dIQpqIqleqr-0" target="_blank">
       <div class="work-card-num">03</div>
       <div>
-        <h3 class="work-card-title">AI-Driven <span class="accent-gradient">Content</span></h3>
+        <h3 class="work-card-title">AI-Driven<br>Content</h3>
         <p class="work-card-desc">Workflows integrating Kling, Sora, Google Veo3, and motion control.</p>
         <div class="work-card-link">View Project →</div>
       </div>
@@ -275,7 +275,7 @@
     <a class="work-card liquid-glass" href="https://drive.google.com/drive/folders/17cdZ780gS4zIKc8LoGKl48gGMkcVX4L9" target="_blank">
       <div class="work-card-num">04</div>
       <div>
-        <h3 class="work-card-title">Podcast &amp;<br>Interview <span class="accent-gradient">Story</span></h3>
+        <h3 class="work-card-title">Podcast &amp;<br>Interview</h3>
         <p class="work-card-desc">Long-form editing, multi-camera sequences, and audio storytelling.</p>
         <div class="work-card-link">View Project →</div>
       </div>
@@ -283,22 +283,22 @@
   </div>
 </section>
 
-<!-- BRANDS WITH REFINED GLASS PANEL & NEW CLIENT PLACEHOLDERS -->
+<!-- BRANDS -->
 <section id="brands">
-  <div class="brands-container liquid-glass" style="background-color: var(--surface);">
-    <span class="section-label" style="text-align: center; color: var(--secondary);">Trusted By</span>
+  <div class="brands-container static-glass" style="border-radius: 20px;">
+    <span class="section-label" style="text-align: center;">Trusted By</span>
     <h2 class="section-title" style="text-align: center; margin-bottom: 64px;">BRANDS I'VE<br>WORKED WITH.</h2>
     <div class="brands-grid">
       
-      <!-- Placeholder for New Clients: You must add images like TBS.png, ULT.png to your GitHub -->
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="TBS.png" alt="TBS (New Client)"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="ULT.png" alt="ULT (New Client)"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Luqta.png" alt="Luqta (New Client)"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Carofi Studio.png" alt="Carofi Studio (New Client)"></div></div>
+      <!-- New Clients -->
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="TBS.png" alt="TBS"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="ULT.png" alt="ULT"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Luqta.png" alt="Luqta"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Carofi Studio.png" alt="Carofi Studio"></div></div>
       
-      <!-- Existing Clients as Liquid Glass cards -->
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="mayai.png" alt="MY E"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="ASFOUR.png" alt="Asfour Crystal"></div></div>
+      <!-- Existing Clients -->
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="mye.png" alt="MY E"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="ASFOUR CRYSTAL.png" alt="Asfour Crystal"></div></div>
       <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="gems.png" alt="Gems Schools"></div></div>
       <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Carofi.png" alt="Carofi"></div></div>
       <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="MBG.png" alt="MPG"></div></div>
@@ -306,7 +306,7 @@
       <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="EVA.png" alt="Eva Pharma"></div></div>
       <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Football Access.png" alt="Football Access"></div></div>
       <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Spinneys.png" alt="Spinneys"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="BODIZ.png" alt="BODIZ"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Bodïz.png" alt="BODIZ"></div></div>
       <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="ZAHF.png" alt="ZAHF"></div></div>
     </div>
   </div>
@@ -356,17 +356,17 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="contact-block liquid-glass" style="background-color: var(--theme-blue);">
-    <span class="section-label" style="color: var(--text-main);">Let's Create</span>
-    <h3 class="text-gradient">READY TO BRING YOUR<br><span class="accent-gradient">VISION TO LIFE?</span></h3>
-    <a id="email-btn" href="#" class="btn-liquid liquid-glass" style="margin-top: 24px; color: var(--theme-blue); background-color: var(--text-main);">Start a Conversation</a>
+  <div class="contact-block static-glass">
+    <span class="section-label">Let's Create</span>
+    <h3>READY TO BRING YOUR<br><span class="accent-text">VISION TO LIFE?</span></h3>
+    <a id="email-btn" href="#" class="btn-liquid liquid-glass" style="margin-top: 24px; background: rgba(255,255,255,0.05);">Start a Conversation</a>
     
     <div class="contact-links">
-      <a class="clink liquid-glass" href="https://wa.me/201095020145" target="_blank" style="color: var(--text-main);">WhatsApp</a>
-      <a class="clink liquid-glass" href="https://eg.linkedin.com/in/amr-mosaad-14b67b38b" target="_blank" style="color: var(--text-main);">LinkedIn</a>
-      <a class="clink liquid-glass" href="https://www.instagram.com/amrrraw" target="_blank" style="color: var(--text-main);">Instagram</a>
-      <a class="clink liquid-glass" href="https://vimeo.com/user227317493" target="_blank" style="color: var(--text-main);">Vimeo</a>
-      <a class="clink liquid-glass" href="https://www.behance.net/amrmosad" target="_blank" style="color: var(--text-main);">Behance</a>
+      <a class="clink" href="https://wa.me/201095020145" target="_blank">WhatsApp</a>
+      <a class="clink" href="https://eg.linkedin.com/in/amr-mosaad-14b67b38b" target="_blank">LinkedIn</a>
+      <a class="clink" href="https://www.instagram.com/amrrraw" target="_blank">Instagram</a>
+      <a class="clink" href="https://vimeo.com/user227317493" target="_blank">Vimeo</a>
+      <a class="clink" href="https://www.behance.net/amrmosad" target="_blank">Behance</a>
     </div>
   </div>
 </section>

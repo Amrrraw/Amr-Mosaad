@@ -7,420 +7,350 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #030305; --surface: #0a0a0c; --border: rgba(255, 255, 255, 0.04);
-    --accent: #ff8c00; --text: #f0ede8; --muted: #666; --card-hover: #111114;
-    --glass: rgba(10, 10, 12, 0.7); /* Deep Glass Effect */
+    --bg-color: #07070a;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-hover: rgba(255, 255, 255, 0.07);
+    --text-main: #ffffff;
+    --text-muted: #9ba1a6;
+    --accent-blue: #00e1ff;
+    --accent-purple: #9d00ff;
   }
+  
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+  body { background-color: var(--bg-color); color: var(--text-main); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; position: relative; }
 
-  /* VIDEO BACKGROUND */
-  .video-bg-container { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; }
-  .video-bg-container video { min-width: 100%; min-height: 100%; width: auto; height: auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); object-fit: cover; opacity: 0.15; filter: blur(40px); }
-  .video-overlay-grain { position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: -1; opacity: 0.3; }
+  /* --- AMBIENT GLOW ORBS (Reference Matching) --- */
+  .glow-orb { position: fixed; border-radius: 50%; filter: blur(140px); z-index: -1; opacity: 0.4; animation: float 15s infinite alternate ease-in-out; pointer-events: none; }
+  .orb-1 { width: 50vw; height: 50vw; background: var(--accent-purple); top: -20%; left: -10%; }
+  .orb-2 { width: 40vw; height: 40vw; background: var(--accent-blue); bottom: -10%; right: -5%; animation-delay: -5s; }
+  .orb-3 { width: 30vw; height: 30vw; background: rgba(0, 225, 255, 0.2); top: 30%; left: 35%; animation-delay: -2s; }
+
+  @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(50px, 30px) scale(1.1); } }
+
+  /* --- GLASS UTILITIES --- */
+  .glass-panel { background: var(--glass-bg); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--glass-border); border-radius: 24px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); }
+  .glass-pill { background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: 50px; }
+  .text-gradient { background: linear-gradient(135deg, #fff, #7a7a85); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .accent-gradient { background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
   /* HEADER */
-  header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: var(--glass); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
-  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 4px; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 8px; }
-  .logo span { color: var(--accent); }
-  .logo::before { content: ''; width: 12px; height: 12px; background: #ff4444; border-radius: 50%; box-shadow: 0 0 10px rgba(255,68,68,0.5); } /* Rec Light */
-  nav { display: flex; gap: 28px; }
-  nav a { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #fff; text-decoration: none; transition: opacity 0.2s, color 0.2s; opacity: 0.8; }
-  nav a:hover { opacity: 1; color: var(--accent); }
+  header { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 16px 32px; width: 90%; max-width: 1200px; }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 3px; color: var(--text-main); text-decoration: none; }
+  .logo span { color: var(--accent-blue); }
+  nav { display: flex; gap: 32px; }
+  nav a { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+  nav a:hover { color: var(--text-main); }
 
   /* HERO */
-  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 40px 100px; position: relative; overflow: hidden; }
-  .hero-glass-panel { position: absolute; inset: 0; background: radial-gradient(circle at 70% 30%, rgba(255, 140, 0, 0.05) 0%, transparent 70%); z-index: 0; }
-  .hero-line { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; margin-bottom: 20px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
-  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(60px, 10vw, 130px); line-height: 0.95; letter-spacing: 2px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; color: #fff; text-transform: uppercase; }
-  .hero h1 .accent { color: var(--accent); }
-  .hero h1 .film-grain { color: var(--text); -webkit-text-stroke: 1px rgba(240,237,232,0.3); color: transparent; }
-  .hero-sub { font-size: 16px; color: #bbb; margin-top: 28px; max-width: 550px; line-height: 1.8; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
-  .hero-clients { margin-top: 36px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.7s forwards; }
-  .hero-clients .clabel { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-  .clients-row { display: flex; flex-wrap: wrap; gap: 8px; max-width: 600px; }
-  .chip { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 14px; border: 1px solid rgba(255, 140, 0, 0.1); color: rgba(240,237,232,0.6); background: rgba(255, 140, 0, 0.02); transition: border-color 0.2s, color 0.2s, background 0.2s; cursor: default; }
-  .chip:hover { border-color: var(--accent); color: var(--accent); background: rgba(255, 140, 0, 0.05); }
-  .hero-cta { margin-top: 48px; display: flex; gap: 16px; z-index: 1; position: relative; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
-  .btn-primary { background: var(--accent); color: #000; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 36px; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: transform 0.15s, box-shadow 0.15s; font-weight: 400; }
-  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(255, 140, 0, 0.3); }
-  .btn-ghost { background: transparent; color: #fff; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 36px; border: 1px solid var(--border); cursor: pointer; text-decoration: none; display: inline-block; transition: border-color 0.2s, color 0.2s, background 0.2s; background: rgba(255,255,255,0.02); }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: rgba(255, 140, 0, 0.02); }
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 24px; position: relative; }
+  .hero-tag { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-main); padding: 10px 24px; margin-bottom: 32px; display: inline-block; }
+  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(60px, 12vw, 140px); line-height: 0.9; letter-spacing: 2px; margin-bottom: 24px; }
+  .hero-sub { font-size: 18px; color: var(--text-muted); max-width: 600px; line-height: 1.8; margin-bottom: 48px; }
+  
+  .hero-cta { display: flex; gap: 16px; justify-content: center; }
+  .btn-primary { background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); color: #fff; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; padding: 16px 40px; border: none; border-radius: 50px; cursor: pointer; text-decoration: none; display: inline-block; transition: transform 0.2s, box-shadow 0.2s; font-weight: 500; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 225, 255, 0.3); }
+  .btn-ghost { color: var(--text-main); font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; padding: 16px 40px; text-decoration: none; display: inline-block; transition: background 0.3s; }
+  .btn-ghost:hover { background: rgba(255,255,255,0.05); }
 
-  /* TICKER - FILM STRIP */
-  .ticker-wrap { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 20px 0; background: var(--surface); position: relative; }
-  .ticker-wrap::before { content: ''; position: absolute; left: 0; width: 10%; height: 100%; background: linear-gradient(to right, var(--surface), transparent); z-index: 1; }
-  .ticker-wrap::after { content: ''; position: absolute; right: 0; width: 10%; height: 100%; background: linear-gradient(to left, var(--surface), transparent); z-index: 1; }
-  .ticker { display: flex; gap: 80px; animation: ticker 25s linear infinite; white-space: nowrap; }
-  .ticker span { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 3px; color: #888; flex-shrink: 0; text-transform: uppercase; }
-  .ticker span strong { color: #fff; font-weight: 300; font-family: 'DM Sans', sans-serif; }
-  .ticker .film-perf { color: var(--accent); margin-right: 12px; opacity: 0.3; }
+  /* TICKER */
+  .ticker-wrap { overflow: hidden; padding: 24px 0; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); background: rgba(0,0,0,0.2); backdrop-filter: blur(10px); }
+  .ticker { display: flex; gap: 64px; animation: ticker 25s linear infinite; white-space: nowrap; }
+  .ticker span { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px; color: var(--text-muted); }
+  .ticker .dot { color: var(--accent-blue); font-family: 'DM Sans'; font-size: 12px; }
 
-  /* SECTION */
-  section { padding: 120px 40px; }
-  .section-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
-  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 68px); letter-spacing: 1.5px; line-height: 1; margin-bottom: 64px; color: #fff; }
+  /* SECTION STRUCTURE */
+  section { padding: 140px 5%; max-width: 1400px; margin: 0 auto; }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 16px; }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 6vw, 70px); letter-spacing: 1.5px; line-height: 1; margin-bottom: 64px; }
 
   /* ABOUT */
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-  .about-img-wrap { position: relative; overflow: hidden; border: 1px solid var(--border); background: var(--surface); }
-  .about-img-wrap img { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: top; display: block; position: relative; z-index: 1; filter: grayscale(100%) contrast(1.1); transition: filter 0.3s; }
-  .about-img-wrap:hover img { filter: grayscale(0%) contrast(1); }
-  .about-text p { font-size: 16px; color: #bbb; line-height: 1.9; margin-bottom: 24px; }
-  .about-text p strong { color: var(--text); }
-  .about-meta { margin-top: 40px; display: flex; flex-direction: column; gap: 12px; }
-  .meta-row { display: flex; gap: 20px; }
-  .meta-key { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); width: 80px; flex-shrink: 0; padding-top: 2px; }
-  .meta-val { font-size: 14px; color: #999; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; padding: 48px; }
+  .about-img-wrap { border-radius: 16px; overflow: hidden; position: relative; }
+  .about-img-wrap img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; opacity: 0.9; }
+  .about-text p { font-size: 16px; color: var(--text-muted); line-height: 1.9; margin-bottom: 24px; }
+  .about-text p strong { color: var(--text-main); }
+  
+  .about-meta { margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .meta-block { display: flex; flex-direction: column; gap: 8px; }
+  .meta-key { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-blue); }
+  .meta-val { font-size: 15px; color: var(--text-main); }
 
-  /* ABOUT VIDEO PLAYER */
-  .about-video-wrap { margin: 40px 0 10px; position: relative; border: 1px solid var(--border); overflow: hidden; background: #000; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-  .about-video-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; background: rgba(0,0,0,0.5); border-bottom: 1px solid var(--border); }
-  .about-video-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); opacity: 0.8; }
-  .mute-btn { background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: #888; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 12px; cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s; }
-  .mute-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(255,140,0,0.05); }
-  .about-video-wrap video { width: 100%; display: block; filter: contrast(1.05); }
-
-  /* WORK — FILMSTRIP STYLE */
-  #work { background: var(--surface); padding: 120px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  #work .section-inner { padding: 0 40px; margin-bottom: 56px; }
-  .work-grid { display: grid; grid-template-columns: 1fr; gap: 10px; padding: 0 40px; }
-  .work-card { background: rgba(0,0,0,0.4); padding: 40px; border: 1px solid var(--border); border-radius: 4px; text-decoration: none; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s, transform 0.2s, border-color 0.3s; position: relative; overflow: hidden; }
-  .work-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, transparent 40%, rgba(255, 140, 0, 0.03)); opacity: 0; transition: opacity 0.3s; }
-  .work-card:hover::before { opacity: 1; }
-  .work-card:hover { background: #0c0c10; transform: translateY(-3px); border-color: rgba(255,140,0,0.1); }
-  .work-card-info { max-width: 500px; }
-  .work-card-num { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; color: var(--accent); margin-bottom: 16px; display: block; opacity: 0.6; }
-  .work-card-title { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 1px; margin-bottom: 12px; color: #fff; }
-  .work-card:hover .work-card-title { color: var(--accent); }
-  .work-card-desc { font-size: 14px; color: #999; line-height: 1.7; }
-  .work-card-arrow { font-size: 28px; color: #444; transition: transform 0.2s, color 0.2s; font-family: 'DM Mono', monospace; }
-  .work-card:hover .work-card-arrow { transform: translateX(5px); color: var(--accent); }
+  /* WORK CARDS */
+  .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  .work-card { padding: 40px; text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; min-height: 320px; transition: background 0.3s, transform 0.3s, border-color 0.3s; }
+  .work-card:hover { background: var(--glass-hover); transform: translateY(-5px); border-color: rgba(255,255,255,0.15); }
+  .work-card-num { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; color: var(--accent-purple); margin-bottom: auto; }
+  .work-card-title { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 1px; color: var(--text-main); margin-bottom: 16px; margin-top: 40px; }
+  .work-card-desc { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 24px; }
+  .work-card-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-blue); display: flex; align-items: center; gap: 8px; }
 
   /* BRANDS */
-  #brands { background: var(--bg); position: relative; }
-  .brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-  .brand-item { background: var(--bg); height: 110px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; transition: background 0.2s; }
-  .brand-item:hover { background: rgba(255,140,0,0.02); }
-  .brand-logo-wrap { width: 100px; height: 40px; display: flex; align-items: center; justify-content: center; filter: brightness(0) invert(1); opacity: 0.4; transition: opacity 0.2s; }
-  .brand-item:hover .brand-logo-wrap { opacity: 1; }
+  .brands-container { padding: 48px; }
+  .brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 32px; align-items: center; justify-items: center; }
+  .brand-logo-wrap { height: 40px; display: flex; align-items: center; justify-content: center; filter: brightness(0) invert(1); opacity: 0.4; transition: opacity 0.3s; }
+  .brand-logo-wrap:hover { opacity: 1; }
   .brand-logo-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; }
-  .brand-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; color: #fff; }
-  .brand-name { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 10px; text-align: center; display: none; }
-  .brand-item:hover .brand-name { display: block; }
 
-  /* EXPERIENCE */
-  .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
-  .exp-intro { font-size: 15px; color: #aaa; line-height: 1.9; margin-bottom: 40px; }
-  .exp-entry { border-left: 2px solid var(--border); padding-left: 32px; transition: border-color 0.2s; position: relative; margin-top: 40px; }
-  .exp-entry:hover { border-color: var(--accent); }
-  .exp-entry::before { content: 'REC'; position: absolute; left: -1px; top: -1px; transform: translateX(-50%); background: #ff4444; color: #fff; font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 1px; padding: 3px 6px; border-radius: 2px; visibility: hidden; }
-  .exp-entry:hover::before { visibility: visible; }
-  .exp-company { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 1.5px; color: #fff; margin-bottom: 6px; }
-  .exp-period-role { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); opacity: 0.7; margin-bottom: 16px; }
-  .skills-list { display: flex; flex-direction: column; }
-  .skill-row { display: flex; align-items: flex-start; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--border); }
-  .skill-row:first-child { border-top: 1px solid var(--border); }
-  .skill-num { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; color: var(--accent); width: 24px; flex-shrink: 0; padding-top: 4px; opacity: 0.6; }
-  .skill-name { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px; margin-bottom: 6px; color: #f2f2f2; }
-  .skill-desc { font-size: 13px; color: #999; line-height: 1.7; }
+  /* EXPERIENCE & SKILLS */
+  .exp-wrapper { display: grid; grid-template-columns: 1fr 1.5fr; gap: 64px; }
+  .exp-intro { font-size: 16px; color: var(--text-muted); line-height: 1.9; margin-bottom: 32px; }
+  .skills-list { display: flex; flex-direction: column; gap: 16px; }
+  .skill-item { padding: 24px; display: flex; align-items: flex-start; gap: 24px; }
+  .skill-num { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; color: var(--accent-blue); width: 30px; flex-shrink: 0; }
+  .skill-info h4 { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px; color: var(--text-main); margin-bottom: 8px; }
+  .skill-info p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
 
-  /* SKILLS GRID - TOOLKIT */
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
-  .skill-item { background: rgba(0,0,0,0.3); padding: 32px; border: 1px solid var(--border); border-radius: 4px; transition: border-color 0.3s, background 0.3s; }
-  .skill-item:hover { border-color: rgba(255,140,0,0.1); background: #0c0c10; }
-  .skill-item h4 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; margin-bottom: 10px; color: #fff; }
-  .skill-item p { font-size: 13px; color: #999; line-height: 1.7; }
+  /* CONTACT */
+  .contact-block { padding: 80px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+  .contact-block h3 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 8vw, 90px); line-height: 1; margin-bottom: 24px; }
+  .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 48px; }
+  .clink { padding: 12px 24px; text-decoration: none; color: var(--text-main); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; transition: background 0.3s, border-color 0.3s; }
+  .clink:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.2); }
 
-  /* CONTACT — DUAL PANEL */
-  .contact-block { display: grid; grid-template-columns: 1fr 1.1fr; gap: 0; border: 1px solid var(--border); background: var(--surface); box-shadow: 0 40px 80px rgba(0,0,0,0.6); overflow: hidden; margin-bottom: 40px; }
-  .contact-left { padding: 80px; border-right: 1px solid var(--border); position: relative; }
-  .contact-left .grid-overlay { position: absolute; inset: 0; background-image: radial-gradient(var(--border) 1px, transparent 1px); background-size: 16px 16px; opacity: 0.05; }
-  .contact-left p { font-size: 16px; color: #aaa; line-height: 1.9; margin-bottom: 48px; max-width: 450px; z-index: 1; position: relative; }
-  .contact-links { display: flex; flex-direction: column; z-index: 1; position: relative; }
-  .clink { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--border); text-decoration: none; color: #fff; transition: background 0.2s; padding-left: 10px; padding-right: 10px; }
-  .clink:first-child { border-top: 1px solid var(--border); }
-  .clink:hover { background: rgba(255,140,0,0.02); }
-  .clink-left { display: flex; align-items: center; gap: 16px; }
-  .clink-platform { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); width: 85px; opacity: 0.7; }
-  .clink-val { font-size: 14px; color: #ccc; }
-  .clink-arrow { font-size: 16px; color: #444; transition: transform 0.2s, color 0.2s; font-family: 'DM Mono', monospace; }
-  .clink:hover .clink-arrow { color: var(--accent); transform: translateX(5px); }
+  footer { padding: 32px 5%; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--glass-border); margin-top: 64px; }
+  footer p { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; }
 
-  .contact-right { background: #000; padding: 80px; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
-  .contact-right::after { content: ' '; position: absolute; inset: -100%; background: linear-gradient(135deg, #000 0%, #111 50%, #000 100%); animation: bgShift 10s infinite linear; opacity: 0.5; z-index: 0; }
-  .contact-right h3 { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: #fff; line-height: 1; margin-bottom: 24px; position: relative; z-index: 1; }
-  .contact-right p { font-size: 15px; color: #999; line-height: 1.8; margin-bottom: 40px; position: relative; z-index: 1; max-width: 380px; }
-  .btn-dark { background: #fff; color: #000; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; padding: 16px 40px; border: none; cursor: pointer; text-decoration: none; display: inline-block; width: fit-content; transition: background 0.2s, color 0.2s; position: relative; z-index: 1; font-weight: 500; }
-  .btn-dark:hover { background: var(--accent); color: #000; }
-
-  /* FOOTER */
-  footer { padding: 40px; display: flex; justify-content: space-between; align-items: center; background: var(--surface); border-top: 1px solid var(--border); }
-  footer p { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #777; text-transform: uppercase; }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  @keyframes bgShift { from { transform: translateY(-25%) translateX(-25%); } to { transform: translateY(0) translateX(0); } }
 
-  /* MEDIA QUERIES */
   @media (max-width: 992px) {
-    section { padding: 80px 24px; }
-    .hero { padding: 0 24px 80px; }
-    .about-grid, .exp-grid { grid-template-columns: 1fr; gap: 40px; }
-    .contact-block { grid-template-columns: 1fr; }
-    .contact-left { border-right: none; border-bottom: 1px solid var(--border); }
-    .contact-left, .contact-right { padding: 60px 24px; }
-    .logo { font-size: 24px; }
-    nav { gap: 16px; }
-    .hero h1 { font-size: clamp(40px, 8vw, 80px); }
+    .about-grid, .exp-wrapper { grid-template-columns: 1fr; }
+    .glass-panel { padding: 32px; }
+    header { width: 95%; padding: 16px 24px; }
   }
-  @media (max-width: 600px) {
-    header { padding: 16px 20px; }
+  @media (max-width: 768px) {
     nav { display: none; }
-    .work-grid { padding: 0 24px; }
-    .work-card { padding: 24px; flex-direction: column; text-align: center; gap: 20px; }
-    .work-card-info { text-align: center; }
-    .work-card-arrow { transform: rotate(90deg); }
-    .work-card:hover .work-card-arrow { transform: rotate(90deg) translateX(5px); }
-    footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px; }
+    .hero-cta { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
+    .contact-block { padding: 48px 24px; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
   }
 </style>
 </head>
 <body>
 
-<!-- VIDEO BACKGROUND -->
-<div class="video-bg-container">
-  <!-- replace this with a subtle looping background video of your own -->
-  <video autoplay muted loop playsinline src="background.mp4"></video> 
-  <div class="video-overlay-grain"></div>
-</div>
+<!-- AMBIENT GLOW ORBS -->
+<div class="glow-orb orb-1"></div>
+<div class="glow-orb orb-2"></div>
+<div class="glow-orb orb-3"></div>
 
-<header>
+<header class="glass-pill">
   <a class="logo" href="#">AMR MOSAAD<span>.</span></a>
   <nav>
     <a href="#about">About</a>
     <a href="#work">Work</a>
     <a href="#brands">Brands</a>
     <a href="#experience">Experience</a>
-    <a href="#toolkit">Toolkit</a>
-    <a href="#contact">Contact</a>
   </nav>
 </header>
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-glass-panel"></div>
-  <div class="hero-line">Editor & Motion Designer — Cairo, Egypt</div>
-  <h1>TELLING<br><span class="accent">STORIES</span><br>THROUGH<br><span class="film-grain">FRAMES.</span></h1>
-  <p class="hero-sub">Nearly 2 years crafting cinematic content and motion graphics for leading brands. Specializing in Premiere Pro, After Effects, DaVinci Resolve, and next-gen AI tools.</p>
+  <div class="hero-tag glass-pill">Video Editor & Motion Designer</div>
+  <h1 class="text-gradient">TELLING STORIES<br><span class="accent-gradient">THROUGH FRAMES.</span></h1>
+  <p class="hero-sub">Crafting cinematic content and motion graphics for leading brands. Specializing in Premiere Pro, After Effects, DaVinci Resolve, and next-gen AI production tools.</p>
   
-  <div class="hero-clients">
-    <div class="clabel">Selected Clients</div>
-    <div class="clients-row">
-      <span class="chip">MY E</span><span class="chip">Asfour Crystal</span><span class="chip">Gems Schools</span><span class="chip">CEMEX</span><span class="chip">EVA</span><span class="chip">SPG</span><span class="chip">Spinneys</span><span class="chip">Al Baraka</span>
-    </div>
-  </div>
-
   <div class="hero-cta">
     <a href="#work" class="btn-primary">View Showreel</a>
-    <a href="#contact" class="btn-ghost">Get In Touch</a>
+    <a href="#contact" class="btn-ghost glass-pill">Get In Touch</a>
   </div>
 </section>
 
-<!-- TICKER - FILM STRIP -->
+<!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker">
-    <span class="film-perf">🎞️</span><span>VIDEO EDITING <strong>Advanced Pacing</strong></span>
-    <span class="film-perf">🎞️</span><span>MOTION GRAPHICS <strong>Logo &amp; UI Animation</strong></span>
-    <span class="film-perf">🎞️</span><span>COLOR GRADING <strong>Cinematic Look</strong></span>
-    <span class="film-perf">🎞️</span><span>AI VIDEO TOOLS <strong>Kling, Sora, Google Veo3</strong></span>
-    <span class="film-perf">🎞️</span><span>STORYTELLING <strong>Narrative Cut</strong></span>
-    <span class="film-perf">🎞️</span><span>VIDEO EDITING <strong>Multicam &amp; Continuity</strong></span>
-    <span class="film-perf">🎞️</span><span>MOTION GRAPHICS <strong>Kinetic Typography</strong></span>
-    <!-- Repeat for seamless animation -->
-    <span class="film-perf">🎞️</span><span>VIDEO EDITING <strong>Advanced Pacing</strong></span>
-    <span class="film-perf">🎞️</span><span>MOTION GRAPHICS <strong>Logo &amp; UI Animation</strong></span>
-    <span class="film-perf">🎞️</span><span>COLOR GRADING <strong>Cinematic Look</strong></span>
-    <span class="film-perf">🎞️</span><span>AI VIDEO TOOLS <strong>Kling, Sora, Google Veo3</strong></span>
-    <span class="film-perf">🎞️</span><span>STORYTELLING <strong>Narrative Cut</strong></span>
+    <span>VIDEO EDITING</span><span class="dot">●</span>
+    <span>MOTION GRAPHICS</span><span class="dot">●</span>
+    <span>COLOR GRADING</span><span class="dot">●</span>
+    <span>AI VIDEO TOOLS</span><span class="dot">●</span>
+    <span>STORYTELLING</span><span class="dot">●</span>
+    <span>PREMIERE PRO</span><span class="dot">●</span>
+    <span>AFTER EFFECTS</span><span class="dot">●</span>
+    <span>DAVINCI RESOLVE</span><span class="dot">●</span>
+    <span>VIDEO EDITING</span><span class="dot">●</span>
+    <span>MOTION GRAPHICS</span><span class="dot">●</span>
+    <span>COLOR GRADING</span><span class="dot">●</span>
+    <span>AI VIDEO TOOLS</span><span class="dot">●</span>
+    <span>STORYTELLING</span><span class="dot">●</span>
   </div>
 </div>
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-grid">
+  <div class="about-grid glass-panel">
     <div class="about-img-wrap">
       <img src="amr.jpg" alt="Amr Mosaad">
     </div>
     <div class="about-text">
       <div class="section-label">About Me</div>
-      <div class="section-title">THE<br>VISUAL<br>TELLER.</div>
-      <p>I'm <strong>Amr Mosaad</strong>, a 23-year-old Video Editor &amp; Motion Designer. I believe a great cut isn't just invisible; it's impactful.</p>
-      <p>My nearly 2 years at Indigo have been spent mastering technical workflows and visual standards for brands like Cemex and EVA. I'm here to translate concepts into cinematic motion.</p>
+      <h2 class="section-title" style="margin-bottom: 24px;">THE VISUAL<br>TELLER.</h2>
+      <p>I'm <strong>Amr Mosaad</strong>, a 24-year-old Video Editor &amp; Motion Designer. I believe a great cut isn't just invisible; it's impactful.</p>
+      <p>My nearly 2 years at Indigo Media Agency have been spent mastering technical workflows and visual standards. I bridge technical precision with visual storytelling to build worlds through frames.</p>
       
       <div class="about-meta">
-        <div class="meta-row"><span class="meta-key">Based</span><span class="meta-val">Cairo, Egypt</span></div>
-        <div class="meta-row"><span class="meta-key">Experience</span><span class="meta-val">Nearly 2 Years</span></div>
-        <div class="meta-row"><span class="meta-key">Focus</span><span class="meta-val">Editing / Motion / Color Grading / AI</span></div>
+        <div class="meta-block">
+          <span class="meta-key">Based In</span>
+          <span class="meta-val">Cairo, Egypt</span>
+        </div>
+        <div class="meta-block">
+          <span class="meta-key">Experience</span>
+          <span class="meta-val">Nearly 2 Years</span>
+        </div>
+        <div class="meta-block">
+          <span class="meta-key">Role</span>
+          <span class="meta-val">Editor &amp; Motion Designer</span>
+        </div>
+        <div class="meta-block">
+          <span class="meta-key">Agency</span>
+          <span class="meta-val">Indigo Media Agency</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- WORK — LIST STYLE -->
+<!-- WORK -->
 <section id="work">
-  <div class="section-inner">
-    <div class="section-label">Selected Work</div>
-    <div class="section-title">PROJECTS BY<br>CATEGORY.</div>
-  </div>
+  <div class="section-label">Selected Work</div>
+  <h2 class="section-title">PROJECTS BY<br>CATEGORY.</h2>
   
   <div class="work-grid">
-    <a class="work-card" href="https://drive.google.com/drive/folders/114cgugcHQnhnJALZ2k195yRI5QLxwErn" target="_blank">
-      <div class="work-card-info">
-        <span class="work-card-num">#01 Short-Form</span>
-        <div class="work-card-title">Social Content &amp; Reels</div>
-        <p class="work-card-desc">Platform-optimized, fast-paced edits designed for high engagement on TikTok and Instagram.</p>
+    <a class="work-card glass-panel" href="https://drive.google.com/drive/folders/114cgugcHQnhnJALZ2k195yRI5QLxwErn" target="_blank">
+      <div class="work-card-num">01</div>
+      <div>
+        <h3 class="work-card-title">Short-Form<br>&amp; Social</h3>
+        <p class="work-card-desc">Platform-optimized, fast-paced edits designed for high engagement.</p>
+        <div class="work-card-link">View Project →</div>
       </div>
-      <span class="work-card-arrow">→</span>
     </a>
     
-    <a class="work-card" href="https://drive.google.com/drive/folders/1gtGnYcnMoK5i2egpfYC7IFVinbhcjMJb" target="_blank">
-      <div class="work-card-info">
-        <span class="work-card-num">#02 Motion Graphics</span>
-        <div class="work-card-title">Logo &amp; Title Animation</div>
-        <p class="work-card-desc">Branded intros, outros, and UI elements animated in After Effects to enhance visual story.</p>
+    <a class="work-card glass-panel" href="https://drive.google.com/drive/folders/1gtGnYcnMoK5i2egpfYC7IFVinbhcjMJb" target="_blank">
+      <div class="work-card-num">02</div>
+      <div>
+        <h3 class="work-card-title">Motion<br>Graphics</h3>
+        <p class="work-card-desc">Branded intros, outros, and UI elements animated in After Effects.</p>
+        <div class="work-card-link">View Project →</div>
       </div>
-      <span class="work-card-arrow">→</span>
     </a>
 
-    <a class="work-card" href="https://drive.google.com/drive/folders/1jqqYHM_0CfwDM-qdXy9dIQpqIqleqr-0" target="_blank">
-      <div class="work-card-info">
-        <span class="work-card-num">#03 Next-Gen Tools</span>
-        <div class="work-card-title">AI-Driven Content</div>
-        <p class="work-card-desc">Workflows integrating Kling, Sora, Google Veo3, Sora, and motion control for innovative productions.</p>
+    <a class="work-card glass-panel" href="https://drive.google.com/drive/folders/1jqqYHM_0CfwDM-qdXy9dIQpqIqleqr-0" target="_blank">
+      <div class="work-card-num">03</div>
+      <div>
+        <h3 class="work-card-title">AI-Driven<br>Content</h3>
+        <p class="work-card-desc">Workflows integrating Kling, Sora, Google Veo3, and motion control.</p>
+        <div class="work-card-link">View Project →</div>
       </div>
-      <span class="work-card-arrow">→</span>
     </a>
 
-    <a class="work-card" href="https://drive.google.com/drive/folders/17cdZ780gS4zIKc8LoGKl48gGMkcVX4L9" target="_blank">
-      <div class="work-card-info">
-        <span class="work-card-num">#04 Interview</span>
-        <div class="work-card-title">Podcast &amp; Corporate</div>
-        <p class="work-card-desc">Long-form editing, multi-camera sequences, audio clean-up, and clean graphical packaging.</p>
+    <a class="work-card glass-panel" href="https://drive.google.com/drive/folders/17cdZ780gS4zIKc8LoGKl48gGMkcVX4L9" target="_blank">
+      <div class="work-card-num">04</div>
+      <div>
+        <h3 class="work-card-title">Podcast &amp;<br>Interview</h3>
+        <p class="work-card-desc">Long-form editing, multi-camera sequences, and audio storytelling.</p>
+        <div class="work-card-link">View Project →</div>
       </div>
-      <span class="work-card-arrow">→</span>
     </a>
   </div>
 </section>
 
 <!-- BRANDS -->
 <section id="brands">
-  <div class="section-label">Trusted By</div>
-  <div class="section-title">BRANDS I'VE<br>WORKED WITH.</div>
-  <div class="brands-grid">
-    <div class="brand-item"><div class="brand-logo-wrap"><img src="mye.png" alt="MY E"></div></div>
-    <div class="brand-item"><div class="brand-logo-wrap"><img src="ASFOUR CRYSTAL.png" alt="Asfour Crystal"></div></div>
-    <div class="brand-item"><div class="brand-logo-wrap"><img src="Afour.png" alt="Asfour Creations"></div></div>
-    <div class="brand-item"><div class="brand-logo-wrap"><img src="gems.png" alt="Gems Schools"></div></div>
-    <div class="brand-item"><div class="brand-logo-wrap"><img src="Carofi.png" alt="Carofi"></div></div>
-    <div class="brand-item"><div class="brand-logo-wrap"><img src="MBG.png" alt="MPG"></div></div>
-    <div class="brand-item"><div class="brand-logo-wrap"><img src="CEMEX.png" alt="Cemex"></div></div>
-    <div class="brand-item"><div class="brand-logo-wrap"><img src="EVA.png" alt="Eva"></div></div>
-    <div class="brand-item"><div class="brand-logo-wrap"><img src="Football Access.png" alt="Football Access"></div></div>
-    <div class="brand-item"><div class="brand-logo-wrap"><img src="EGX.png" alt="EGX"></div></div>
-    <div class="brand-item"><div class="brand-logo-wrap"><img src="AL Rayah.png" alt="Al Rayah"></div></div>
-    <div class="brand-item"><div class="brand-logo-wrap"><img src="SGP Logo White.png" alt="SPG"></div></div>
-    <div class="brand-item"><div class="brand-logo-wrap"><img src="Spinneys.png" alt="Spinneys"></div></div>
-    <div class="brand-item"><div class="brand-logo-wrap"><img src="Bodïz.png" alt="Bodiz"></div></div>
-    <div class="brand-item"><div class="brand-logo-wrap"><img src="Al Baraka.png" alt="Al Baraka Bank"></div></div>
-    <div class="brand-item"><div class="brand-logo-wrap"><img src="ZAHF.png" alt="ZAHF"></div></div>
+  <div class="brands-container glass-panel">
+    <div class="section-label" style="text-align: center;">Trusted By</div>
+    <h2 class="section-title" style="text-align: center; margin-bottom: 48px;">BRANDS I'VE<br>WORKED WITH.</h2>
+    <div class="brands-grid">
+      <div class="brand-logo-wrap"><img src="mye.png" alt="MY E"></div>
+      <div class="brand-logo-wrap"><img src="ASFOUR CRYSTAL.png" alt="Asfour Crystal"></div>
+      <div class="brand-logo-wrap"><img src="Afour.png" alt="Asfour Creations"></div>
+      <div class="brand-logo-wrap"><img src="gems.png" alt="Gems Schools"></div>
+      <div class="brand-logo-wrap"><img src="Carofi.png" alt="Carofi"></div>
+      <div class="brand-logo-wrap"><img src="MBG.png" alt="MPG"></div>
+      <div class="brand-logo-wrap"><img src="CEMEX.png" alt="Cemex"></div>
+      <div class="brand-logo-wrap"><img src="EVA.png" alt="Eva"></div>
+      <div class="brand-logo-wrap"><img src="Football Access.png" alt="Football Access"></div>
+      <div class="brand-logo-wrap"><img src="EGX.png" alt="EGX"></div>
+      <div class="brand-logo-wrap"><img src="AL Rayah.png" alt="Al Rayah"></div>
+      <div class="brand-logo-wrap"><img src="SGP Logo White.png" alt="SPG"></div>
+      <div class="brand-logo-wrap"><img src="Spinneys.png" alt="Spinneys"></div>
+      <div class="brand-logo-wrap"><img src="Bodïz.png" alt="Bodiz"></div>
+      <div class="brand-logo-wrap"><img src="Al Baraka.png" alt="Al Baraka Bank"></div>
+      <div class="brand-logo-wrap"><img src="ZAHF.png" alt="ZAHF"></div>
+    </div>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
+<!-- EXPERIENCE & TOOLKIT -->
 <section id="experience">
-  <div class="exp-grid">
+  <div class="exp-wrapper">
     <div>
-      <div class="section-label">Indigo Media Agency</div>
-      <div class="section-title">TIMELINE<br>&amp; SKILLS.</div>
+      <div class="section-label">Capabilities</div>
+      <h2 class="section-title">SKILLS &amp;<br>WORKFLOW.</h2>
       <p class="exp-intro">I specialize in the complete post-production pipeline — combining a foundation in art direction with technical mastery of industry standard software.</p>
-      
-      <div class="exp-entry">
-        <div class="exp-period-role">2024 — Present / Mid-Level Video Editor</div>
-        <div class="exp-company">Workflow Expertise</div>
-        <p class="exp-intro" style="margin-top:10px;">Primary role in advanced pacing, multicam cutting, and creative concepts at Indigo Media Agency.</p>
-      </div>
     </div>
     
     <div class="skills-list">
-      <div class="skill-row"><span class="skill-num">01</span><div><div class="skill-name">Narrative Cutting</div><div class="skill-desc">Story-driven editing focusing on continuity, rhythm, and clear narrative flow.</div></div></div>
-      <div class="skill-row"><span class="skill-num">02</span><div><div class="skill-name">Color Grading</div><div class="skill-desc">DaVinci Resolve node-based workflows for cinematic look and brand color matching.</div></div></div>
-      <div class="skill-row"><span class="skill-num">03</span><div><div class="skill-name">Motion Design</div><div class="skill-desc">After Effects logo animations, title packaging, and kinetic typography.</div></div></div>
-      <div class="skill-row"><span class="skill-num">04</span><div><div class="skill-name">Visual Direction</div><div class="skill-desc">Concept research, visual moodboarding, and storyboard development.</div></div></div>
-      <div class="skill-row"><span class="skill-num">05</span><div><div class="skill-name">AI Integration</div><div class="skill-desc">Generative video (Kling, Sora), voiceover (ElevenLabs), and stock synthesis.</div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS GRID — TOOLKIT -->
-<section id="toolkit">
-  <div class="section-label">Core Capabilities</div>
-  <div class="section-title">PRIMARY<br>TOOLS &amp; PROCESS.</div>
-  <div class="skills-grid">
-    <div class="skill-item"><h4>Premiere Pro</h4><p>Storytelling, pacing, multicam, continuity, advanced cutting, and workflow efficiency.</p></div>
-    <div class="skill-item"><h4>After Effects</h4><p>Motion graphics, kinetic typography, logo animation, UI animation, and VFX.</p></div>
-    <div class="skill-item"><h4>DaVinci Resolve</h4><p>Cinematic grading, primary/secondary adjustments, power windows, LUTs, color matching.</p></div>
-    <div class="skill-item"><h4>AI Synthesis</h4><p>Sora, Kling, Google Veo3, ElevenLabs, Motion Control, synthesis of visual stock.</p></div>
-    <div class="skill-item"><h4>Concept</h4><p>Moodboards, storyboards, art direction research, and pitch development.</p></div>
-    <div class="skill-item"><h4>Aesthetics</h4><p>Focus on visual aesthetics — lighting, composition, color, and brand identity.</p></div>
-  </div>
-</section>
-
-<!-- CONTACT — DUAL PANEL -->
-<section id="contact">
-  <div class="contact-block">
-    <div class="contact-left">
-      <div class="grid-overlay"></div>
-      <div class="section-label">Let's Create</div>
-      <div class="section-title" style="margin-bottom:24px;">GET IN<br>TOUCH.</div>
-      <p>I'm open to full-time roles, freelance collaborations, and creative partnerships. Available remotely and based in Cairo, Egypt.</p>
-      
-      <div class="contact-links">
-        <a class="clink" id="email-link" href="#" target="_blank"><div class="clink-left"><span class="clink-platform">Email</span><span class="clink-val" id="email-val">—</span></div><span class="clink-arrow">→</span></a>
-        <a class="clink" href="https://wa.me/201095020145" target="_blank"><div class="clink-left"><span class="clink-platform">WhatsApp</span><span class="clink-val">+20 109 502 0145</span></div><span class="clink-arrow">→</span></a>
-        <a class="clink" href="https://eg.linkedin.com/in/amr-mosaad-14b67b38b" target="_blank"><div class="clink-left"><span class="clink-platform">LinkedIn</span><span class="clink-val">Amr Mosaad</span></div><span class="clink-arrow">→</span></a>
-        <a class="clink" href="https://www.instagram.com/amrrraw" target="_blank"><div class="clink-left"><span class="clink-platform">Instagram</span><span class="clink-val">@amrrraw</span></div><span class="clink-arrow">→</span></a>
-        <a class="clink" href="https://vimeo.com/user227317493" target="_blank"><div class="clink-left"><span class="clink-platform">Vimeo</span><span class="clink-val">Amr Mosaad</span></div><span class="clink-arrow">→</span></a>
+      <div class="skill-item glass-panel">
+        <span class="skill-num">01</span>
+        <div class="skill-info">
+          <h4>Video Editing &amp; Storytelling</h4>
+          <p>Advanced pacing, multicam cutting, and narrative-driven sequences focusing on continuity and rhythm.</p>
+        </div>
+      </div>
+      <div class="skill-item glass-panel">
+        <span class="skill-num">02</span>
+        <div class="skill-info">
+          <h4>Motion Design</h4>
+          <p>After Effects logo animations, title packaging, kinetic typography, and UI animations.</p>
+        </div>
+      </div>
+      <div class="skill-item glass-panel">
+        <span class="skill-num">03</span>
+        <div class="skill-info">
+          <h4>Color Grading</h4>
+          <p>DaVinci Resolve node-based workflows for cinematic looks, LUTs, and brand color matching.</p>
+        </div>
+      </div>
+      <div class="skill-item glass-panel">
+        <span class="skill-num">04</span>
+        <div class="skill-info">
+          <h4>AI Generation Tools</h4>
+          <p>Integrating generative video (Kling, Sora, Google Veo3) and voice synthesis (ElevenLabs) into the production pipeline.</p>
+        </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-block glass-panel">
+    <div class="section-label">Let's Create</div>
+    <h3 class="text-gradient">READY TO BRING YOUR<br><span class="accent-gradient">VISION TO LIFE?</span></h3>
+    <a id="email-btn" href="#" class="btn-primary" style="margin-top: 24px;">Start a Conversation</a>
     
-    <div class="contact-right">
-      <h3>NEED CINE- CUTS FOR YOUR BRAND?</h3>
-      <p>Tell me about your project and let's translate your vision into cinematic content.</p>
-      <a id="email-btn" href="#" class="btn-dark">Start a Conversation</a>
+    <div class="contact-links">
+      <a class="clink glass-pill" href="https://wa.me/201095020145" target="_blank">WhatsApp</a>
+      <a class="clink glass-pill" href="https://eg.linkedin.com/in/amr-mosaad-14b67b38b" target="_blank">LinkedIn</a>
+      <a class="clink glass-pill" href="https://www.instagram.com/amrrraw" target="_blank">Instagram</a>
+      <a class="clink glass-pill" href="https://vimeo.com/user227317493" target="_blank">Vimeo</a>
+      <a class="clink glass-pill" href="https://www.behance.net/amrmosad" target="_blank">Behance</a>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>&#169; 2025 Amr Mosaad — Editor & Motion Designer</p>
+  <p>&#169; 2026 Amr Mosaad — Editor & Motion Designer</p>
   <p>Cairo, Egypt</p>
 </footer>
 
 <script>
-  // Simple Email Protection
   (function(){
     var user = 'amrmosaad';
     var numbers = '.000';
     var domain = 'gmail' + '.com';
     var full = user + numbers + '@' + domain;
-    var el = document.getElementById('email-val');
-    var lk = document.getElementById('email-link');
     var btn = document.getElementById('email-btn');
-    if(el) el.textContent = full;
-    if(lk) lk.href = 'mailto:' + full;
     if(btn) btn.href = 'mailto:' + full;
   })();
 </script>

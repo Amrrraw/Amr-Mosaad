@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amr Mosaad — Video Editor & Motion Designer</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   /* --- CUSTOM FONT FOR NUMBERS --- */
   @font-face {
@@ -15,133 +15,156 @@
   }
 
   :root {
-    /* New Exact Palette */
+    /* Bold Cyber/Neo-Brutalism Palette */
     --black: #000000;
     --blue: #0044FF;
     --lime: #C2FF01;
     --orange: #FF4502;
     --mauve: #DC88FF;
     --text-white: #ffffff;
-    --text-gray: #a0a0a0;
+    --text-muted: #a0a0a0;
   }
   
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { background-color: var(--black); color: var(--text-white); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+  body { background-color: var(--black); color: var(--text-white); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; position: relative; }
 
-  /* Typography Utility */
   .num-font { font-family: 'Monigue', 'Bebas Neue', sans-serif; }
 
-  /* HEADER */
-  header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; background: rgba(0,0,0,0.85); backdrop-filter: blur(15px); border-bottom: 2px solid var(--blue); }
-  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 3px; color: var(--text-white); text-decoration: none; }
+  /* --- AMBIENT GLOW ORBS (Style from Img 2, Colors from Img 1) --- */
+  .glow-orb { position: fixed; border-radius: 50%; filter: blur(140px); z-index: -1; opacity: 0.4; animation: float 15s infinite alternate ease-in-out; pointer-events: none; }
+  .orb-1 { width: 50vw; height: 50vw; background: var(--blue); top: -20%; left: -10%; }
+  .orb-2 { width: 40vw; height: 40vw; background: var(--mauve); bottom: -10%; right: -5%; animation-delay: -5s; }
+  .orb-3 { width: 30vw; height: 30vw; background: rgba(255, 69, 2, 0.15); top: 30%; left: 35%; animation-delay: -2s; }
+
+  @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(40px, 20px) scale(1.1); } }
+
+  /* --- LIQUID GLASS UTILITY (Style from Img 2) --- */
+  .liquid-glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    border-radius: 24px;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .liquid-glass:hover {
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 15px 40px 0 rgba(0, 68, 255, 0.2);
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  /* --- GRADIENTS --- */
+  .text-gradient { background: linear-gradient(135deg, #fff, #999); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .accent-gradient { background: linear-gradient(135deg, var(--orange), var(--lime)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+  /* HEADER (Floating Pill from Img 2) */
+  header { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 16px 40px; width: 90%; max-width: 1200px; border-radius: 50px; background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 3px; color: var(--text-white); text-decoration: none; }
   .logo span { color: var(--lime); }
   nav { display: flex; gap: 32px; }
-  nav a { font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-white); text-decoration: none; transition: color 0.3s; }
-  nav a:hover { color: var(--lime); }
+  nav a { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+  nav a:hover { color: var(--text-white); }
 
   /* HERO */
-  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 0 48px; position: relative; }
-  .hero-tag { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--black); background: var(--mauve); padding: 8px 16px; margin-bottom: 30px; font-weight: 500; }
-  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(60px, 11vw, 150px); line-height: 0.9; letter-spacing: 2px; margin-bottom: 24px; color: var(--text-white); }
-  .hero h1 .accent-orange { color: var(--orange); }
-  .hero-sub { font-size: 18px; color: var(--text-gray); max-width: 600px; line-height: 1.8; margin-bottom: 48px; }
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 24px; position: relative; }
+  .hero-tag { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-white); padding: 12px 28px; margin-bottom: 32px; display: inline-block; border-radius: 50px; background: rgba(220, 136, 255, 0.15); border: 1px solid var(--mauve); }
+  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(60px, 12vw, 140px); line-height: 0.9; letter-spacing: 2px; margin-bottom: 24px; }
+  .hero-sub { font-size: 18px; color: var(--text-muted); max-width: 600px; line-height: 1.8; margin-bottom: 48px; }
   
-  .hero-cta { display: flex; gap: 20px; }
-  .btn-lime { background: var(--lime); color: var(--black); font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; padding: 18px 40px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
-  .btn-lime:hover { transform: translateY(-4px); box-shadow: 0 10px 0 var(--blue); }
-  .btn-outline { background: transparent; color: var(--mauve); border: 2px solid var(--mauve); font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; padding: 18px 40px; text-decoration: none; transition: 0.3s; }
-  .btn-outline:hover { background: var(--mauve); color: var(--black); }
+  .hero-cta { display: flex; gap: 20px; justify-content: center; }
+  .btn-lime { background: var(--lime); color: var(--black); font-family: 'DM Mono', monospace; font-size: 12px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; padding: 18px 40px; text-decoration: none; display: inline-block; border-radius: 50px; transition: transform 0.2s, box-shadow 0.2s; }
+  .btn-lime:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(194, 255, 1, 0.3); }
+  .btn-glass { color: #fff; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; padding: 18px 40px; text-decoration: none; display: inline-block; border-radius: 50px; cursor: pointer; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
+  .btn-glass:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--mauve); }
 
   /* TICKER */
-  .ticker-wrap { overflow: hidden; padding: 24px 0; border-top: 2px solid var(--orange); border-bottom: 2px solid var(--orange); background: var(--black); }
+  .ticker-wrap { overflow: hidden; padding: 24px 0; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.3); backdrop-filter: blur(10px); }
   .ticker { display: flex; gap: 64px; animation: ticker 25s linear infinite; white-space: nowrap; }
-  .ticker span { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 3px; color: var(--blue); }
-  .ticker .dot { color: var(--lime); }
+  .ticker span { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 3px; color: var(--text-muted); }
+  .ticker .dot { color: var(--orange); font-family: 'Monigue', sans-serif; font-size: 26px; }
 
   /* SECTION STRUCTURE */
-  section { padding: 120px 48px; max-width: 1400px; margin: 0 auto; }
-  .section-label { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--lime); margin-bottom: 16px; display: block; }
-  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(45px, 6vw, 80px); letter-spacing: 1.5px; line-height: 1; margin-bottom: 64px; color: var(--text-white); }
+  section { padding: 140px 5%; max-width: 1400px; margin: 0 auto; }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--mauve); margin-bottom: 16px; display: block; }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 6vw, 70px); letter-spacing: 1.5px; line-height: 1; margin-bottom: 64px; }
 
   /* ABOUT */
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-  .about-img-wrap { position: relative; }
-  .about-img-wrap::after { content: ''; position: absolute; top: 20px; left: 20px; width: 100%; height: 100%; border: 4px solid var(--blue); z-index: -1; }
-  .about-img-wrap img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; filter: grayscale(100%); transition: 0.4s; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: center; padding: 48px; }
+  .about-img-wrap { border-radius: 16px; overflow: hidden; position: relative; }
+  .about-img-wrap img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; filter: grayscale(50%); transition: 0.4s; }
   .about-img-wrap:hover img { filter: grayscale(0%); }
-  .about-text p { font-size: 17px; color: var(--text-gray); line-height: 1.9; margin-bottom: 24px; }
-  .about-text p strong { color: var(--lime); font-weight: bold; }
+  .about-text p { font-size: 16px; color: var(--text-muted); line-height: 1.9; margin-bottom: 24px; }
+  .about-text p strong { color: var(--text-white); }
   
-  .about-meta { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); }
+  .about-meta { margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.05); }
   .meta-block { display: flex; flex-direction: column; gap: 8px; }
-  .meta-key { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--mauve); }
+  .meta-key { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--lime); }
   .meta-val { font-size: 15px; color: var(--text-white); }
 
-  /* WORK CARDS — STRICT 2x2 GRID */
-  .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
-  .work-card { background: var(--black); border: 2px solid var(--blue); padding: 48px; text-decoration: none; display: flex; flex-direction: column; justify-content: flex-end; min-height: 380px; transition: 0.3s; position: relative; overflow: hidden; }
-  .work-card:hover { border-color: var(--orange); box-shadow: 12px 12px 0 var(--orange); transform: translate(-5px, -5px); }
-  /* Monigue Font applied to numbers */
-  .work-card-num { font-size: 80px; color: var(--lime); position: absolute; top: 20px; right: 30px; opacity: 0.3; line-height: 1; transition: 0.3s; }
-  .work-card:hover .work-card-num { opacity: 1; color: var(--mauve); }
-  .work-card-title { font-family: 'Bebas Neue', sans-serif; font-size: 48px; letter-spacing: 1.5px; color: var(--text-white); margin-bottom: 16px; position: relative; z-index: 2; }
-  .work-card-desc { font-size: 16px; color: var(--text-gray); line-height: 1.7; margin-bottom: 32px; max-width: 90%; position: relative; z-index: 2; }
-  .work-card-link { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: var(--blue); display: flex; align-items: center; gap: 8px; position: relative; z-index: 2; }
+  /* WORK CARDS — 2x2 Glass Grid */
+  .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .work-card { padding: 40px; text-decoration: none; display: flex; flex-direction: column; justify-content: flex-end; min-height: 340px; text-align: left; position: relative; overflow: hidden; }
+  .work-card-num { font-size: 90px; color: var(--blue); position: absolute; top: 10px; right: 20px; opacity: 0.2; line-height: 1; transition: 0.3s; }
+  .work-card:hover .work-card-num { opacity: 0.6; color: var(--orange); transform: scale(1.1); }
+  .work-card-title { font-family: 'Bebas Neue', sans-serif; font-size: 40px; letter-spacing: 1px; color: var(--text-white); margin-bottom: 16px; position: relative; z-index: 2; }
+  .work-card-desc { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 24px; position: relative; z-index: 2; max-width: 90%; }
+  .work-card-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--lime); display: flex; align-items: center; gap: 8px; position: relative; z-index: 2; transition: 0.3s; }
   .work-card:hover .work-card-link { color: var(--orange); }
 
   /* BRANDS */
-  #brands { background: var(--blue); border-top: 4px solid var(--lime); border-bottom: 4px solid var(--lime); padding-top: 100px; padding-bottom: 100px; }
-  #brands .section-label { color: var(--black); font-weight: bold; }
-  #brands .section-title { color: var(--black); }
-  .brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 32px; align-items: center; justify-items: center; }
-  .brand-logo-wrap { height: 60px; width: 100%; display: flex; align-items: center; justify-content: center; filter: brightness(0); opacity: 0.7; transition: 0.3s; }
-  .brand-logo-wrap:hover { opacity: 1; transform: scale(1.1); filter: brightness(0) invert(1); } /* Turns white on hover */
+  .brands-container { padding: 64px 48px; }
+  .brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 24px; align-items: center; justify-items: center; }
+  .brand-item { width: 100%; height: 120px; display: flex; align-items: center; justify-content: center; padding: 20px; }
+  .brand-logo-wrap { height: 50px; width: 100%; display: flex; align-items: center; justify-content: center; filter: brightness(0) invert(1); opacity: 0.5; transition: opacity 0.3s, transform 0.3s; }
+  .brand-item:hover .brand-logo-wrap { opacity: 1; transform: scale(1.05); }
   .brand-logo-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
   /* EXPERIENCE & SKILLS */
-  .exp-wrapper { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; }
-  .exp-intro { font-size: 17px; color: var(--text-gray); line-height: 1.9; margin-bottom: 32px; }
-  .skills-list { display: flex; flex-direction: column; gap: 32px; }
-  .skill-item { display: flex; align-items: flex-start; gap: 24px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-  /* Monigue Font applied to numbers */
-  .skill-num { font-size: 40px; color: var(--orange); line-height: 0.8; margin-top: 5px; }
-  .skill-info h4 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px; color: var(--text-white); margin-bottom: 8px; }
-  .skill-info p { font-size: 15px; color: var(--text-gray); line-height: 1.7; }
+  .exp-wrapper { display: grid; grid-template-columns: 1fr 1.5fr; gap: 64px; }
+  .exp-intro { font-size: 16px; color: var(--text-muted); line-height: 1.9; margin-bottom: 32px; }
+  .skills-list { display: flex; flex-direction: column; gap: 24px; }
+  .skill-item { padding: 32px; display: flex; align-items: flex-start; gap: 24px; }
+  .skill-num { font-size: 50px; color: var(--mauve); width: 40px; flex-shrink: 0; line-height: 0.8; opacity: 0.8; }
+  .skill-info h4 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px; color: var(--text-white); margin-bottom: 8px; }
+  .skill-info p { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
 
   /* CONTACT */
-  .contact-block { padding: 100px 48px; text-align: center; background: var(--mauve); border: 4px solid var(--orange); box-shadow: 15px 15px 0 var(--blue); }
-  .contact-block .section-label { color: var(--black); font-weight: bold; }
-  .contact-block h3 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(50px, 8vw, 100px); color: var(--black); line-height: 1; margin-bottom: 40px; }
-  .btn-contact { background: var(--black); color: var(--lime); font-family: 'DM Mono', monospace; font-size: 14px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; padding: 20px 50px; text-decoration: none; display: inline-block; transition: 0.3s; border: 2px solid var(--black); }
-  .btn-contact:hover { background: var(--blue); color: var(--text-white); border-color: var(--blue); }
+  .contact-block { padding: 80px; text-align: center; display: flex; flex-direction: column; align-items: center; border-radius: 40px; }
+  .contact-block h3 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 8vw, 90px); line-height: 1; margin-bottom: 32px; }
+  .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 48px; }
+  .clink { padding: 14px 28px; text-decoration: none; color: var(--text-white); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
+  .clink:hover { background: var(--blue); border-color: var(--blue); }
   
-  .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 60px; }
-  .clink { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: var(--black); text-decoration: none; padding: 10px 20px; border: 2px solid var(--black); transition: 0.3s; }
-  .clink:hover { background: var(--black); color: var(--mauve); }
-  
-  footer { padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.1); }
-  footer p { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; color: var(--text-gray); text-transform: uppercase; }
+  footer { padding: 32px 5%; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 64px; }
+  footer p { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; }
 
-  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-  @media (max-width: 1024px) {
+  @media (max-width: 992px) {
+    .about-grid, .exp-wrapper { grid-template-columns: 1fr; }
+    .about-grid { padding: 32px; }
+    header { width: 95%; padding: 16px 24px; }
     .work-grid { grid-template-columns: 1fr; }
-    .about-grid, .exp-wrapper { grid-template-columns: 1fr; gap: 60px; }
   }
   @media (max-width: 768px) {
-    header { padding: 20px; }
     nav { display: none; }
-    .hero { padding: 0 24px; }
-    section { padding: 80px 24px; }
-    .hero-cta { flex-direction: column; width: 100%; }
-    .contact-block { padding: 60px 24px; }
+    .hero-cta { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
+    .contact-block { padding: 48px 24px; }
     footer { flex-direction: column; gap: 16px; text-align: center; }
   }
 </style>
 </head>
 <body>
 
+<!-- AMBIENT GLOW ORBS -->
+<div class="glow-orb orb-1"></div>
+<div class="glow-orb orb-2"></div>
+<div class="glow-orb orb-3"></div>
+
+<!-- HEADER (Floating Pill) -->
 <header>
   <a class="logo" href="#">AMR MOSAAD<span>.</span></a>
   <nav>
@@ -155,12 +178,12 @@
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-tag">Video Editor & Motion Designer</div>
-  <h1>TELLING STORIES<br><span class="accent-orange">THROUGH FRAMES.</span></h1>
+  <h1 class="text-gradient">TELLING STORIES<br><span class="accent-gradient">THROUGH FRAMES.</span></h1>
   <p class="hero-sub">Crafting cinematic content and motion graphics for leading brands. Specializing in Premiere Pro, After Effects, DaVinci Resolve, and next-gen AI production tools.</p>
   
   <div class="hero-cta">
     <a href="#work" class="btn-lime">View Projects</a>
-    <a href="#contact" class="btn-outline">Get In Touch</a>
+    <a href="#contact" class="btn-glass">Get In Touch</a>
   </div>
 </section>
 
@@ -185,13 +208,13 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-grid">
+  <div class="about-grid liquid-glass">
     <div class="about-img-wrap">
       <img src="amr.jpg" alt="Amr Mosaad">
     </div>
     <div class="about-text">
       <span class="section-label">About Me</span>
-      <h2 class="section-title">THE VISUAL<br>TELLER.</h2>
+      <h2 class="section-title" style="margin-bottom: 24px;">THE VISUAL<br>TELLER.</h2>
       <p>I'm <strong>Amr Mosaad</strong>, a 24-year-old Video Editor &amp; Motion Designer. I believe a great cut isn't just invisible; it's impactful.</p>
       <p>My nearly 2 years at Indigo Media Agency have been spent mastering technical workflows and visual standards. I bridge technical precision with visual storytelling to build worlds through frames.</p>
       
@@ -217,13 +240,13 @@
   </div>
 </section>
 
-<!-- WORK - STRICT 2x2 GRID -->
+<!-- WORK -->
 <section id="work">
   <span class="section-label">Selected Work</span>
   <h2 class="section-title">PROJECTS BY<br>CATEGORY.</h2>
   
   <div class="work-grid">
-    <a class="work-card" href="https://drive.google.com/drive/folders/114cgugcHQnhnJALZ2k195yRI5QLxwErn" target="_blank">
+    <a class="work-card liquid-glass" href="https://drive.google.com/drive/folders/114cgugcHQnhnJALZ2k195yRI5QLxwErn" target="_blank">
       <div class="work-card-num num-font">01</div>
       <div>
         <h3 class="work-card-title">Short-Form<br>&amp; Social</h3>
@@ -232,7 +255,7 @@
       </div>
     </a>
     
-    <a class="work-card" href="https://drive.google.com/drive/folders/1gtGnYcnMoK5i2egpfYC7IFVinbhcjMJb" target="_blank">
+    <a class="work-card liquid-glass" href="https://drive.google.com/drive/folders/1gtGnYcnMoK5i2egpfYC7IFVinbhcjMJb" target="_blank">
       <div class="work-card-num num-font">02</div>
       <div>
         <h3 class="work-card-title">Motion<br>Graphics</h3>
@@ -241,7 +264,7 @@
       </div>
     </a>
 
-    <a class="work-card" href="https://drive.google.com/drive/folders/1jqqYHM_0CfwDM-qdXy9dIQpqIqleqr-0" target="_blank">
+    <a class="work-card liquid-glass" href="https://drive.google.com/drive/folders/1jqqYHM_0CfwDM-qdXy9dIQpqIqleqr-0" target="_blank">
       <div class="work-card-num num-font">03</div>
       <div>
         <h3 class="work-card-title">AI-Driven<br>Content</h3>
@@ -250,7 +273,7 @@
       </div>
     </a>
 
-    <a class="work-card" href="https://drive.google.com/drive/folders/17cdZ780gS4zIKc8LoGKl48gGMkcVX4L9" target="_blank">
+    <a class="work-card liquid-glass" href="https://drive.google.com/drive/folders/17cdZ780gS4zIKc8LoGKl48gGMkcVX4L9" target="_blank">
       <div class="work-card-num num-font">04</div>
       <div>
         <h3 class="work-card-title">Podcast &amp;<br>Interview</h3>
@@ -263,28 +286,28 @@
 
 <!-- BRANDS -->
 <section id="brands">
-  <div style="max-width: 1400px; margin: 0 auto; padding: 0 48px;">
+  <div class="brands-container liquid-glass">
     <span class="section-label" style="text-align: center;">Trusted By</span>
-    <h2 class="section-title" style="text-align: center; margin-bottom: 64px;">BRANDS I'VE<br>WORKED WITH.</h2>
+    <h2 class="section-title" style="text-align: center; margin-bottom: 48px;">BRANDS I'VE<br>WORKED WITH.</h2>
     <div class="brands-grid">
-      <!-- New Clients -->
-      <div class="brand-logo-wrap"><img src="TBS.png" alt="TBS"></div>
-      <div class="brand-logo-wrap"><img src="ULT.png" alt="ULT"></div>
-      <div class="brand-logo-wrap"><img src="Luqta.png" alt="Luqta"></div>
-      <div class="brand-logo-wrap"><img src="Carofi Studio.png" alt="Carofi Studio"></div>
+      <!-- New Clients added as Liquid Glass cards -->
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="TBS.png" alt="TBS"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="ULT.png" alt="ULT"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Luqta.png" alt="Luqta"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Carofi Studio.png" alt="Carofi Studio"></div></div>
       
-      <!-- Existing Clients -->
-      <div class="brand-logo-wrap"><img src="mye.png" alt="MY E"></div>
-      <div class="brand-logo-wrap"><img src="ASFOUR CRYSTAL.png" alt="Asfour Crystal"></div>
-      <div class="brand-logo-wrap"><img src="gems.png" alt="Gems Schools"></div>
-      <div class="brand-logo-wrap"><img src="Carofi.png" alt="Carofi"></div>
-      <div class="brand-logo-wrap"><img src="MBG.png" alt="MPG"></div>
-      <div class="brand-logo-wrap"><img src="CEMEX.png" alt="Cemex"></div>
-      <div class="brand-logo-wrap"><img src="EVA.png" alt="Eva Pharma"></div>
-      <div class="brand-logo-wrap"><img src="Football Access.png" alt="Football Access"></div>
-      <div class="brand-logo-wrap"><img src="Spinneys.png" alt="Spinneys"></div>
-      <div class="brand-logo-wrap"><img src="Bodïz.png" alt="BODIZ"></div>
-      <div class="brand-logo-wrap"><img src="ZAHF.png" alt="ZAHF"></div>
+      <!-- Existing Clients as Liquid Glass cards -->
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="mye.png" alt="MY E"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="ASFOUR CRYSTAL.png" alt="Asfour Crystal"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="gems.png" alt="Gems Schools"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="CEMEX.png" alt="Cemex"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="EVA.png" alt="Eva"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Football Access.png" alt="Football Access"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="EGX.png" alt="EGX"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="SGP Logo White.png" alt="SPG"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Spinneys.png" alt="Spinneys"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="MBG.png" alt="MPG"></div></div>
+      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="ZAHF.png" alt="ZAHF"></div></div>
     </div>
   </div>
 </section>
@@ -299,28 +322,28 @@
     </div>
     
     <div class="skills-list">
-      <div class="skill-item">
+      <div class="skill-item liquid-glass">
         <span class="skill-num num-font">01</span>
         <div class="skill-info">
           <h4>Video Editing &amp; Storytelling</h4>
           <p>Advanced pacing, multicam cutting, and narrative-driven sequences focusing on continuity and rhythm.</p>
         </div>
       </div>
-      <div class="skill-item">
+      <div class="skill-item liquid-glass">
         <span class="skill-num num-font">02</span>
         <div class="skill-info">
           <h4>Motion Design</h4>
           <p>After Effects logo animations, title packaging, kinetic typography, and UI animations.</p>
         </div>
       </div>
-      <div class="skill-item">
+      <div class="skill-item liquid-glass">
         <span class="skill-num num-font">03</span>
         <div class="skill-info">
           <h4>Color Grading</h4>
           <p>DaVinci Resolve node-based workflows for cinematic looks, LUTs, and brand color matching.</p>
         </div>
       </div>
-      <div class="skill-item">
+      <div class="skill-item liquid-glass">
         <span class="skill-num num-font">04</span>
         <div class="skill-info">
           <h4>AI Generation Tools</h4>
@@ -333,10 +356,10 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="contact-block">
-    <span class="section-label">Let's Create</span>
-    <h3>READY TO BRING YOUR<br>VISION TO LIFE?</h3>
-    <a id="email-btn" href="#" class="btn-contact">Start a Conversation</a>
+  <div class="contact-block liquid-glass">
+    <span class="section-label" style="color: var(--orange);">Let's Create</span>
+    <h3 class="text-gradient">READY TO BRING YOUR<br><span class="accent-gradient">VISION TO LIFE?</span></h3>
+    <a id="email-btn" href="#" class="btn-lime" style="margin-top: 24px;">Start a Conversation</a>
     
     <div class="contact-links">
       <a class="clink" href="https://wa.me/201095020145" target="_blank">WhatsApp</a>

@@ -1,1 +1,219 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دعوة خطوبة</title>
+    
+    <!-- خطوط عربية أنيقة من جوجل -->
+    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* إعدادات عامة */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Amiri', serif;
+            background-color: #f8f6f0; /* لون كريمي فاتح */
+            color: #4a3b32;
+            overflow: hidden; /* لمنع التمرير العادي واستخدام حاوية التمرير */
+        }
+
+        /* حاوية التمرير (عشان يشتغل زي الستوري) */
+        .container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        /* إعدادات كل شاشة */
+        section {
+            height: 100vh;
+            width: 100%;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* الشاشة الأولى (البداية) */
+        .hero {
+            background-image: url('image.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .hero-text {
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 3rem;
+            color: #7a2831; /* لون أحمر/عنابي أنيق */
+            text-align: center;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* مؤشر السحب للأسفل */
+        .swipe-indicator {
+            position: absolute;
+            bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #555;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        .swipe-text {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            font-family: sans-serif;
+            text-transform: uppercase;
+        }
+
+        .arrows {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 0.8;
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        /* الشاشة الثانية (التفاصيل) */
+        .details {
+            background-color: #fdfbf7;
+            background-image: radial-gradient(#e5decc 1px, transparent 1px);
+            background-size: 20px 20px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .details-content {
+            opacity: 0; /* مخفي في البداية عشان يظهر بتأثير الفيد إن */
+            transform: translateY(20px);
+            transition: opacity 1.5s ease, transform 1.5s ease;
+        }
+
+        .details-content.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .intro-text {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .names {
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 3.5rem;
+            color: #7a2831;
+            margin-bottom: 30px;
+        }
+
+        .date-container {
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            font-weight: bold;
+            color: #333;
+            border-top: 1px solid #d3c4a1;
+            border-bottom: 1px solid #d3c4a1;
+            padding: 10px 0;
+            display: inline-block;
+        }
+
+        /* زر اللوكيشن */
+        .location-btn {
+            display: inline-block;
+            background-color: #7a2831;
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(122, 40, 49, 0.3);
+            transition: background-color 0.3s, transform 0.3s;
+            font-family: 'Amiri', serif;
+        }
+
+        .location-btn:hover {
+            background-color: #5c1c23;
+            transform: scale(1.05);
+        }
+
+        /* حركات الأنيميشن */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(10px); }
+            60% { transform: translateY(5px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- الشاشة الأولى -->
+        <section class="hero">
+            <h1 class="hero-text">يشرفنا حضورك</h1>
+            
+            <div class="swipe-indicator">
+                <span class="swipe-text">Swipe</span>
+                <div class="arrows">
+                    <span>↓</span>
+                    <span>↓</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- الشاشة الثانية -->
+        <section class="details">
+            <div class="details-content" id="details-content">
+                <p class="intro-text">نتشرف بكل مودة وحب بدعوتكم لحضور حفل خطوبة</p>
+                
+                <!-- يمكنك تغيير الأسماء هنا -->
+                <h2 class="names">العريس & العروسة</h2>
+                
+                <div class="date-container">
+                    الموعد: 14 / 8
+                </div>
+                
+                <br>
+                
+                <a href="https://maps.app.goo.gl/cwFTDuyH1Mxjk4SP9?g_st=ic" target="_blank" class="location-btn">لوكيشن القاعة</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- كود جافاسكريبت بسيط لعمل تأثير الظهور عند النزول للشاشة الثانية -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            const detailsContent = document.getElementById('details-content');
+            observer.observe(detailsContent);
+        });
+    </script>
+
+</body>
+</html>

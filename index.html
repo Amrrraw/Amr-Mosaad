@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
+<!-- Google Analytics: Amr Mosaad Portfolio -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7M9JEJ2Z2F"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-7M9JEJ2Z2F', {allow_google_signals:false,allow_ad_personalization_signals:false});
+</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#090909">
@@ -196,5 +205,39 @@ document.querySelectorAll('.pill,.social,.browse-link').forEach(control=>{
 });
 document.addEventListener('visibilitychange',()=>document.body.classList.toggle('motion-paused',document.hidden));
 </script>
+
+<script>
+// Track intentional interactions; muted hover previews are excluded.
+document.querySelectorAll('a').forEach(link=>{
+ if(link.textContent.trim().startsWith('View CV')){
+  link.addEventListener('click',()=>gtag('event','cv_open',{
+   button_location:link.closest('header')?'header':'contact'
+  }));
+ }
+});
+let trackedVideoSource='';
+const videoMilestones=new Set();
+fullVideo.addEventListener('playing',()=>{
+ if(!dialog.open || trackedVideoSource===fullVideo.currentSrc)return;
+ trackedVideoSource=fullVideo.currentSrc;
+ videoMilestones.clear();
+ gtag('event','video_start',{video_title:document.querySelector('#player-title').textContent,video_provider:'html5'});
+});
+fullVideo.addEventListener('timeupdate',()=>{
+ if(!dialog.open || !trackedVideoSource || !Number.isFinite(fullVideo.duration) || fullVideo.duration<=0)return;
+ const percent=fullVideo.currentTime/fullVideo.duration*100;
+ [25,50,75].forEach(mark=>{
+  if(percent>=mark&&!videoMilestones.has(mark)){
+   videoMilestones.add(mark);
+   gtag('event','video_progress',{video_title:document.querySelector('#player-title').textContent,video_percent:mark,video_provider:'html5'});
+  }
+ });
+});
+fullVideo.addEventListener('ended',()=>{
+ if(dialog.open)gtag('event','video_complete',{video_title:document.querySelector('#player-title').textContent,video_provider:'html5'});
+});
+dialog.addEventListener('close',()=>{trackedVideoSource='';videoMilestones.clear();});
+</script>
+
 </body>
 </html>

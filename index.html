@@ -1,390 +1,89 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amr Mosaad — Video Editor & Motion Designer</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090909">
+<meta name="description" content="Amr Mosaad — Cairo-based video editor and AI video producer. Selected social edits, AI productions, podcasts and interviews.">
+<title>Amr Mosaad | Video Editor & AI Video Production</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* --- CUSTOM FONT FOR NUMBERS --- */
-  @font-face {
-    font-family: 'Monigue';
-    src: url('monigue.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-  }
-
-  :root {
-    /* Instagram.jpeg Palette */
-    --black: #1D2121;
-    --white: #ECE9E9;
-    --volt: #B9ED00;
-    --lean: #7182CB;
-    --heat: #FF6716;
-    --grey: #CECECE;
-  }
-  
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body { background-color: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; position: relative; }
-
-  .num-font { font-family: 'Monigue', 'Bebas Neue', sans-serif; }
-
-  /* --- AMBIENT GLOW ORBS --- */
-  .glow-orb { position: fixed; border-radius: 50%; filter: blur(140px); z-index: -1; opacity: 0.45; animation: float 15s infinite alternate ease-in-out; pointer-events: none; }
-  .orb-1 { width: 50vw; height: 50vw; background: var(--lean); top: -20%; left: -10%; }
-  .orb-2 { width: 40vw; height: 40vw; background: var(--heat); bottom: -10%; right: -5%; animation-delay: -5s; }
-  .orb-3 { width: 30vw; height: 30vw; background: rgba(185, 237, 0, 0.15); top: 30%; left: 35%; animation-delay: -2s; }
-
-  @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(40px, 20px) scale(1.1); } }
-
-  /* --- LIQUID GLASS UTILITY --- */
-  .liquid-glass {
-    background: rgba(236, 233, 233, 0.03); 
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(236, 233, 233, 0.08);
-    border-top: 1px solid rgba(236, 233, 233, 0.15);
-    border-left: 1px solid rgba(236, 233, 233, 0.12);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-    border-radius: 24px;
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  .liquid-glass:hover {
-    background: rgba(236, 233, 233, 0.05);
-    box-shadow: 0 15px 40px 0 rgba(113, 130, 203, 0.2); 
-    transform: translateY(-5px);
-    border-color: rgba(236, 233, 233, 0.2);
-  }
-
-  /* --- GRADIENTS --- */
-  .text-gradient { background: linear-gradient(135deg, var(--white), var(--grey)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .accent-gradient { background: linear-gradient(135deg, var(--heat), var(--volt)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-  /* HEADER */
-  header { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 16px 40px; width: 90%; max-width: 1200px; border-radius: 50px; background: rgba(29, 33, 33, 0.6); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(236, 233, 233, 0.08); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4); }
-  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 3px; color: var(--white); text-decoration: none; }
-  .logo span { color: var(--volt); }
-  nav { display: flex; gap: 32px; }
-  nav a { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--grey); text-decoration: none; transition: color 0.3s; }
-  nav a:hover { color: var(--white); }
-
-  /* HERO */
-  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 24px; position: relative; }
-  .hero-tag { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--white); padding: 12px 28px; margin-bottom: 32px; display: inline-block; border-radius: 50px; background: rgba(113, 130, 203, 0.2); border: 1px solid var(--lean); }
-  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(60px, 12vw, 140px); line-height: 0.9; letter-spacing: 2px; margin-bottom: 24px; }
-  .hero-sub { font-size: 18px; color: var(--grey); max-width: 600px; line-height: 1.8; margin-bottom: 48px; }
-  
-  .hero-cta { display: flex; gap: 20px; justify-content: center; }
-  .btn-volt { background: var(--volt); color: var(--black); font-family: 'DM Mono', monospace; font-size: 12px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; padding: 18px 40px; text-decoration: none; display: inline-block; border-radius: 50px; transition: transform 0.2s, box-shadow 0.2s; }
-  .btn-volt:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(185, 237, 0, 0.25); }
-  .btn-glass { color: var(--white); font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; padding: 18px 40px; text-decoration: none; display: inline-block; border-radius: 50px; cursor: pointer; background: rgba(236, 233, 233, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(236, 233, 233, 0.15); transition: 0.3s; }
-  .btn-glass:hover { background: rgba(236, 233, 233, 0.1); border-color: var(--heat); color: var(--white); }
-
-  /* SECTION STRUCTURE */
-  section { padding: 140px 5%; max-width: 1400px; margin: 0 auto; }
-  .section-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--lean); margin-bottom: 16px; display: block; }
-  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 6vw, 70px); letter-spacing: 1.5px; line-height: 1; margin-bottom: 64px; }
-
-  /* ABOUT - No Image Layout */
-  .about-grid { padding: 48px; }
-  .about-text { width: 100%; max-width: 900px; margin: 0 auto; }
-  .about-text p { font-size: 18px; color: var(--grey); line-height: 1.9; margin-bottom: 24px; }
-  .about-text p strong { color: var(--white); }
-  
-  .about-meta { margin-top: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; padding-top: 32px; border-top: 1px solid rgba(236, 233, 233, 0.1); }
-  .meta-block { display: flex; flex-direction: column; gap: 8px; }
-  .meta-key { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--volt); }
-  .meta-val { font-size: 15px; color: var(--white); }
-
-  /* WORK CARDS — 2x2 Glass Grid */
-  .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-  .work-card { padding: 40px; text-decoration: none; display: flex; flex-direction: column; justify-content: flex-end; min-height: 340px; text-align: left; position: relative; overflow: hidden; }
-  .work-card-num { font-size: 90px; color: rgba(255, 255, 255, 0.1); position: absolute; top: 10px; right: 20px; line-height: 1; transition: 0.3s; z-index: 1; }
-  .work-card:hover .work-card-num { opacity: 0.6; color: var(--volt); transform: scale(1.1); }
-  .work-card-title { font-family: 'Bebas Neue', sans-serif; font-size: 44px; letter-spacing: 1px; color: var(--white); margin-bottom: 16px; position: relative; z-index: 2; }
-  .work-card-desc { font-size: 15px; color: var(--grey); line-height: 1.7; margin-bottom: 24px; position: relative; z-index: 2; max-width: 90%; }
-  .work-card-link { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; text-transform: uppercase; color: var(--volt); display: flex; align-items: center; gap: 8px; position: relative; z-index: 2; transition: 0.3s; }
-  .work-card:hover .work-card-link { color: var(--heat); }
-
-  /* BRANDS */
-  .brands-container { padding: 64px 48px; }
-  .brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 24px; align-items: center; justify-items: center; }
-  .brand-item { width: 100%; height: 120px; display: flex; align-items: center; justify-content: center; padding: 20px; }
-  .brand-logo-wrap { height: 50px; width: 100%; display: flex; align-items: center; justify-content: center; filter: brightness(0) invert(1); opacity: 0.5; transition: opacity 0.3s, transform 0.3s; }
-  .brand-item:hover .brand-logo-wrap { opacity: 1; transform: scale(1.05); }
-  .brand-logo-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; }
-
-  /* EXPERIENCE & SKILLS */
-  .exp-wrapper { display: grid; grid-template-columns: 1fr 1.5fr; gap: 64px; }
-  .exp-intro { font-size: 16px; color: var(--grey); line-height: 1.9; margin-bottom: 32px; }
-  .skills-list { display: flex; flex-direction: column; gap: 24px; }
-  .skill-item { padding: 32px; display: flex; align-items: flex-start; gap: 24px; }
-  .skill-num { font-size: 50px; color: var(--heat); width: 40px; flex-shrink: 0; line-height: 0.8; opacity: 0.8; }
-  .skill-info h4 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px; color: var(--white); margin-bottom: 8px; }
-  .skill-info p { font-size: 15px; color: var(--grey); line-height: 1.7; }
-
-  /* CONTACT */
-  .contact-block { padding: 80px; text-align: center; display: flex; flex-direction: column; align-items: center; border-radius: 40px; }
-  .contact-block h3 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 8vw, 90px); line-height: 1; margin-bottom: 32px; }
-  .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 48px; }
-  .clink { padding: 14px 28px; text-decoration: none; color: var(--white); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-radius: 50px; border: 1px solid rgba(236, 233, 233, 0.15); transition: 0.3s; }
-  .clink:hover { background: var(--lean); border-color: var(--lean); }
-  
-  footer { padding: 32px 5%; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(236, 233, 233, 0.08); margin-top: 64px; }
-  footer p { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; color: var(--grey); text-transform: uppercase; }
-
-  /* --- RESPONSIVE DESIGN FIXES FOR MOBILE --- */
-  @media (max-width: 992px) {
-    .exp-wrapper { grid-template-columns: 1fr; }
-    .about-grid { padding: 32px; }
-    header { width: 95%; padding: 16px 24px; }
-  }
-  @media (max-width: 768px) {
-    nav { display: none; }
-    /* Slimmer Header for Mobile */
-    header { width: calc(100% - 32px); padding: 12px 20px; top: 16px; border-radius: 30px; }
-    .logo { font-size: 20px; }
-    
-    .hero-cta { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
-    .contact-block { padding: 48px 24px; }
-    footer { flex-direction: column; gap: 16px; text-align: center; }
-    
-    /* Better Section Padding */
-    section { padding: 100px 20px 60px; }
-    .section-title { font-size: 40px; margin-bottom: 40px; }
-    
-    /* Force 2x2 Work Grid on Mobile with Perfect Proportions */
-    .work-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .work-card { padding: 16px; min-height: 220px; justify-content: space-between; border-radius: 16px; }
-    .work-card-num { font-size: 45px; top: 8px; right: 12px; }
-    .work-card-title { font-size: 22px; margin-bottom: 8px; line-height: 1.1; margin-top: 40px; }
-    /* Truncate Description to fit safely */
-    .work-card-desc { font-size: 11px; margin-bottom: 12px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-    .work-card-link { font-size: 16px; letter-spacing: 1px; }
-    
-    .about-grid { padding: 24px; }
-    .about-text p { font-size: 15px; }
-    .about-meta { flex-direction: column; align-items: flex-start; gap: 16px; }
-    
-    /* Optimize Brands & Skills for Mobile */
-    .brands-container { padding: 40px 24px; }
-    .brands-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .brand-item { height: 90px; padding: 12px; }
-    .brand-logo-wrap { height: 40px; }
-    
-    .skill-item { padding: 24px 16px; flex-direction: column; gap: 16px; }
-    .skill-num { font-size: 40px; }
-    .skill-info h4 { font-size: 22px; }
-  }
+@font-face{font-family:Monigue;src:url('monigue.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}
+:root{--bg:#090909;--white:#f6f6f3;--muted:#a0a0a0;--line:#303030;--lime:#c2ff01;--blue:#0044ff;--mauve:#dcb8ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:28px}body{margin:0;background:var(--bg);color:var(--white);font-family:'DM Sans',Arial,sans-serif;-webkit-font-smoothing:antialiased}body.modal-open{overflow:hidden}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}button,a{-webkit-tap-highlight-color:transparent}a:focus-visible,button:focus-visible{outline:2px solid var(--lime);outline-offset:6px}button{cursor:pointer}::selection{background:var(--lime);color:#090909}.skip{position:fixed;top:-100px;left:20px;z-index:100;background:var(--lime);color:#000;padding:15px}.skip:focus{top:15px}
+.shell{max-width:1440px;margin:auto;padding:0 24px}.content{max-width:1240px;margin:auto;padding:0 28px}.hero{height:min(820px,92svh);min-height:600px;position:relative;overflow:hidden;border-radius:0 0 64px 64px;isolation:isolate}.hero-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 53%;z-index:-2}.hero:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),transparent 32%,transparent 64%,rgba(0,0,0,.6));z-index:-1}header{padding:24px 28px;display:flex;justify-content:flex-end}nav{display:flex;align-items:center;gap:32px;font-size:14px}nav>a:not(.pill){padding:12px 0}nav>a:not(.pill):hover{color:var(--lime)}.pill{display:inline-flex;align-items:center;justify-content:center;gap:20px;border-radius:40px;padding:8px 9px 8px 20px;min-height:44px;background:var(--lime);color:#080808;font-size:13px;font-weight:700;transition:transform .2s}.pill:hover{transform:translateY(-3px)}.pill.white{background:var(--white)}.arrow-disc{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.65);display:grid;place-items:center;font-size:21px;line-height:1}.white .arrow-disc{background:var(--lime)}h1{position:absolute;top:17%;left:0;right:0;margin:0;text-align:center;font-family:Monigue,'Bebas Neue',Impact,sans-serif;font-weight:400;font-size:clamp(90px,11.8vw,174px);line-height:1;letter-spacing:-.025em;text-transform:uppercase}.hero-bottom{position:absolute;bottom:40px;left:38px;right:38px;display:grid;grid-template-columns:1fr 1fr 1fr;align-items:end;font-size:11px;line-height:1.5;text-transform:uppercase}.hero-bottom p{margin:0}.hero-bottom p:nth-child(2){text-align:center}.hero-bottom a{text-align:right;color:var(--muted)}.hero-bottom a:hover{color:var(--white)}
+section{padding-top:110px}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:90px}.eyebrow{display:block;font-size:14px;margin:0 0 20px}.accent{color:var(--lime)}h2{font-size:clamp(34px,4.2vw,60px);letter-spacing:-.045em;line-height:1.06;margin:0;font-weight:700}.about-copy{font-size:clamp(18px,1.8vw,24px);line-height:1.5;letter-spacing:-.025em;margin:4px 0 28px}.about-bottom{display:flex;justify-content:space-between;align-items:center;gap:20px}.muted{color:var(--muted)}.about-bottom p{font-size:14px;line-height:1.5;max-width:175px;margin:0}.section-head{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:26px}.section-head h2{font-size:18px;letter-spacing:-.025em;font-weight:500}.quiet-link{font-size:13px;color:var(--muted);display:flex;gap:15px}.quiet-link:hover{color:var(--lime)}.video-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}.video-card{position:relative;display:block;width:100%;aspect-ratio:9/13;border:1px solid #303030;border-radius:14px;overflow:hidden;background:linear-gradient(135deg,#343434,#222);padding:0;text-align:left;transition:border-color .2s,transform .2s}.video-card[aria-disabled=true]{cursor:default}.video-card.available:hover{transform:translateY(-5px);border-color:var(--lime)}.video-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .3s}.video-card.ready video{opacity:1}.card-number{position:absolute;top:17px;left:17px;color:#ddd;font-size:14px;z-index:1;text-shadow:0 1px 10px #000}.card-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:rgba(0,0,0,.45);border:1px solid #ffffff80;opacity:0;transition:opacity .2s}.available .card-play{opacity:1}.card-play:after{content:'';border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:11px solid white;margin-left:3px}.video-card.previewing .card-play{opacity:0}.card-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,#000b);padding:45px 16px 16px;font-size:13px;opacity:0}.available .card-label{opacity:1}.browse-grid{display:grid;grid-template-columns:1fr 1fr 1.35fr;gap:40px}.browse-link{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:5px 0 22px;border-bottom:1px solid var(--line);font-size:clamp(19px,2vw,28px);letter-spacing:-.035em;transition:color .2s,border-color .2s}.browse-link:hover{color:var(--lime);border-color:var(--lime)}.browse-link span{transition:transform .2s}.browse-link:hover span{transform:translate(3px,-3px)}.brands{padding-top:85px}.brand-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px 24px}.brand{height:86px;display:flex;justify-content:center;align-items:center;padding:15px 22px}.brand img{max-width:100%;max-height:43px;object-fit:contain;filter:grayscale(1) brightness(0) invert(1);opacity:.65;transition:opacity .2s}.brand:hover img{opacity:1}.brand-fallback{font-size:18px;font-weight:700}.skills-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:35px;align-content:start;padding-top:34px}.skill{display:flex;gap:25px;align-items:center;padding:16px 0;border-bottom:1px solid #454545;font-size:14px}.skill b{color:var(--lime);font-size:14px}.tools{margin-top:24px;color:var(--muted);font-size:12px;line-height:1.7}.contact{padding-top:130px;padding-bottom:100px}.contact-copy{font-size:16px;line-height:1.6;max-width:360px;margin:8px 0 24px}.socials{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}.social{display:flex;align-items:center;gap:16px;border:1px solid #555;border-radius:40px;font-size:12px;padding:12px 16px;transition:color .2s,border-color .2s}.social:hover{color:var(--lime);border-color:var(--lime)}footer{border-top:1px solid #252525;display:flex;justify-content:space-between;gap:20px;padding:25px 0;color:var(--muted);font-size:11px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+#player{background:#111;color:var(--white);border:1px solid #444;border-radius:18px;padding:18px;width:min(1000px,94vw);max-height:94svh}#player::backdrop{background:#000d;backdrop-filter:blur(12px)}.player-head{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:12px}.player-head h2{font-size:16px;letter-spacing:0}.close{border:1px solid #555;border-radius:50%;width:40px;height:40px;background:transparent;font-size:24px}#full-video{display:block;width:100%;height:min(72svh,640px);object-fit:contain;background:#000;border-radius:8px}.player-status{font-size:13px;color:var(--muted);margin:12px 0 0}.player-status:empty{display:none}
+@media(min-width:1500px){h1{font-size:174px}}@media(max-width:900px){.hero{min-height:560px;height:76svh;border-radius:0 0 38px 38px}.two-col{gap:40px}.content{padding:0 14px}.browse-grid{gap:22px}.brand-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.skill{gap:12px;font-size:12px}.skills-grid{column-gap:20px}.contact{padding-top:100px}}@media(max-width:600px){.shell{padding:0 12px}.hero{height:76svh;min-height:510px}.hero-image{object-position:center}.hero header{padding:16px 15px}nav{gap:18px;font-size:12px}.pill{font-size:12px;gap:10px;padding-left:14px}h1{top:21%;font-size:clamp(58px,16vw,95px);letter-spacing:-.02em}.hero-bottom{bottom:25px;left:20px;right:20px;grid-template-columns:1fr 1fr;gap:14px;font-size:9px}.hero-bottom p:nth-child(2){text-align:right}.hero-bottom a{display:none}.content{padding:0 12px}section{padding-top:70px}.two-col{grid-template-columns:1fr;gap:26px}h2{font-size:40px}.about-copy{font-size:19px}.about-bottom p{font-size:12px}.video-grid{grid-template-columns:repeat(5,68%);overflow-x:auto;padding:6px 2px 16px;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#555 transparent}.video-card{scroll-snap-align:start;aspect-ratio:9/13}.section-head h2{font-size:17px}.quiet-link{font-size:12px}.browse-grid{grid-template-columns:1fr;gap:24px}.browse-link{font-size:25px;padding-bottom:18px}.brand-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.brand{height:68px;padding:12px}.brand img{max-height:32px}.skills-grid{padding-top:0}.skill{font-size:12px;gap:12px}.contact{padding:85px 0 65px}.contact-copy{font-size:15px}.social{padding:12px 14px;font-size:12px}footer{font-size:10px}.hero nav .white{min-height:40px}.hero nav .arrow-disc{width:25px;height:25px}.brands{padding-top:65px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
-
-<!-- AMBIENT GLOW ORBS -->
-<div class="glow-orb orb-1"></div>
-<div class="glow-orb orb-2"></div>
-<div class="glow-orb orb-3"></div>
-
-<!-- HEADER (Floating Pill) -->
-<header>
-  <a class="logo" href="#">AMR MOSAAD<span>.</span></a>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#work">Work</a>
-    <a href="#brands">Brands</a>
-    <a href="#experience">Experience</a>
-  </nav>
-</header>
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-tag">Video Editor & Motion Designer</div>
-  <h1 class="text-gradient">TELLING STORIES<br><span class="accent-gradient">THROUGH FRAMES.</span></h1>
-  <p class="hero-sub">Crafting cinematic content and motion graphics for leading brands. Specializing in Premiere Pro, After Effects, DaVinci Resolve, and next-gen AI production tools.</p>
-  
-  <div class="hero-cta">
-    <a href="#work" class="btn-volt">View Projects</a>
-    <a href="#contact" class="btn-glass">Get In Touch</a>
-  </div>
-</section>
-
-<!-- ABOUT (No Image) -->
-<section id="about">
-  <div class="about-grid liquid-glass">
-    <div class="about-text">
-      <span class="section-label">About Me</span>
-      <h2 class="section-title" style="margin-bottom: 24px;">THE VISUAL<br>TELLER.</h2>
-      <p>I'm <strong>Amr Mosaad</strong>, a 24-year-old Video Editor &amp; Motion Designer. I believe a great cut isn't just invisible; it's impactful.</p>
-      <p>My 2 years at Indigo Media Agency have been spent mastering technical workflows and visual standards. I bridge technical precision with visual storytelling to build worlds through frames.</p>
-      
-      <div class="about-meta">
-        <div class="meta-block">
-          <span class="meta-key">Based In</span>
-          <span class="meta-val">Cairo, Egypt</span>
-        </div>
-        <div class="meta-block">
-          <span class="meta-key">Experience</span>
-          <span class="meta-val">Nearly 2 Years</span>
-        </div>
-        <div class="meta-block">
-          <span class="meta-key">Role</span>
-          <span class="meta-val">Editor &amp; Motion Designer</span>
-        </div>
-        <div class="meta-block">
-          <span class="meta-key">Agency</span>
-          <span class="meta-val">Indigo Media Agency</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WORK -->
-<section id="work">
-  <span class="section-label">Selected Work</span>
-  <h2 class="section-title">PROJECTS BY<br>CATEGORY.</h2>
-  
-  <div class="work-grid">
-    <a class="work-card liquid-glass" href="https://drive.google.com/drive/folders/114cgugcHQnhnJALZ2k195yRI5QLxwErn" target="_blank">
-      <div class="work-card-num num-font">01</div>
-      <div>
-        <h3 class="work-card-title">Short-Form<br>&amp; Social</h3>
-        <p class="work-card-desc">Platform-optimized, fast-paced edits designed for high engagement.</p>
-        <div class="work-card-link">View Project →</div>
-      </div>
-    </a>
-    
-    <a class="work-card liquid-glass" href="https://drive.google.com/drive/folders/1gtGnYcnMoK5i2egpfYC7IFVinbhcjMJb" target="_blank">
-      <div class="work-card-num num-font">02</div>
-      <div>
-        <h3 class="work-card-title">Motion<br>Graphics</h3>
-        <p class="work-card-desc">Branded intros, outros, and UI elements animated in After Effects.</p>
-        <div class="work-card-link">View Project →</div>
-      </div>
-    </a>
-
-    <a class="work-card liquid-glass" href="https://drive.google.com/drive/folders/1jqqYHM_0CfwDM-qdXy9dIQpqIqleqr-0" target="_blank">
-      <div class="work-card-num num-font">03</div>
-      <div>
-        <h3 class="work-card-title">AI-Driven<br>Content</h3>
-        <p class="work-card-desc">Workflows integrating Kling, Sora, Google Veo3, and motion control.</p>
-        <div class="work-card-link">View Project →</div>
-      </div>
-    </a>
-
-    <a class="work-card liquid-glass" href="https://drive.google.com/drive/folders/17cdZ780gS4zIKc8LoGKl48gGMkcVX4L9" target="_blank">
-      <div class="work-card-num num-font">04</div>
-      <div>
-        <h3 class="work-card-title">Podcast &amp;<br>Interview</h3>
-        <p class="work-card-desc">Long-form editing, multi-camera sequences, and audio storytelling.</p>
-        <div class="work-card-link">View Project →</div>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- BRANDS -->
-<section id="brands">
-  <div class="brands-container liquid-glass">
-    <span class="section-label" style="text-align: center;">Trusted By</span>
-    <h2 class="section-title" style="text-align: center; margin-bottom: 48px;">BRANDS I'VE<br>WORKED WITH.</h2>
-    <div class="brands-grid">
-      <!-- New Clients added as Liquid Glass cards -->
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="TBS.png" alt="TBS"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="ULT.png" alt="ULT"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Luqta.png" alt="Luqta"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Carofi Studio.png" alt="Carofi Studio"></div></div>
-      
-      <!-- Existing Clients as Liquid Glass cards -->
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="mye.png" alt="MY E"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="ASFOUR CRYSTAL.png" alt="Asfour Crystal"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="gems.png" alt="Gems Schools"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="CEMEX.png" alt="Cemex"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="EVA.png" alt="Eva"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Football Access.png" alt="Football Access"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="EGX.png" alt="EGX"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="SGP Logo White.png" alt="SPG"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="Spinneys.png" alt="Spinneys"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="MBG.png" alt="MPG"></div></div>
-      <div class="brand-item liquid-glass"><div class="brand-logo-wrap"><img src="ZAHF.png" alt="ZAHF"></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE & TOOLKIT -->
-<section id="experience">
-  <div class="exp-wrapper">
-    <div>
-      <span class="section-label">Capabilities</span>
-      <h2 class="section-title">SKILLS &amp;<br>WORKFLOW.</h2>
-      <p class="exp-intro">I specialize in the complete post-production pipeline — combining a foundation in art direction with technical mastery of industry standard software.</p>
-    </div>
-    
-    <div class="skills-list">
-      <div class="skill-item liquid-glass">
-        <span class="skill-num num-font">01</span>
-        <div class="skill-info">
-          <h4>Video Editing &amp; Storytelling</h4>
-          <p>Advanced pacing, multicam cutting, and narrative-driven sequences focusing on continuity and rhythm.</p>
-        </div>
-      </div>
-      <div class="skill-item liquid-glass">
-        <span class="skill-num num-font">02</span>
-        <div class="skill-info">
-          <h4>Motion Design</h4>
-          <p>After Effects logo animations, title packaging, kinetic typography, and UI animations.</p>
-        </div>
-      </div>
-      <div class="skill-item liquid-glass">
-        <span class="skill-num num-font">03</span>
-        <div class="skill-info">
-          <h4>Color Grading</h4>
-          <p>DaVinci Resolve node-based workflows for cinematic looks, LUTs, and brand color matching.</p>
-        </div>
-      </div>
-      <div class="skill-item liquid-glass">
-        <span class="skill-num num-font">04</span>
-        <div class="skill-info">
-          <h4>AI Generation Tools</h4>
-          <p>Integrating generative video (Kling, Sora, Google Veo3) and voice synthesis into the pipeline.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-block liquid-glass">
-    <span class="section-label" style="color: var(--volt);">Let's Create</span>
-    <h3 class="text-gradient">READY TO BRING YOUR<br><span class="accent-gradient">VISION TO LIFE?</span></h3>
-    <a id="email-btn" href="#" class="btn-volt" style="margin-top: 24px;">Start a Conversation</a>
-    
-    <div class="contact-links">
-      <a class="clink" href="https://wa.me/201095020145" target="_blank">WhatsApp</a>
-      <a class="clink" href="https://eg.linkedin.com/in/amr-mosaad-14b67b38b" target="_blank">LinkedIn</a>
-      <a class="clink" href="https://www.instagram.com/amrrraw" target="_blank">Instagram</a>
-      <a class="clink" href="https://vimeo.com/user227317493" target="_blank">Vimeo</a>
-      <a class="clink" href="https://www.behance.net/amrmosad" target="_blank">Behance</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <p>&#169; 2026 Amr Mosaad — Video Editor & Motion Designer</p>
-  <p>Cairo, Egypt</p>
-</footer>
-
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+<div class="hero" id="home">
+<img class="hero-image" src="assets/hero-cover.png" alt="A vintage television glowing blue with the words i edit" fetchpriority="high">
+<header><nav aria-label="Main navigation"><a href="#about">About</a><a href="#work">Work</a><a href="#contact">Contact</a><a class="pill white" href="assets/Amr_Mosaad_CV.pdf" target="_blank" rel="noopener">View CV <span class="arrow-disc" aria-hidden="true">↗</span></a></nav></header>
+<h1>Amr Mosaad</h1>
+<div class="hero-bottom"><p>Video Editor &amp; AI Video Production</p><p>I am loud about my craft</p><a href="#work">Explore my work ↓</a></div>
+</div>
+<main id="main" class="content">
+<section id="about" class="two-col" aria-labelledby="about-title"><div><span class="eyebrow accent">About Amr</span><h2 id="about-title">Editing stories.<br>Creating visuals.</h2></div><div><p class="about-copy">I’m a Cairo-based video editor creating brand content at Indigo Media Agency since July 2024. I shape footage through pacing, structure and color, and use AI to develop visuals that come together in the final edit.</p><div class="about-bottom"><p class="muted">Let’s create something great together.</p><a class="pill" href="#contact">Get in touch <span class="arrow-disc" aria-hidden="true">→</span></a></div></div></section>
+<section id="work" aria-labelledby="work-title"><div class="section-head"><h2 id="work-title">Featured Work</h2><a class="quiet-link" href="#explore">View all work <span aria-hidden="true">→</span></a></div><div class="video-grid" id="featured-grid"></div><noscript><p>Enable JavaScript to play featured videos. You can also explore the project folders below.</p></noscript></section>
+<section id="explore" aria-labelledby="explore-title"><div class="section-head"><h2 id="explore-title">Explore My Work</h2></div><div class="browse-grid"><a class="browse-link" href="https://drive.google.com/drive/folders/1TpkFfqCnqSF_wKHoR18w2aTsf5ALb1AW" target="_blank" rel="noopener">Social Edits <span aria-hidden="true">↗</span></a><a class="browse-link" href="https://drive.google.com/drive/folders/1-3xZQAvnQswfLRyxRs8tN_1SEs_PYyq8" target="_blank" rel="noopener">AI Production <span aria-hidden="true">↗</span></a><a class="browse-link" href="https://drive.google.com/drive/folders/17cdZ780gS4zIKc8LoGKl48gGMkcVX4L9" target="_blank" rel="noopener">Podcasts &amp; Interviews <span aria-hidden="true">↗</span></a></div></section>
+<section class="brands" aria-labelledby="brands-title"><div class="section-head"><h2 id="brands-title">Brands I’ve worked with</h2></div><div class="brand-grid" id="brand-grid"></div></section>
+<section class="two-col" aria-labelledby="skills-title"><div><span class="eyebrow">Skills &amp; Workflow</span><h2 id="skills-title">From idea<br>to final cut.</h2></div><div><div class="skills-grid"><div class="skill"><b>01</b>Video Editing</div><div class="skill"><b>03</b>Motion Graphics</div><div class="skill"><b>02</b>AI Video Production</div><div class="skill"><b>04</b>Color Grading</div></div><p class="tools">Premiere Pro · After Effects · DaVinci Resolve<br>Sora · Gemini · Kling</p></div></section>
+<section id="contact" class="two-col contact" aria-labelledby="contact-title"><div><span class="eyebrow accent">Let’s work together</span><h2 id="contact-title">Ready to bring<br>your idea to life?</h2></div><div><p class="contact-copy">I’m always open to new projects, collaborations and creative ideas.</p><div class="socials"><a class="social" href="https://www.behance.net/amrmosad" target="_blank" rel="noopener">Behance <span aria-hidden="true">↗</span></a><a class="social" href="https://eg.linkedin.com/in/amr-mosaad-14b67b38b" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a><a class="social" href="https://www.instagram.com/amrrraw" target="_blank" rel="noopener">Instagram <span aria-hidden="true">↗</span></a><a class="social" href="https://wa.me/201095020145" target="_blank" rel="noopener">WhatsApp <span aria-hidden="true">↗</span></a></div><a class="pill" href="assets/Amr_Mosaad_CV.pdf" target="_blank" rel="noopener">View CV <span class="arrow-disc" aria-hidden="true">↗</span></a></div></section>
+<footer><span>© <span id="year">2026</span> Amr Mosaad</span><span>Cairo, Egypt · <a href="mailto:amrmosaad.000@gmail.com">Say hello ↗</a></span></footer>
+</main>
+</div>
+<dialog id="player" aria-labelledby="player-title"><div class="player-head"><h2 id="player-title">Featured video</h2><button class="close" type="button" aria-label="Close video">×</button></div><video id="full-video" controls playsinline preload="none"></video><p class="player-status" role="status" id="player-status"></p></dialog>
 <script>
-  (function(){
-    var user = 'amrmosaad';
-    var numbers = '.000';
-    var domain = 'gmail' + '.com';
-    var full = user + numbers + '@' + domain;
-    var btn = document.getElementById('email-btn');
-    if(btn) btn.href = 'mailto:' + full;
-  })();
+// Upload these five MP4 files beside index.html. Optional cover images: Video 1.webp, etc.
+const FEATURED = Array.from({length:5}, (_,i) => ({title:`Video ${i+1}`,src:`Video ${i+1}.mp4`,poster:`Video ${i+1}.webp`}));
+// Exact filenames verified in amrrraw/Amr-Mosaad on GitHub. Case and spaces matter.
+const BRANDS = [
+ ['Asfour Crystal','ASFOUR CRYSTAL.png'],['CEMEX','CEMEX.png'],['EGX','EGX.png'],['EVA','EVA.png'],['Spinneys','Spinneys.png'],
+ ['MY E','mye.png'],['Asfour Creations','Afour.png'],['Gems','gems.png'],['Carofi','Carofi.png'],['MBG','MBG.png'],
+ ['Football Access','Football Access.png'],['Al Rayah','AL Rayah.png'],['SGP','SGP Logo White.png'],['Bodïz','Bodïz.png'],['Al Baraka','Al Baraka.png'],
+ ['ZAHF','ZAHF.png'],['TBS','TBS.png'],['ULT','ULT.png'],['Luqta','Luqta.png'],['Carofi Studio','Carofi Studio.png']
+];
+const grid = document.querySelector('#featured-grid');
+const dialog = document.querySelector('#player');
+const fullVideo = document.querySelector('#full-video');
+const status = document.querySelector('#player-status');
+const hoverDevice = matchMedia('(hover:hover) and (pointer:fine)');
+const reducedMotion = matchMedia('(prefers-reduced-motion:reduce)');
+const saveData = navigator.connection?.saveData;
+let previews = [];
+function stopPreview(card, reset=false){const video=card.querySelector('video');card.classList.remove('previewing');video.pause();if(reset&&video.readyState>=1)video.currentTime=0.1;}
+function stopAll(){previews.forEach(card=>stopPreview(card));}
+async function startPreview(card){if(!card.classList.contains('available')||!hoverDevice.matches||reducedMotion.matches||saveData||dialog.open)return;stopAll();const video=card.querySelector('video');card.classList.add('previewing');try{await video.play();if(!card.classList.contains('previewing'))video.pause();}catch{card.classList.remove('previewing');}}
+function openVideo(item){stopAll();status.textContent='';document.querySelector('#player-title').textContent=item.title;fullVideo.src=encodeURI(item.src);fullVideo.muted=false;dialog.showModal();document.body.classList.add('modal-open');fullVideo.play().catch(()=>{status.textContent='Press play to start the video.';});}
+FEATURED.forEach((item,i)=>{
+ const card=document.createElement('button');card.type='button';card.className='video-card';card.setAttribute('aria-label',`Featured video ${i+1}`);card.setAttribute('aria-disabled','true');
+ const video=document.createElement('video');video.muted=true;video.playsInline=true;video.loop=true;video.preload='none';video.setAttribute('aria-hidden','true');
+ card.append(video);const num=document.createElement('span');num.className='card-number';num.textContent=String(i+1).padStart(2,'0');card.append(num);
+ const play=document.createElement('span');play.className='card-play';play.setAttribute('aria-hidden','true');card.append(play);
+ const label=document.createElement('span');label.className='card-label';label.textContent='Watch film';card.append(label);grid.append(card);previews.push(card);
+ card.addEventListener('pointerenter',()=>startPreview(card));card.addEventListener('pointerleave',()=>stopPreview(card,true));card.addEventListener('focus',()=>startPreview(card));card.addEventListener('blur',()=>stopPreview(card,true));
+ card.addEventListener('click',()=>{if(card.classList.contains('available'))openVideo(item);});
+ video.addEventListener('loadeddata',()=>card.classList.add('ready'));
+ video.addEventListener('loadedmetadata',()=>{if(!card.classList.contains('previewing'))video.currentTime=Math.min(.1,video.duration/2);});
+ video.addEventListener('timeupdate',()=>{if(card.classList.contains('previewing')&&video.currentTime>=8)video.currentTime=0;});
+ video.addEventListener('error',()=>{stopPreview(card);card.classList.remove('available','ready');card.setAttribute('aria-disabled','true');});
+ card._load=async()=>{try{const res=await fetch(encodeURI(item.src),{method:'HEAD'});if(!res.ok)return;card.classList.add('available');card.setAttribute('aria-disabled','false');card.setAttribute('aria-label',`Play ${item.title}`);const poster=await fetch(encodeURI(item.poster),{method:'HEAD'});if(poster.ok){video.poster=encodeURI(item.poster);}video.preload=poster.ok||saveData?'none':'metadata';video.src=encodeURI(item.src);}catch{/* Empty slots remain until the video files are uploaded. */}};
+});
+if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target._load();observer.unobserve(entry.target);}}),{rootMargin:'150px'});previews.forEach(card=>observer.observe(card));}else previews.forEach(card=>card._load());
+dialog.querySelector('.close').addEventListener('click',()=>dialog.close());
+dialog.addEventListener('click',event=>{if(event.target===dialog){const rect=dialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)dialog.close();}});
+dialog.addEventListener('close',()=>{fullVideo.pause();fullVideo.removeAttribute('src');fullVideo.load();status.textContent='';document.body.classList.remove('modal-open');});
+fullVideo.addEventListener('error',()=>{if(dialog.open)status.textContent='This video could not be loaded. Please try again later.';});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){stopAll();fullVideo.pause();}});
+BRANDS.forEach(([name,file])=>{const wrap=document.createElement('div');wrap.className='brand';const img=document.createElement('img');img.src=encodeURI(file);img.alt=name;img.loading='lazy';img.decoding='async';img.addEventListener('error',()=>{const fallback=document.createElement('span');fallback.className='brand-fallback';fallback.textContent=name;img.replaceWith(fallback);});wrap.append(img);document.querySelector('#brand-grid').append(wrap);});
+document.querySelector('#year').textContent=new Date().getFullYear();
 </script>
 </body>
 </html>
